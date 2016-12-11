@@ -25,8 +25,11 @@ public class Child extends Person{
     public double calculateBMI(){
         //体质指数（BMI）=体重（kg）÷身高^2（m）
         double BMI;
-        BMI = this.getHealth().getWeight()/((this.getHealth().getHeight()/100)*(this.getHealth().getHeight()/100));
+        if(this.getHealth()!=null){
+            BMI = this.getHealth().getWeight()/((this.getHealth().getHeight()/100)*(this.getHealth().getHeight()/100));
         return BMI;
+        }else return 0.0;
+        
     }
 
     public Parents getParents() {

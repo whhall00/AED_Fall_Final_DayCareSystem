@@ -9,7 +9,7 @@ package business.WorkQueue;
  *
  * @author Chau_
  */
-public class HospitalWorkRequest {
+public class HospitalWorkRequest extends WorkRequest {
 
     private String testResult;
 

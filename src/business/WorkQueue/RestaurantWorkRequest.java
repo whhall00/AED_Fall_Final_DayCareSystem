@@ -9,7 +9,7 @@ package business.WorkQueue;
  *
  * @author Chau_
  */
-public class RestaurantWorkRequest {
+public class RestaurantWorkRequest extends WorkRequest {
 
     private String testResult;
 

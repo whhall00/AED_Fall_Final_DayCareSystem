@@ -5,10 +5,18 @@
  */
 package userInterface.Nutritionist;
 
+import business.Customer.Child;
 import business.Enterprise.Enterprise;
+import business.Enterprise.RestaurantEnterprise;
 import business.Organization.Organization;
+import business.Person.Person;
 import business.UserAccount.UserAccount;
+import java.awt.CardLayout;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
+import userInterface.AdministrativeRole.ViewRestaurantJPanel;
+import userInterface.Restaurant.UpdateBasicInformationJPanel;
 
 /**
  *
@@ -28,7 +36,7 @@ public class NutritionistWorkArea extends javax.swing.JPanel {
         this.account = account;
         this.organization = organization;
         this.enterprise = enterprise;
-        
+        populateChildrenTable();
     }
 
 
@@ -43,8 +51,9 @@ public class NutritionistWorkArea extends javax.swing.JPanel {
 
         jLabel1 = new javax.swing.JLabel();
         jScrollPane_DaycareCenter = new javax.swing.JScrollPane();
-        jTable_DayCareCenter = new javax.swing.JTable();
+        jTable_Children = new javax.swing.JTable();
         jButton_ViewDetail = new javax.swing.JButton();
+        jButton_Update = new javax.swing.JButton();
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -52,18 +61,18 @@ public class NutritionistWorkArea extends javax.swing.JPanel {
         jLabel1.setText("Nutritionist Work Area");
         add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 40, -1, -1));
 
-        jTable_DayCareCenter.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        jTable_DayCareCenter.setModel(new javax.swing.table.DefaultTableModel(
+        jTable_Children.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        jTable_Children.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Children Name", "Daycare Center Name", "Number of Children", "Remarrks"
+                "Children Name", "Child's father", "BMI"
             }
         ));
-        jScrollPane_DaycareCenter.setViewportView(jTable_DayCareCenter);
+        jScrollPane_DaycareCenter.setViewportView(jTable_Children);
 
-        add(jScrollPane_DaycareCenter, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 180, 810, 170));
+        add(jScrollPane_DaycareCenter, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 130, 810, 170));
 
         jButton_ViewDetail.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jButton_ViewDetail.setText("View Detail");
@@ -72,18 +81,65 @@ public class NutritionistWorkArea extends javax.swing.JPanel {
                 jButton_ViewDetailActionPerformed(evt);
             }
         });
-        add(jButton_ViewDetail, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 430, -1, -1));
+        add(jButton_ViewDetail, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 430, -1, -1));
+
+        jButton_Update.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jButton_Update.setText("Update Child's VitalSign");
+        jButton_Update.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_UpdateActionPerformed(evt);
+            }
+        });
+        add(jButton_Update, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 430, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton_ViewDetailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_ViewDetailActionPerformed
         // TODO add your handling code here:
+        int selectRow = jTable_Children.getSelectedRow();
+        if (selectRow < 0) {
+            JOptionPane.showMessageDialog(null, "Please select a row", "Warning", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        Child child = (Child) jTable_Children.getValueAt(selectRow, 0);
+        ViewChildJPanel viewChildJPanel = new ViewChildJPanel(userProcessContainer, child, account, organization, enterprise);
+        userProcessContainer.add("viewChildJPanel", viewChildJPanel);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
     }//GEN-LAST:event_jButton_ViewDetailActionPerformed
 
+    private void jButton_UpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_UpdateActionPerformed
+        // TODO add your handling code here:
+        int selectRow = jTable_Children.getSelectedRow();
+        if (selectRow < 0) {
+            JOptionPane.showMessageDialog(null, "Please select a row", "Warning", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        Child child = (Child)jTable_Children.getValueAt(selectRow,0);
+        UpdateChildVitalSignJPanel updateChildVitalSignJPanel =new UpdateChildVitalSignJPanel(userProcessContainer,child);
+        userProcessContainer.add("updateChildVitalSignJPanel", updateChildVitalSignJPanel);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
+    }//GEN-LAST:event_jButton_UpdateActionPerformed
 
+    public void populateChildrenTable(){
+        DefaultTableModel dtm = (DefaultTableModel) jTable_Children.getModel();
+        dtm.setRowCount(0);
+        for(Person p : enterprise.getPersonDirectory().getPersonList()){
+            if(p instanceof Child){
+                Object[] row = new Object[4];
+                row[0] = p;
+                row[1] = ((Child) p).getParents().getFather().getFirstName();
+                row[2] = ((Child) p).calculateBMI();
+                dtm.addRow(row);
+            }
+        }
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton_Update;
     private javax.swing.JButton jButton_ViewDetail;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane_DaycareCenter;
-    private javax.swing.JTable jTable_DayCareCenter;
+    private javax.swing.JTable jTable_Children;
     // End of variables declaration//GEN-END:variables
 }
