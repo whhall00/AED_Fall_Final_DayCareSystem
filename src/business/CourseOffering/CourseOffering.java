@@ -24,6 +24,10 @@ public class CourseOffering extends Course{
     private int childNum;
     private ArrayList<Child> childInClass;
     
+    public CourseOffering(){
+        childInClass = new ArrayList<>();
+    }
+    
     public void addChild(Child child)
     {
         childInClass.add(child);

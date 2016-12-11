@@ -17,6 +17,10 @@ import java.util.ArrayList;
 public class Teacher extends Person{
     private Salary salary;
     private ArrayList<CourseOffering> myCourseOffering;
+    
+    public Teacher(){
+        myCourseOffering = new ArrayList<>();
+    }
 
     public Salary getSalary() {
         return salary;
