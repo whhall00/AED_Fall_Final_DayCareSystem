@@ -6,7 +6,9 @@
 package userInterface.ManagerRole;
 
 import business.Business.EcoSystem;
+import business.CourseOffering.CourseOffering;
 import business.Customer.Child;
+import business.Enterprise.DayCareEnterprise;
 import business.Enterprise.Enterprise;
 import business.Enterprise.RestaurantEnterprise;
 import business.Menu.Menu;
@@ -17,6 +19,7 @@ import business.Person.Employee.Teacher;
 import business.Person.Person;
 import business.UserAccount.UserAccount;
 import java.awt.CardLayout;
+import java.awt.Component;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
@@ -27,7 +30,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class ManagerWorkArea extends javax.swing.JPanel {
     private JPanel userProcessContainer;
-    private Enterprise enterprise;
+    private DayCareEnterprise enterprise;
     private UserAccount userAccount;
     private EcoSystem system;
     /**
@@ -36,7 +39,7 @@ public class ManagerWorkArea extends javax.swing.JPanel {
     public ManagerWorkArea(JPanel userProcessContainer, Enterprise enterprise, UserAccount userAccount, EcoSystem system) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
-        this.enterprise = enterprise;
+        this.enterprise = (DayCareEnterprise) enterprise;
         this.userAccount = userAccount;
         this.system = system;
         nameJLabel.setText(userAccount.getPerson().getFirstName() + " " + userAccount.getPerson().getLastName());
@@ -46,6 +49,8 @@ public class ManagerWorkArea extends javax.swing.JPanel {
         populateRestaurantComboBox();
         populateHospitalTable();
         populateChildrenTable();
+        populateCourseTable();
+        populateAssignChildComboBox();
     }
     
     //Manage Employee
@@ -169,6 +174,39 @@ public class ManagerWorkArea extends javax.swing.JPanel {
         }
     }
     
+    //Manage Course
+    public void populateCourseTable()
+    {
+        DefaultTableModel model = (DefaultTableModel) jTable_Course.getModel();
+        model.setRowCount(0);
+        for (CourseOffering co : enterprise.getCourseOfferingSchedule().getCourseOfferingList())
+        {
+                Object[] row = new Object[2];
+                row[0] = co;
+                row[1] = co.getTeacher();
+                model.addRow(row);
+        }
+    }
+    public void populateAssignChildComboBox(){
+        jComboBox_AssignChild.removeAllItems();
+        for(Person p : enterprise.getPersonDirectory().getPersonList()){
+            if(p instanceof Child){
+                jComboBox_AssignChild.addItem(p);
+            }
+        }
+    }
+    public void populatCourseChildrenTable(CourseOffering courseOffering){
+        DefaultTableModel dtm = (DefaultTableModel) jTable_CourseChildren.getModel();
+        dtm.setRowCount(0);
+        for(Child child : courseOffering.getChildInClass()){
+                Object[] row = new Object[4];
+                row[0] = child;
+                row[1] = child.getGender();
+                row[2] = child.getDob();
+                row[3] = child.getBalance();
+                dtm.addRow(row);
+        }
+    }
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -191,6 +229,17 @@ public class ManagerWorkArea extends javax.swing.JPanel {
         jButton3 = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         jPanel_Course = new javax.swing.JPanel();
+        removeJButton = new javax.swing.JButton();
+        headlineJLabel1 = new javax.swing.JLabel();
+        viewJButton = new javax.swing.JButton();
+        addJButton = new javax.swing.JButton();
+        jScrollPane6 = new javax.swing.JScrollPane();
+        jTable_Course = new javax.swing.JTable();
+        jLabel4 = new javax.swing.JLabel();
+        jComboBox_AssignChild = new javax.swing.JComboBox();
+        jScrollPane7 = new javax.swing.JScrollPane();
+        jTable_CourseChildren = new javax.swing.JTable();
+        jButton_AssignChild = new javax.swing.JButton();
         jPanel_Restaurant = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTable_Menu = new javax.swing.JTable();
@@ -278,10 +327,133 @@ public class ManagerWorkArea extends javax.swing.JPanel {
                     .addComponent(jButton_AddChild)
                     .addComponent(jButton3)
                     .addComponent(jButton1))
-                .addContainerGap(96, Short.MAX_VALUE))
+                .addContainerGap(336, Short.MAX_VALUE))
         );
 
         jTabbedPane_ManagerWork.addTab("Child", jPanel_Child);
+
+        removeJButton.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        removeJButton.setText("Remove ");
+        removeJButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                removeJButtonActionPerformed(evt);
+            }
+        });
+
+        headlineJLabel1.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        headlineJLabel1.setText("Manage Courses Work Area");
+
+        viewJButton.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        viewJButton.setText("View Details");
+        viewJButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viewJButtonActionPerformed(evt);
+            }
+        });
+
+        addJButton.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        addJButton.setText("Add Course");
+        addJButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addJButtonActionPerformed(evt);
+            }
+        });
+
+        jTable_Course.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Course Name", "Teacher Name"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                true, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane6.setViewportView(jTable_Course);
+
+        jLabel4.setText("Assign Child To Selected Course:");
+
+        jTable_CourseChildren.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane7.setViewportView(jTable_CourseChildren);
+
+        jButton_AssignChild.setText("Assign Child");
+        jButton_AssignChild.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_AssignChildActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel_CourseLayout = new javax.swing.GroupLayout(jPanel_Course);
+        jPanel_Course.setLayout(jPanel_CourseLayout);
+        jPanel_CourseLayout.setHorizontalGroup(
+            jPanel_CourseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel_CourseLayout.createSequentialGroup()
+                .addGap(207, 207, 207)
+                .addComponent(headlineJLabel1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel_CourseLayout.createSequentialGroup()
+                .addGap(55, 55, 55)
+                .addGroup(jPanel_CourseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel_CourseLayout.createSequentialGroup()
+                        .addComponent(viewJButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
+                        .addComponent(removeJButton)
+                        .addGap(266, 266, 266))
+                    .addGroup(jPanel_CourseLayout.createSequentialGroup()
+                        .addGroup(jPanel_CourseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel_CourseLayout.createSequentialGroup()
+                                .addComponent(jComboBox_AssignChild, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jButton_AssignChild))
+                            .addComponent(jLabel4)
+                            .addComponent(addJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(jPanel_CourseLayout.createSequentialGroup()
+                        .addGroup(jPanel_CourseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jScrollPane7, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 596, Short.MAX_VALUE)
+                            .addComponent(jScrollPane6, javax.swing.GroupLayout.Alignment.LEADING))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+        );
+        jPanel_CourseLayout.setVerticalGroup(
+            jPanel_CourseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel_CourseLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(headlineJLabel1)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel_CourseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(viewJButton)
+                    .addComponent(removeJButton))
+                .addGap(18, 18, 18)
+                .addComponent(addJButton)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel_CourseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jComboBox_AssignChild, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton_AssignChild))
+                .addGap(28, 28, 28)
+                .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
         jTabbedPane_ManagerWork.addTab("Course", jPanel_Course);
 
         jTable_Menu.setModel(new javax.swing.table.DefaultTableModel(
@@ -370,7 +542,7 @@ public class ManagerWorkArea extends javax.swing.JPanel {
                             .addComponent(addtoCartButton6))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(26, Short.MAX_VALUE))
+                .addContainerGap(266, Short.MAX_VALUE))
         );
 
         jTabbedPane_ManagerWork.addTab("Restaurant", jPanel_Restaurant);
@@ -402,7 +574,7 @@ public class ManagerWorkArea extends javax.swing.JPanel {
             .addGroup(jPanel_HospitalLayout.createSequentialGroup()
                 .addGap(17, 17, 17)
                 .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(208, Short.MAX_VALUE))
+                .addContainerGap(448, Short.MAX_VALUE))
         );
 
         jTabbedPane_ManagerWork.addTab("Hospital", jPanel_Hospital);
@@ -500,12 +672,12 @@ public class ManagerWorkArea extends javax.swing.JPanel {
                 .addComponent(JButton_AddEmployee)
                 .addGap(18, 18, 18)
                 .addComponent(jButton2)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(247, Short.MAX_VALUE))
         );
 
         jTabbedPane_ManagerWork.addTab("Manage Employee", jPanel_Employee);
 
-        add(jTabbedPane_ManagerWork, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 120, 620, 360));
+        add(jTabbedPane_ManagerWork, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 120, 620, 600));
 
         jLabel_Network.setText("network");
         add(jLabel_Network, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, -1, -1));
@@ -606,21 +778,89 @@ public class ManagerWorkArea extends javax.swing.JPanel {
 //        }
     }//GEN-LAST:event_addtoCartButton6ActionPerformed
 
+    private void removeJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeJButtonActionPerformed
+        // TODO add your handling code here:
+        int selectedRow = jTable_Course.getSelectedRow();
+        if(selectedRow < 0)
+        {
+            JOptionPane.showMessageDialog(null, "Please select a row first!");
+            return;
+        }
+        else
+        {
+            CourseOffering courseOffering = (CourseOffering) jTable_Course.getValueAt(selectedRow, 0);
+            enterprise.getCourseOfferingSchedule().getCourseOfferingList().remove(courseOffering);
+//            courseOffering.getTeacher().deleteCourseOffering(courseOffering);
+//            for(Child child : courseOffering.getChildInClass())
+//            {
+//                child.getChosenClass().remove(courseOffering);
+//            }
+            populateTable();
+        }
+    }//GEN-LAST:event_removeJButtonActionPerformed
+
+    private void viewJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewJButtonActionPerformed
+        // TODO add your handling code here:
+        int selectedRow = jTable_Course.getSelectedRow();
+        if(selectedRow < 0)
+        {
+            JOptionPane.showMessageDialog(null, "Please select a row first!");
+            return;
+        }
+        else
+        {
+            CourseOffering courseOffering = (CourseOffering) jTable_Course.getValueAt(selectedRow, 0);
+            ViewCourseDetailJPanel viewCourseDetailJPanel = new ViewCourseDetailJPanel(userProcessContainer, courseOffering, enterprise);
+            userProcessContainer.add("ViewCourseDetailJPanel", viewCourseDetailJPanel);
+            CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+            layout.next(userProcessContainer);
+        }
+    }//GEN-LAST:event_viewJButtonActionPerformed
+
+    private void addJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addJButtonActionPerformed
+        // TODO add your handling code here:
+        CourseOffering courseOffering = enterprise.getCourseOfferingSchedule().createANdAddCourseOffering();
+        AddCourseJPanel addCourseJPanel = new AddCourseJPanel(userProcessContainer, courseOffering, (DayCareEnterprise)enterprise);
+        userProcessContainer.add("AddCourseJPanel", addCourseJPanel);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
+    }//GEN-LAST:event_addJButtonActionPerformed
+
+    private void jButton_AssignChildActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_AssignChildActionPerformed
+        // TODO add your handling code here:
+        Child child = (Child)jComboBox_AssignChild.getSelectedItem();
+        int selectedRow = jTable_Course.getSelectedRow();
+        if(selectedRow < 0)
+        {
+            JOptionPane.showMessageDialog(null, "Please select a row first!");
+            return;
+        }else{
+            CourseOffering courseOffering = (CourseOffering) jTable_Course.getValueAt(selectedRow, 0);
+            courseOffering.addChild(child);
+            populatCourseChildrenTable(courseOffering);
+        }
+    }//GEN-LAST:event_jButton_AssignChildActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton JButton_AddEmployee;
+    private javax.swing.JButton addJButton;
     private javax.swing.JButton addtoCartButton6;
     private javax.swing.JLabel centerJLabel;
     private javax.swing.JLabel headlineJLabel;
+    private javax.swing.JLabel headlineJLabel1;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton_AddChild;
+    private javax.swing.JButton jButton_AssignChild;
     private javax.swing.JButton jButton_ShowALl;
+    private javax.swing.JComboBox jComboBox_AssignChild;
     private javax.swing.JComboBox jComboBox_Restaurant;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel_Network;
     private javax.swing.JPanel jPanel_Child;
@@ -633,9 +873,13 @@ public class ManagerWorkArea extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JScrollPane jScrollPane6;
+    private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JTabbedPane jTabbedPane_ManagerWork;
     private javax.swing.JTable jTable_Checkout;
     private javax.swing.JTable jTable_Children;
+    private javax.swing.JTable jTable_Course;
+    private javax.swing.JTable jTable_CourseChildren;
     private javax.swing.JTable jTable_Hospital;
     private javax.swing.JTable jTable_Menu;
     private javax.swing.JLabel managerNameLabel;
@@ -643,5 +887,7 @@ public class ManagerWorkArea extends javax.swing.JPanel {
     private javax.swing.JComboBox organizationJComboBox;
     private javax.swing.JTable organizationJTable;
     private javax.swing.JSpinner quantitySpinner;
+    private javax.swing.JButton removeJButton;
+    private javax.swing.JButton viewJButton;
     // End of variables declaration//GEN-END:variables
 }
