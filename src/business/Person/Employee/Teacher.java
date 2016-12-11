@@ -5,8 +5,10 @@
  */
 package business.Person.Employee;
 
+import business.CourseOffering.CourseOffering;
 import business.Person.Person;
 import business.Salary.Salary;
+import java.util.ArrayList;
 
 /**
  *
@@ -14,6 +16,35 @@ import business.Salary.Salary;
  */
 public class Teacher extends Person{
     private Salary salary;
+    private ArrayList<CourseOffering> myCourseOffering;
+
+    public Salary getSalary() {
+        return salary;
+    }
+
+    public void setSalary(Salary salary) {
+        this.salary = salary;
+    }
+
+    public ArrayList<CourseOffering> getMyCourseOffering() {
+        return myCourseOffering;
+    }
+
+    public void setMyCourseOffering(ArrayList<CourseOffering> myCourseOffering) {
+        this.myCourseOffering = myCourseOffering;
+    }
+    
+    public void addCourseOffering(CourseOffering co)
+    {
+        myCourseOffering.add(co);
+        return;
+    }
+    
+    public void deleteCourseOffering(CourseOffering co)
+    {
+        myCourseOffering.remove(co);
+        return;
+    }
     
     
     @Override
