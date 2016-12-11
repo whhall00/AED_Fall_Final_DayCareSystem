@@ -5,6 +5,9 @@
  */
 package userInterface.Hospital;
 
+import business.WorkQueue.HospitalWorkRequest;
+import javax.swing.JPanel;
+
 /**
  *
  * @author Chau_
@@ -14,9 +17,14 @@ public class AdviceJPanel extends javax.swing.JPanel {
     /**
      * Creates new form UpdateChildrenHealthJPanel
      */
-    public AdviceJPanel() {
+    private JPanel userProcessContainer;
+    private HospitalWorkRequest request;
+    public AdviceJPanel(JPanel userProcessContainer,HospitalWorkRequest hospitalWorkRequest) {
         initComponents();
+        this.userProcessContainer = userProcessContainer;
+        this.request = hospitalWorkRequest;
     }
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -28,20 +36,21 @@ public class AdviceJPanel extends javax.swing.JPanel {
     private void initComponents() {
 
         headlineJLabel = new javax.swing.JLabel();
-        jLabel_ChildName = new javax.swing.JLabel();
         jButton_Send = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea_Advice = new javax.swing.JTextArea();
         jButton_Back = new javax.swing.JButton();
 
         headlineJLabel.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
-        headlineJLabel.setText("Give Some Advice For the:");
-
-        jLabel_ChildName.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
-        jLabel_ChildName.setText("<Child Name>");
+        headlineJLabel.setText("Give Some Advice:");
 
         jButton_Send.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jButton_Send.setText("Send To The Day Care Center ");
+        jButton_Send.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_SendActionPerformed(evt);
+            }
+        });
 
         jTextArea_Advice.setColumns(20);
         jTextArea_Advice.setRows(5);
@@ -60,31 +69,27 @@ public class AdviceJPanel extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(70, 70, 70)
-                        .addComponent(headlineJLabel)
-                        .addGap(74, 74, 74)
-                        .addComponent(jLabel_ChildName))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(117, 117, 117)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 686, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(189, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
                 .addGap(139, 139, 139)
                 .addComponent(jButton_Back)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton_Send)
                 .addGap(225, 225, 225))
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(117, 117, 117)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 686, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(102, 102, 102)
+                        .addComponent(headlineJLabel)))
+                .addContainerGap(189, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(59, 59, 59)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(headlineJLabel)
-                    .addComponent(jLabel_ChildName))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
+                .addGap(50, 50, 50)
+                .addComponent(headlineJLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 59, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(31, 31, 31)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -98,12 +103,16 @@ public class AdviceJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton_BackActionPerformed
 
+    private void jButton_SendActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_SendActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_jButton_SendActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel headlineJLabel;
     private javax.swing.JButton jButton_Back;
     private javax.swing.JButton jButton_Send;
-    private javax.swing.JLabel jLabel_ChildName;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea jTextArea_Advice;
     // End of variables declaration//GEN-END:variables

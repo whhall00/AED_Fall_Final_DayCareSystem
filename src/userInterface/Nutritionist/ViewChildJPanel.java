@@ -5,31 +5,59 @@
  */
 package userInterface.Nutritionist;
 
+import business.Customer.Child;
 import business.Enterprise.Enterprise;
 import business.Organization.Organization;
+import business.Person.Person;
 import business.UserAccount.UserAccount;
+import java.awt.CardLayout;
+import java.awt.Component;
 import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author Chau_
  */
+   
+
 public class ViewChildJPanel extends javax.swing.JPanel {
     private JPanel userProcessContainer;
     private UserAccount account;
     private Organization organization;
     private Enterprise enterprise;
+    private Child child;
     /**
      * Creates new form NutritionistWorkArea
      */
-    public ViewChildJPanel(JPanel userProcessContainer, UserAccount account, Organization organization, Enterprise enterprise) {
+    public ViewChildJPanel(JPanel userProcessContainer, Child child) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
+        this.child = child;
+        populateChildrenTable();
+        
+    }
+
+    ViewChildJPanel(JPanel userProcessContainer, Child child, UserAccount account, Organization organization, Enterprise enterprise) {
+        initComponents();
+        this.userProcessContainer = userProcessContainer;
+        this.child = child;
         this.account = account;
         this.organization = organization;
         this.enterprise = enterprise;
+       
+        populateChildrenTable();
     }
+    
+    private void populateChildrenTable(){
+        DefaultTableModel dtm = (DefaultTableModel) jTable_VitalSign.getModel();
+        dtm.setRowCount(0);
+                Object[] row = new Object[2];
+                row[0] = child;
+                row[1] = child.calculateBMI();           
+                dtm.addRow(row);
 
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -40,45 +68,73 @@ public class ViewChildJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        jLabel_Label = new javax.swing.JLabel();
+        jScrollPane_Sign = new javax.swing.JScrollPane();
+        jTable_VitalSign = new javax.swing.JTable();
+        jButton_Send = new javax.swing.JButton();
+        jButton_Back = new javax.swing.JButton();
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
-        jLabel1.setText("Child Vital Sign");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 60, -1, -1));
+        jLabel_Label.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        jLabel_Label.setText("Child Vital Sign");
+        add(jLabel_Label, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 60, -1, -1));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jTable_VitalSign.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Children Name", "BMI", "Body Fat Tend"
+                "Children Name", "BMI"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane_Sign.setViewportView(jTable_VitalSign);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 170, 960, 210));
+        add(jScrollPane_Sign, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 160, 960, 210));
 
-        jButton1.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
-        jButton1.setText("Send a Message to Doctor");
-        add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 450, -1, -1));
+        jButton_Send.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        jButton_Send.setText("Send a Message to Doctor");
+        jButton_Send.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_SendActionPerformed(evt);
+            }
+        });
+        add(jButton_Send, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 450, -1, -1));
 
-        jButton2.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
-        jButton2.setText("<<Back");
-        add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 450, -1, -1));
+        jButton_Back.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        jButton_Back.setText("<<Back");
+        jButton_Back.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_BackActionPerformed(evt);
+            }
+        });
+        add(jButton_Back, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 450, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButton_BackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_BackActionPerformed
+        // TODO add your handling code here:
+        userProcessContainer.remove(this);
+        Component[] componentArray = userProcessContainer.getComponents();
+        Component component = componentArray[componentArray.length - 1];
+        NutritionistWorkArea NutritionistWorkAreaatalogJPanel = (NutritionistWorkArea) component;
+        NutritionistWorkAreaatalogJPanel.populateChildrenTable();
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.previous(userProcessContainer);
+    }//GEN-LAST:event_jButton_BackActionPerformed
+
+    private void jButton_SendActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_SendActionPerformed
+        // TODO add your handling code here:
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        userProcessContainer.add("RequestLabTestJPanel", new SendMessageJPanel(userProcessContainer, child,account,organization,enterprise));
+        layout.next(userProcessContainer);
+    }//GEN-LAST:event_jButton_SendActionPerformed
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JButton jButton_Back;
+    private javax.swing.JButton jButton_Send;
+    private javax.swing.JLabel jLabel_Label;
+    private javax.swing.JScrollPane jScrollPane_Sign;
+    private javax.swing.JTable jTable_VitalSign;
     // End of variables declaration//GEN-END:variables
 }

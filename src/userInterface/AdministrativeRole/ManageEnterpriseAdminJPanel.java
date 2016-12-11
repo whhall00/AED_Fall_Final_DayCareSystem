@@ -9,6 +9,7 @@ import business.Business.EcoSystem;
 import business.Enterprise.Enterprise;
 import business.Network.Network;
 import business.Person.Employee.Manager;
+import business.Person.Person;
 import business.Role.DayCareRole.ManagerRole;
 import business.UserAccount.UserAccount;
 import java.awt.CardLayout;
