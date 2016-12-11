@@ -26,7 +26,7 @@ public class DoctorRole extends Role{
             Organization organization,
             Enterprise enterprise,
             EcoSystem business) {
-             return new HospitalWorkArea(userProcessContainer, account, enterprise,business);
+            return new HospitalWorkArea(userProcessContainer, account, enterprise,business);
     }
     @Override
     public String toString(){

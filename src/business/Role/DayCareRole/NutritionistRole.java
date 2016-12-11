@@ -21,7 +21,7 @@ public class NutritionistRole extends Role{
 
     @Override
     public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, Organization organization, Enterprise enterprise, EcoSystem business) {
-        return new NutritionistWorkArea(userProcessContainer, account, organization,enterprise);
+        return new NutritionistWorkArea(userProcessContainer, account, organization,enterprise,business);
     }
     @Override
     public String toString(){
