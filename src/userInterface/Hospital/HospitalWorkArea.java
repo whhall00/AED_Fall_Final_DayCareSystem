@@ -9,6 +9,9 @@ import business.Business.EcoSystem;
 import business.Enterprise.Enterprise;
 import business.Enterprise.HospitalEnterprise;
 import business.UserAccount.UserAccount;
+import business.WorkQueue.HospitalWorkRequest;
+import static com.sun.corba.se.spi.presentation.rmi.StubAdapter.request;
+import java.awt.CardLayout;
 import javax.swing.JPanel;
 
 /**
@@ -52,7 +55,7 @@ public class HospitalWorkArea extends javax.swing.JPanel {
         jComboBox_Network = new javax.swing.JComboBox();
         jScrollPane_DaycareCenter = new javax.swing.JScrollPane();
         jTable_DayCareCenter = new javax.swing.JTable();
-        jButton_ViewDetail = new javax.swing.JButton();
+        jButton_GiveAdvice = new javax.swing.JButton();
 
         headLineJLabel.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         headLineJLabel.setText("Doctor Work Area");
@@ -78,11 +81,11 @@ public class HospitalWorkArea extends javax.swing.JPanel {
         ));
         jScrollPane_DaycareCenter.setViewportView(jTable_DayCareCenter);
 
-        jButton_ViewDetail.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        jButton_ViewDetail.setText("Give Some Advice");
-        jButton_ViewDetail.addActionListener(new java.awt.event.ActionListener() {
+        jButton_GiveAdvice.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jButton_GiveAdvice.setText("Give Some Advice");
+        jButton_GiveAdvice.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton_ViewDetailActionPerformed(evt);
+                jButton_GiveAdviceActionPerformed(evt);
             }
         });
 
@@ -106,7 +109,7 @@ public class HospitalWorkArea extends javax.swing.JPanel {
                 .addContainerGap(90, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jButton_ViewDetail)
+                .addComponent(jButton_GiveAdvice)
                 .addGap(112, 112, 112))
         );
         layout.setVerticalGroup(
@@ -121,7 +124,7 @@ public class HospitalWorkArea extends javax.swing.JPanel {
                 .addGap(43, 43, 43)
                 .addComponent(jScrollPane_DaycareCenter, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(68, 68, 68)
-                .addComponent(jButton_ViewDetail)
+                .addComponent(jButton_GiveAdvice)
                 .addContainerGap(105, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -130,14 +133,28 @@ public class HospitalWorkArea extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBox_NetworkActionPerformed
 
-    private void jButton_ViewDetailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_ViewDetailActionPerformed
+    private void jButton_GiveAdviceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_GiveAdviceActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton_ViewDetailActionPerformed
+       int selectedRow = jTable_DayCareCenter.getSelectedRow();
+        
+        if (selectedRow < 0){
+            return;
+        }
+        
+         HospitalWorkRequest hospitalWorkRequest= (HospitalWorkRequest)jTable_DayCareCenter.getValueAt(selectedRow, 0);
+     
+        hospitalWorkRequest.setStatus("Processing");
+        
+        AdviceJPanel processWorkRequestJPanel = new AdviceJPanel(userProcessContainer, hospitalWorkRequest);
+        userProcessContainer.add("processWorkRequestJPanel", processWorkRequestJPanel);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
+    }//GEN-LAST:event_jButton_GiveAdviceActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel headLineJLabel;
-    private javax.swing.JButton jButton_ViewDetail;
+    private javax.swing.JButton jButton_GiveAdvice;
     private javax.swing.JComboBox jComboBox_Network;
     private javax.swing.JScrollPane jScrollPane_DaycareCenter;
     private javax.swing.JTable jTable_DayCareCenter;
