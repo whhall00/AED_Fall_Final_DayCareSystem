@@ -5,9 +5,11 @@
  */
 package userInterface.Nutritionist;
 
+import business.Business.EcoSystem;
 import business.Customer.Child;
 import business.Enterprise.Enterprise;
-import business.Organization.DayCareOrganization.NutritionistOrganization;
+import business.Enterprise.HospitalEnterprise;
+import business.Network.Network;
 import business.Organization.Organization;
 import business.UserAccount.UserAccount;
 import business.WorkQueue.HospitalWorkRequest;
@@ -15,6 +17,7 @@ import java.awt.CardLayout;
 import java.awt.Component;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -29,6 +32,8 @@ public class RequestTextJPanel extends javax.swing.JPanel {
     private UserAccount account;
     private Organization organization;
     private Enterprise enterprise;
+    private EcoSystem business;
+    
     
     public RequestTextJPanel(JPanel userProcessContainer, Child child, UserAccount account, Organization organization, Enterprise enterprise) {
         initComponents();
@@ -38,6 +43,12 @@ public class RequestTextJPanel extends javax.swing.JPanel {
         this.account = account;
        
         
+    }
+    public void populatedJComBox(){
+        jComboBox_NetWorkArea.removeAll();
+              for (Network network : business.getNetworkList()){
+            jComboBox_NetWorkArea.addItem(network);
+        }
     }
 
 
@@ -52,13 +63,20 @@ public class RequestTextJPanel extends javax.swing.JPanel {
 
         jScrollPane = new javax.swing.JScrollPane();
         jTextArea_Message = new javax.swing.JTextArea();
+        jLabel_hint = new javax.swing.JLabel();
         jLabel_Message = new javax.swing.JLabel();
         jButton_Send = new javax.swing.JButton();
         jButton_Back = new javax.swing.JButton();
+        jScrollPane_hospital = new javax.swing.JScrollPane();
+        jTable_Hospital = new javax.swing.JTable();
+        jComboBox_NetWorkArea = new javax.swing.JComboBox();
 
         jTextArea_Message.setColumns(20);
         jTextArea_Message.setRows(5);
         jScrollPane.setViewportView(jTextArea_Message);
+
+        jLabel_hint.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        jLabel_hint.setText("Choose  a hospital :");
 
         jLabel_Message.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jLabel_Message.setText("Message");
@@ -79,67 +97,123 @@ public class RequestTextJPanel extends javax.swing.JPanel {
             }
         });
 
+        jTable_Hospital.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Hospital Name", "Contact Information"
+            }
+        ));
+        jScrollPane_hospital.setViewportView(jTable_Hospital);
+
+        jComboBox_NetWorkArea.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox_NetWorkAreaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(85, 85, 85)
+                .addGap(112, 112, 112)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 510, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel_Message)
+                    .addComponent(jComboBox_NetWorkArea, javax.swing.GroupLayout.PREFERRED_SIZE, 393, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel_hint)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(12, 12, 12)
                         .addComponent(jButton_Back)
                         .addGap(45, 45, 45)
-                        .addComponent(jButton_Send)))
-                .addContainerGap(311, Short.MAX_VALUE))
+                        .addComponent(jButton_Send))
+                    .addComponent(jLabel_Message)
+                    .addComponent(jScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 510, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(433, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane_hospital, javax.swing.GroupLayout.PREFERRED_SIZE, 937, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(39, 39, 39))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(130, 130, 130)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(49, Short.MAX_VALUE)
+                .addComponent(jLabel_hint)
+                .addGap(38, 38, 38)
+                .addComponent(jComboBox_NetWorkArea, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane_hospital, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(16, 16, 16)
                 .addComponent(jLabel_Message)
-                .addGap(35, 35, 35)
+                .addGap(18, 18, 18)
                 .addComponent(jScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(73, 73, 73)
+                .addGap(105, 105, 105)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton_Send)
                     .addComponent(jButton_Back))
-                .addContainerGap(264, Short.MAX_VALUE))
+                .addGap(37, 37, 37))
         );
     }// </editor-fold>//GEN-END:initComponents
-
+    
+    private void populateTable(Network network) {
+        DefaultTableModel dtm = (DefaultTableModel) jTable_Hospital.getModel();
+        dtm.setRowCount(0);
+        for (Enterprise enterprise : network.getEnterpriseDirectory().getEnterpriseList()) {
+            if (enterprise.getEnterpriseType().equals(Enterprise.EnterpriseType.Hospital)) {
+                Object[] row = new Object[2];
+                row[0] = enterprise;
+                row[1] = enterprise.getEnterpriseType();
+                dtm.addRow(row);
+            }
+        }
+    }
+    
+    
     private void jButton_SendActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_SendActionPerformed
 
         String message = jTextArea_Message.getText();
-
         HospitalWorkRequest request = new HospitalWorkRequest();
         request.setMessage(message);
         request.setSender(account);
         request.setStatus("Sent");
-        
-        
+
         //添加到Nutritionist本身所属的DayCareCenter里面的Nutritionist origination里
-        //取得时候从这取
-        Organization org = null;
-        for (Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()){
-            if (organization instanceof NutritionistOrganization){
-                org = organization;
-                break;
-            }
-        }
-        if (org!=null){
-            org.getWorkQueue().getWorkRequestList().add(request);
-            account.getWorkQueue().getWorkRequestList().add(request);
-        }
+        //查找相同network里面的，选中的hospitalEnterprise，放在他下面的workqueue里面
+        //发送给相同network里面的hospital
+        
+//        Organization org = null;
+        int selectRow = jTable_Hospital.getSelectedRow();
+        if (selectRow < 0) {
+            JOptionPane.showMessageDialog(null, "Please select a row", "Warning", JOptionPane.WARNING_MESSAGE);
+            return;
+        }else
+        {
+        HospitalEnterprise hospitalEnterprise= (HospitalEnterprise) jTable_Hospital.getValueAt(selectRow, 0);
+        //在所选定hospital和本身的useraccount里面都添加了这个request
+        hospitalEnterprise.getWorkQueue().getWorkRequestList().add(request);
+        account.getWorkQueue().getWorkRequestList().add(request);
+        
         
         JOptionPane.showMessageDialog(null, "Send Succeddful");
+        }
+//        for (Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()){
+//            if (organization instanceof NutritionistOrganization){
+//                org = organization;
+//                break;
+//            }
+//        }
+//        if (org!=null){
+//            org.getWorkQueue().getWorkRequestList().add(request);
+//            account.getWorkQueue().getWorkRequestList().add(request);
+//        }
+        
+       
 
     }//GEN-LAST:event_jButton_SendActionPerformed
 
     private void jButton_BackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_BackActionPerformed
-        // TODO add your handling code here:
-        
+        // TODO add your handling code here:  
         userProcessContainer.remove(this);
         Component[] componentArray = userProcessContainer.getComponents();
         Component component = componentArray[componentArray.length - 1];
@@ -149,12 +223,22 @@ public class RequestTextJPanel extends javax.swing.JPanel {
         layout.previous(userProcessContainer);
     }//GEN-LAST:event_jButton_BackActionPerformed
 
+    private void jComboBox_NetWorkAreaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox_NetWorkAreaActionPerformed
+        // TODO add your handling code here:
+        Network network = (Network)jComboBox_NetWorkArea.getSelectedItem();
+        populateTable(network);
+    }//GEN-LAST:event_jComboBox_NetWorkAreaActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton_Back;
     private javax.swing.JButton jButton_Send;
+    private javax.swing.JComboBox jComboBox_NetWorkArea;
     private javax.swing.JLabel jLabel_Message;
+    private javax.swing.JLabel jLabel_hint;
     private javax.swing.JScrollPane jScrollPane;
+    private javax.swing.JScrollPane jScrollPane_hospital;
+    private javax.swing.JTable jTable_Hospital;
     private javax.swing.JTextArea jTextArea_Message;
     // End of variables declaration//GEN-END:variables
 }

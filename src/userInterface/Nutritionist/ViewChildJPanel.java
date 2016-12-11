@@ -5,10 +5,10 @@
  */
 package userInterface.Nutritionist;
 
+import business.Business.EcoSystem;
 import business.Customer.Child;
 import business.Enterprise.Enterprise;
 import business.Organization.Organization;
-import business.Person.Person;
 import business.UserAccount.UserAccount;
 import java.awt.CardLayout;
 import java.awt.Component;
@@ -26,6 +26,7 @@ public class ViewChildJPanel extends javax.swing.JPanel {
     private UserAccount account;
     private Organization organization;
     private Enterprise enterprise;
+    private EcoSystem business;
     private Child child;
     /**
      * Creates new form NutritionistWorkArea
@@ -38,14 +39,14 @@ public class ViewChildJPanel extends javax.swing.JPanel {
         
     }
 
-    ViewChildJPanel(JPanel userProcessContainer, Child child, UserAccount account, Organization organization, Enterprise enterprise) {
+    public ViewChildJPanel(JPanel userProcessContainer, Child child, UserAccount account, Organization organization, Enterprise enterprise,EcoSystem business) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.child = child;
         this.account = account;
         this.organization = organization;
         this.enterprise = enterprise;
-       
+        this.business = business;
         populateChildrenTable();
     }
     
@@ -125,7 +126,7 @@ public class ViewChildJPanel extends javax.swing.JPanel {
     private void jButton_SendActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_SendActionPerformed
         // TODO add your handling code here:
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        userProcessContainer.add("RequestLabTestJPanel", new SendMessageJPanel(userProcessContainer, child,account,organization,enterprise));
+        userProcessContainer.add("RequestLabTestJPanel", new SendMessageJPanel(userProcessContainer, child,account,organization,enterprise,business));
         layout.next(userProcessContainer);
     }//GEN-LAST:event_jButton_SendActionPerformed
     

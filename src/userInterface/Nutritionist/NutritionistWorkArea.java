@@ -5,6 +5,7 @@
  */
 package userInterface.Nutritionist;
 
+import business.Business.EcoSystem;
 import business.Customer.Child;
 import business.Enterprise.Enterprise;
 import business.Enterprise.RestaurantEnterprise;
@@ -27,15 +28,17 @@ public class NutritionistWorkArea extends javax.swing.JPanel {
     private UserAccount account;
     private Organization organization;
     private Enterprise enterprise;
+    private EcoSystem business;
     /**
      * Creates new form NutritionistWorkArea
      */
-    public NutritionistWorkArea(JPanel userProcessContainer, UserAccount account, Organization organization, Enterprise enterprise) {
+    public NutritionistWorkArea(JPanel userProcessContainer, UserAccount account, Organization organization, Enterprise enterprise,EcoSystem business) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.account = account;
         this.organization = organization;
         this.enterprise = enterprise;
+        this.business = business;
         populateChildrenTable();
     }
 
@@ -72,7 +75,7 @@ public class NutritionistWorkArea extends javax.swing.JPanel {
         ));
         jScrollPane_DaycareCenter.setViewportView(jTable_Children);
 
-        add(jScrollPane_DaycareCenter, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 130, 810, 170));
+        add(jScrollPane_DaycareCenter, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 160, 810, 170));
 
         jButton_ViewDetail.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jButton_ViewDetail.setText("View Detail");
@@ -101,7 +104,7 @@ public class NutritionistWorkArea extends javax.swing.JPanel {
             return;
         }
         Child child = (Child) jTable_Children.getValueAt(selectRow, 0);
-        ViewChildJPanel viewChildJPanel = new ViewChildJPanel(userProcessContainer, child, account, organization, enterprise);
+        ViewChildJPanel viewChildJPanel = new ViewChildJPanel(userProcessContainer, child, account, organization, enterprise,business);
         userProcessContainer.add("viewChildJPanel", viewChildJPanel);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
@@ -124,6 +127,7 @@ public class NutritionistWorkArea extends javax.swing.JPanel {
     public void populateChildrenTable(){
         DefaultTableModel dtm = (DefaultTableModel) jTable_Children.getModel();
         dtm.setRowCount(0);
+        //把整个托儿所的小孩都传进来了，enterprise就是nutritionist所在的托儿所
         for(Person p : enterprise.getPersonDirectory().getPersonList()){
             if(p instanceof Child){
                 Object[] row = new Object[4];
