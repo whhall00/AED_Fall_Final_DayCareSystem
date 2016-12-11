@@ -8,6 +8,7 @@ package userInterface.TeacherRole;
 import business.Enterprise.Enterprise;
 import business.Organization.Organization;
 import business.UserAccount.UserAccount;
+import java.awt.CardLayout;
 import javax.swing.JPanel;
 
 /**
@@ -29,6 +30,11 @@ public class TeacherWorkAreaJPanel extends javax.swing.JPanel {
         this.organization = organization;
         this.enterprise = enterprise;
     }
+    
+    public void populateTable()
+    {
+        
+    }
 
 
     /**
@@ -45,185 +51,106 @@ public class TeacherWorkAreaJPanel extends javax.swing.JPanel {
         nameLabel = new javax.swing.JLabel();
         statusLabel = new javax.swing.JLabel();
         statusJLabel = new javax.swing.JLabel();
-        viewDetailsJButton = new javax.swing.JButton();
-        childrenNameLabel = new javax.swing.JLabel();
         viewScheduleJButton = new javax.swing.JButton();
-        selectChildrenJCombox = new javax.swing.JComboBox();
-        addCourseJButton = new javax.swing.JButton();
-        updateChildrenInformationButton = new javax.swing.JButton();
-        checkoutJButton = new javax.swing.JButton();
         manageParentsInformationJButton = new javax.swing.JButton();
         checkinJButton = new javax.swing.JButton();
-        childrenScrollPane = new javax.swing.JScrollPane();
-        childJTable = new javax.swing.JTable();
         checkoutJButton1 = new javax.swing.JButton();
+        statusLabel1 = new javax.swing.JLabel();
+        jComboBoxCourse = new javax.swing.JComboBox<>();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         headlineJLabel.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
         headlineJLabel.setText("Teacher Work Area");
+        add(headlineJLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(55, 27, 364, 68));
 
         parentsNameLabel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         parentsNameLabel.setText("Teacher Name :");
+        add(parentsNameLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(55, 129, 166, 28));
 
         nameLabel.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        add(nameLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(239, 124, 161, 33));
 
         statusLabel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        statusLabel.setText("Status:");
+        statusLabel.setText("Course:");
+        add(statusLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 240, 80, 28));
 
         statusJLabel.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-
-        viewDetailsJButton.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        viewDetailsJButton.setText("Details");
-
-        childrenNameLabel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        childrenNameLabel.setText("Class:");
+        add(statusJLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(252, 190, 161, 33));
 
         viewScheduleJButton.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        viewScheduleJButton.setText("View the Schedule");
-
-        selectChildrenJCombox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        addCourseJButton.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        addCourseJButton.setText("Propose a Course");
-        addCourseJButton.addActionListener(new java.awt.event.ActionListener() {
+        viewScheduleJButton.setText("View My Schedule");
+        viewScheduleJButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                addCourseJButtonActionPerformed(evt);
+                viewScheduleJButtonActionPerformed(evt);
             }
         });
-
-        updateChildrenInformationButton.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        updateChildrenInformationButton.setText("Update Child  Information");
-
-        checkoutJButton.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        checkoutJButton.setText("Keep Record");
+        add(viewScheduleJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(55, 426, 386, 44));
 
         manageParentsInformationJButton.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        manageParentsInformationJButton.setText("Update Information");
+        manageParentsInformationJButton.setText("Update My Information");
+        manageParentsInformationJButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                manageParentsInformationJButtonActionPerformed(evt);
+            }
+        });
+        add(manageParentsInformationJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(55, 335, 386, 44));
 
         checkinJButton.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         checkinJButton.setText("Check In");
-
-        childJTable.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "Student Name", "Student ID", "Status"
-            }
-        ));
-        childrenScrollPane.setViewportView(childJTable);
+        add(checkinJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 180, -1, 79));
 
         checkoutJButton1.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         checkoutJButton1.setText("Check out");
+        add(checkoutJButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 180, -1, 77));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(55, 55, 55)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(parentsNameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(nameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(headlineJLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 364, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(childrenNameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                    .addComponent(statusLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(31, 31, 31)))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(statusJLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(selectChildrenJCombox, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addComponent(addCourseJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 386, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(updateChildrenInformationButton, javax.swing.GroupLayout.PREFERRED_SIZE, 386, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(viewScheduleJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 386, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(manageParentsInformationJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 386, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 95, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(checkinJButton)
-                        .addGap(41, 41, 41)
-                        .addComponent(checkoutJButton1)
-                        .addGap(66, 66, 66)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(checkoutJButton, javax.swing.GroupLayout.DEFAULT_SIZE, 251, Short.MAX_VALUE)
-                            .addComponent(viewDetailsJButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addComponent(childrenScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 582, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(38, 38, 38))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(childrenScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(37, 37, 37))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(27, 27, 27)
-                        .addComponent(headlineJLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(nameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(parentsNameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(statusLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(statusJLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(22, 22, 22)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(childrenNameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(selectChildrenJCombox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(73, 73, 73)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(checkinJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(checkoutJButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(viewDetailsJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(29, 29, 29)
-                        .addComponent(checkoutJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(manageParentsInformationJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(47, 47, 47)
-                        .addComponent(viewScheduleJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(49, 49, 49)
-                        .addComponent(addCourseJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(44, 44, 44)
-                        .addComponent(updateChildrenInformationButton, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(100, 100, 100))))
-        );
+        statusLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        statusLabel1.setText("Status:");
+        add(statusLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(55, 190, 166, 28));
+
+        jComboBoxCourse.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        add(jComboBoxCourse, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 241, 140, 30));
+
+        jLabel1.setText("DayCare Center Name:");
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 100, -1, -1));
+
+        jLabel2.setText("jLabel2");
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 100, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
-    private void addCourseJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addCourseJButtonActionPerformed
+    private void manageParentsInformationJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manageParentsInformationJButtonActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_addCourseJButtonActionPerformed
+        UpdateTeacherInformationJPanel updateTeacherInformationJPanel = new UpdateTeacherInformationJPanel(userProcessContainer, account); 
+        userProcessContainer.add("UpdateTeacherInformationJPanel", updateTeacherInformationJPanel);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
+    }//GEN-LAST:event_manageParentsInformationJButtonActionPerformed
+
+    private void viewScheduleJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewScheduleJButtonActionPerformed
+        // TODO add your handling code here:
+        ViewscheduleJPanel viewscheduleJPanel = new ViewscheduleJPanel(userProcessContainer, enterprise, account); 
+        userProcessContainer.add("ViewscheduleJPanel", viewscheduleJPanel);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
+    }//GEN-LAST:event_viewScheduleJButtonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton addCourseJButton;
     private javax.swing.JButton checkinJButton;
-    private javax.swing.JButton checkoutJButton;
     private javax.swing.JButton checkoutJButton1;
-    private javax.swing.JTable childJTable;
-    private javax.swing.JLabel childrenNameLabel;
-    private javax.swing.JScrollPane childrenScrollPane;
     private javax.swing.JLabel headlineJLabel;
+    private javax.swing.JComboBox<String> jComboBoxCourse;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JButton manageParentsInformationJButton;
     private javax.swing.JLabel nameLabel;
     private javax.swing.JLabel parentsNameLabel;
-    private javax.swing.JComboBox selectChildrenJCombox;
     private javax.swing.JLabel statusJLabel;
     private javax.swing.JLabel statusLabel;
-    private javax.swing.JButton updateChildrenInformationButton;
-    private javax.swing.JButton viewDetailsJButton;
+    private javax.swing.JLabel statusLabel1;
     private javax.swing.JButton viewScheduleJButton;
     // End of variables declaration//GEN-END:variables
+
 }
