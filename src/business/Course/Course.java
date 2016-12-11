@@ -12,8 +12,6 @@ package business.Course;
 public class Course {
     private String courseName;
     private String courseDescription;
-    private String startTime;
-    private String endTime;
     private int credit;
     private double pricePerCredit;
 
@@ -31,22 +29,6 @@ public class Course {
 
     public void setCourseDescription(String courseDescription) {
         this.courseDescription = courseDescription;
-    }
-
-    public String getStartTime() {
-        return startTime;
-    }
-
-    public void setStartTime(String startTime) {
-        this.startTime = startTime;
-    }
-
-    public String getEndTime() {
-        return endTime;
-    }
-
-    public void setEndTime(String endTime) {
-        this.endTime = endTime;
     }
 
     public int getCredit() {

@@ -5,6 +5,17 @@
  */
 package userInterface.ManagerRole;
 
+import business.CourseOffering.CourseOffering;
+import business.Customer.Child;
+import business.Enterprise.DayCareEnterprise;
+import business.Enterprise.Enterprise;
+import business.Person.Employee.Teacher;
+import java.awt.CardLayout;
+import java.awt.Component;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Chau_
@@ -14,8 +25,28 @@ public class ManagerCourseJPanel extends javax.swing.JPanel {
     /**
      * Creates new form managerCourseJPanel
      */
-    public ManagerCourseJPanel() {
+    
+    private JPanel userProcessContainer;
+    private DayCareEnterprise enterprise;
+    
+    public ManagerCourseJPanel(JPanel userProcessContainer, Enterprise enterprise) {
         initComponents();
+        this.userProcessContainer = userProcessContainer;
+        this.enterprise = (DayCareEnterprise) enterprise;
+        populateTable();
+    }
+    
+    public void populateTable()
+    {
+        DefaultTableModel model = (DefaultTableModel) jTableCourse.getModel();
+        model.setRowCount(0);
+        for (CourseOffering co : enterprise.getCourseOfferingSchedule().getCourseOfferingList())
+        {
+                Object[] row = new Object[2];
+                row[0] = co;
+                row[1] = co.getTeacher();
+                model.addRow(row);
+        }
     }
 
     /**
@@ -29,8 +60,6 @@ public class ManagerCourseJPanel extends javax.swing.JPanel {
 
         removeJButton = new javax.swing.JButton();
         headlineJLabel = new javax.swing.JLabel();
-        ScrollPane = new javax.swing.JScrollPane();
-        teacherJTable = new javax.swing.JTable();
         viewJButton = new javax.swing.JButton();
         addJButton = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
@@ -39,109 +68,158 @@ public class ManagerCourseJPanel extends javax.swing.JPanel {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTableCourse = new javax.swing.JTable();
+        jButtonBack = new javax.swing.JButton();
+
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         removeJButton.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         removeJButton.setText("Remove ");
+        removeJButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                removeJButtonActionPerformed(evt);
+            }
+        });
+        add(removeJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 410, 230, -1));
 
         headlineJLabel.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         headlineJLabel.setText("Manage Courses Work Area");
+        add(headlineJLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(77, 38, 347, 49));
 
-        teacherJTable.setModel(new javax.swing.table.DefaultTableModel(
+        viewJButton.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        viewJButton.setText("View Details");
+        viewJButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viewJButtonActionPerformed(evt);
+            }
+        });
+        add(viewJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 410, 200, -1));
+
+        addJButton.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        addJButton.setText("Add a New Teacher");
+        addJButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addJButtonActionPerformed(evt);
+            }
+        });
+        add(addJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 410, -1, 42));
+
+        jLabel1.setText("Network:");
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 110, -1, -1));
+
+        jLabel2.setText("jLabel2");
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 110, -1, -1));
+
+        jLabel3.setText("Institution:");
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 110, -1, -1));
+
+        jLabel4.setText("jLabel4");
+        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 110, -1, -1));
+
+        jLabel5.setText("Manager:");
+        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 110, -1, -1));
+
+        jLabel6.setText("jLabel6");
+        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 110, -1, -1));
+
+        jTableCourse.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Course Name", "Course ID", "Teacher Name", "Date"
+                "Course Name", "Teacher Name"
             }
-        ));
-        ScrollPane.setViewportView(teacherJTable);
+        ) {
+            boolean[] canEdit = new boolean [] {
+                true, false
+            };
 
-        viewJButton.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        viewJButton.setText("View Details");
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(jTableCourse);
 
-        addJButton.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        addJButton.setText("Add a New Teacher");
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 150, 540, 199));
 
-        jLabel1.setText("Network:");
-
-        jLabel2.setText("jLabel2");
-
-        jLabel3.setText("Institution:");
-
-        jLabel4.setText("jLabel4");
-
-        jLabel5.setText("Manager:");
-
-        jLabel6.setText("jLabel6");
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(77, 77, 77)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(headlineJLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 347, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(addJButton)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(jLabel1)
-                            .addGap(26, 26, 26)
-                            .addComponent(jLabel2)
-                            .addGap(66, 66, 66)
-                            .addComponent(jLabel3)
-                            .addGap(7, 7, 7)
-                            .addComponent(jLabel4)
-                            .addGap(46, 46, 46)
-                            .addComponent(jLabel5)
-                            .addGap(14, 14, 14)
-                            .addComponent(jLabel6))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(viewJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(removeJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 432, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(ScrollPane, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 731, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(203, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(38, 38, 38)
-                .addComponent(headlineJLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel5)
-                    .addComponent(jLabel6))
-                .addGap(22, 22, 22)
-                .addComponent(ScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(50, 50, 50)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(viewJButton)
-                    .addComponent(removeJButton))
-                .addGap(50, 50, 50)
-                .addComponent(addJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(121, Short.MAX_VALUE))
-        );
+        jButtonBack.setText("Back");
+        jButtonBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonBackActionPerformed(evt);
+            }
+        });
+        add(jButtonBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 510, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
+
+    private void viewJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewJButtonActionPerformed
+        // TODO add your handling code here:
+        int selectedRow = jTableCourse.getSelectedRow();
+        if(selectedRow < 0)
+        {
+            JOptionPane.showMessageDialog(null, "Please select a row first!");
+            return;
+        }
+        else
+        {
+            CourseOffering courseOffering = (CourseOffering) jTableCourse.getValueAt(selectedRow, 0);
+            ViewCourseDetailJPanel viewCourseDetailJPanel = new ViewCourseDetailJPanel(userProcessContainer, courseOffering);
+            userProcessContainer.add("ViewCourseDetailJPanel", viewCourseDetailJPanel);
+            CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+            layout.next(userProcessContainer);
+        }
+    }//GEN-LAST:event_viewJButtonActionPerformed
+
+    private void removeJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeJButtonActionPerformed
+        // TODO add your handling code here:
+        int selectedRow = jTableCourse.getSelectedRow();
+        if(selectedRow < 0)
+        {
+            JOptionPane.showMessageDialog(null, "Please select a row first!");
+            return;
+        }
+        else
+        {
+            CourseOffering courseOffering = (CourseOffering) jTableCourse.getValueAt(selectedRow, 0);
+            enterprise.getCourseOfferingSchedule().getCourseOfferingList().remove(courseOffering);
+            courseOffering.getTeacher().deleteCourseOffering(courseOffering);
+            for(Child child : courseOffering.getChildInClass())
+            {
+                child.getChosenClass().remove(courseOffering);
+            }
+            populateTable();
+        }
+    }//GEN-LAST:event_removeJButtonActionPerformed
+
+    private void jButtonBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBackActionPerformed
+        // TODO add your handling code here:
+        userProcessContainer.remove(this);
+        Component[] componentArray = userProcessContainer.getComponents();
+        Component component = componentArray[componentArray.length - 1];
+        ManagerWorkArea managerWorkArea = (ManagerWorkArea) component;
+        managerWorkArea.populateTable();
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.previous(userProcessContainer);
+    }//GEN-LAST:event_jButtonBackActionPerformed
+
+    private void addJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addJButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_addJButtonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JScrollPane ScrollPane;
     private javax.swing.JButton addJButton;
     private javax.swing.JLabel headlineJLabel;
+    private javax.swing.JButton jButtonBack;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTableCourse;
     private javax.swing.JButton removeJButton;
-    private javax.swing.JTable teacherJTable;
     private javax.swing.JButton viewJButton;
     // End of variables declaration//GEN-END:variables
 }
