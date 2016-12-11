@@ -98,7 +98,7 @@
                       <Component id="logoutJButton" min="-2" pref="47" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
                       <Component id="regesterJButton" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="17" max="32767" attributes="0"/>
+                      <EmptySpace pref="11" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -149,6 +149,9 @@
             </Component>
             <Component class="javax.swing.JButton" name="regesterJButton">
               <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="&#x5b8b;&#x4f53;" size="18" style="1"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Register"/>
               </Properties>
               <Events>

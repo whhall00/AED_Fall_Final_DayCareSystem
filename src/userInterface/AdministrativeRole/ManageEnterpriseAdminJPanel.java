@@ -109,17 +109,14 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
 
         enterpriseJTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+
             },
             new String [] {
                 "Enterprise Name", "Network", "Username"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, true, true
+                false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
