@@ -6,9 +6,11 @@
 package business.Customer;
 
 import business.Balance.Balance;
+import business.CourseOffering.CourseOffering;
 import business.Health.Health;
 import business.Health.VitalSign;
 import business.Person.Person;
+import java.util.ArrayList;
 
 /**
  *
@@ -19,17 +21,42 @@ public class Child extends Person{
     private Health health;
     private VitalSign vitalSign;
     private Balance balance;
+    private ArrayList<CourseOffering> chosenClass;
+    private String description;
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
     
+    public void addClass(CourseOffering co)
+    {
+        chosenClass.add(co);
+        return;
+    }
     
+    public void deleteClass(CourseOffering co)
+    {
+        chosenClass.remove(co);
+        return;
+    }
+
+    public ArrayList<CourseOffering> getChosenClass() {
+        return chosenClass;
+    }
+
+    public void setChosenClass(ArrayList<CourseOffering> chosenClass) {
+        this.chosenClass = chosenClass;
+    }
     
     public double calculateBMI(){
         //体质指数（BMI）=体重（kg）÷身高^2（m）
         double BMI;
-        if(this.getHealth()!=null){
-            BMI = this.getHealth().getWeight()/((this.getHealth().getHeight()/100)*(this.getHealth().getHeight()/100));
+        BMI = this.getHealth().getWeight()/((this.getHealth().getHeight()/100)*(this.getHealth().getHeight()/100));
         return BMI;
-        }else return 0.0;
-        
     }
 
     public Parents getParents() {

@@ -19,10 +19,17 @@ public class CourseOfferingSchedule {
         courseOfferingList = new ArrayList<CourseOffering>();
     }
     
-    public CourseOffering addCourseOffering(){
-        CourseOffering courseOffering = new CourseOffering();
+    public CourseOffering addCourseOffering(CourseOffering courseOffering){
         courseOfferingList.add(courseOffering);
-        return courseOffering   ;
+        return courseOffering;
+    }
+
+    public ArrayList<CourseOffering> getCourseOfferingList() {
+        return courseOfferingList;
+    }
+
+    public void setCourseOfferingList(ArrayList<CourseOffering> courseOfferingList) {
+        this.courseOfferingList = courseOfferingList;
     }
     
 }

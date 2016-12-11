@@ -5,22 +5,52 @@
  */
 package business.CourseOffering;
 
+import business.Course.Course;
+import business.Customer.Child;
 import business.Person.Employee.Teacher;
+import java.util.ArrayList;
 import java.util.Date;
 
 /**
  *
  * @author Chau_
  */
-public class CourseOffering {
+public class CourseOffering extends Course{
     private Date date;
     private Teacher teacher;
     private String classRoom;
     private String startTime;
     private String endTime;
-    private String duration;
+    private int childNum;
+    private ArrayList<Child> childInClass;
     
+    public void addChild(Child child)
+    {
+        childInClass.add(child);
+        return;
+    }
     
+    public void deleteChild(Child child)
+    {
+        childInClass.remove(child);
+        return;
+    }
+
+    public ArrayList<Child> getChildInClass() {
+        return childInClass;
+    }
+
+    public void setChildInClass(ArrayList<Child> childInClass) {
+        this.childInClass = childInClass;
+    }
+
+    public int getChildNum() {
+        return childNum;
+    }
+
+    public void setChildNum(int childNum) {
+        this.childNum = childNum;
+    }
     
     public Date getDate() {
         return date;
@@ -61,15 +91,5 @@ public class CourseOffering {
     public void setEndTime(String endTime) {
         this.endTime = endTime;
     }
-
-    public String getDuration() {
-        return duration;
-    }
-
-    public void setDuration(String duration) {
-        this.duration = duration;
-    }
-    
-    
     
 }

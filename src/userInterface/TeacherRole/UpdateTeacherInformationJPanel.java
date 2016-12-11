@@ -5,6 +5,12 @@
  */
 package userInterface.TeacherRole;
 
+import business.UserAccount.UserAccount;
+import java.awt.CardLayout;
+import java.awt.Component;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+
 /**
  *
  * @author Chau_
@@ -14,8 +20,23 @@ public class UpdateTeacherInformationJPanel extends javax.swing.JPanel {
     /**
      * Creates new form updateTeacherinformationJPanel
      */
-    public UpdateTeacherInformationJPanel() {
+    private JPanel userProcessContainer;
+    private UserAccount account;
+
+    UpdateTeacherInformationJPanel(JPanel userProcessContainer, UserAccount account) {
         initComponents();
+        this.userProcessContainer = userProcessContainer;
+        this.account = account;
+        jTextFieldFirstName.setText(account.getPerson().getFirstName());
+        jTextFieldLastName.setText(account.getPerson().getLastName());
+        jTextFieldAge.setText(Integer.toString(account.getPerson().getAge()));
+        jTextFieldPhoneNum.setText(Integer.toString(account.getPerson().getPhoneNum()));
+        jTextFieldFirstName.setEnabled(false);
+        jTextFieldLastName.setEnabled(false);
+        jTextFieldAge.setEnabled(false);
+        jTextFieldPhoneNum.setEnabled(false);
+        jButtonUpdate.setEnabled(true);
+        jButtonSave.setEnabled(false);
     }
 
     /**
@@ -27,19 +48,123 @@ public class UpdateTeacherInformationJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 837, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 585, Short.MAX_VALUE)
-        );
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jTextFieldLastName = new javax.swing.JTextField();
+        jTextFieldFirstName = new javax.swing.JTextField();
+        jTextFieldAge = new javax.swing.JTextField();
+        jTextFieldPhoneNum = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
+        jButtonUpdate = new javax.swing.JButton();
+        jButtonBack = new javax.swing.JButton();
+        jButtonSave = new javax.swing.JButton();
+
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel1.setText("Last Name:");
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 190, -1, -1));
+
+        jLabel2.setText("First Name:");
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 140, -1, -1));
+
+        jLabel3.setText("Age:");
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 250, -1, -1));
+
+        jLabel4.setText("Phone Number:");
+        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(244, 298, -1, -1));
+        add(jTextFieldLastName, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 190, 142, -1));
+
+        jTextFieldFirstName.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldFirstNameActionPerformed(evt);
+            }
+        });
+        add(jTextFieldFirstName, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 130, 142, -1));
+        add(jTextFieldAge, new org.netbeans.lib.awtextra.AbsoluteConstraints(355, 245, 142, -1));
+        add(jTextFieldPhoneNum, new org.netbeans.lib.awtextra.AbsoluteConstraints(355, 295, 142, -1));
+
+        jLabel6.setFont(new java.awt.Font("宋体", 0, 36)); // NOI18N
+        jLabel6.setText("Update my Information");
+        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 43, -1, -1));
+
+        jButtonUpdate.setText("Update");
+        jButtonUpdate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonUpdateActionPerformed(evt);
+            }
+        });
+        add(jButtonUpdate, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 360, -1, -1));
+
+        jButtonBack.setText("Back");
+        jButtonBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonBackActionPerformed(evt);
+            }
+        });
+        add(jButtonBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 480, -1, -1));
+
+        jButtonSave.setText("Save");
+        jButtonSave.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonSaveActionPerformed(evt);
+            }
+        });
+        add(jButtonSave, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 360, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jTextFieldFirstNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldFirstNameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldFirstNameActionPerformed
+
+    private void jButtonUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonUpdateActionPerformed
+        // TODO add your handling code here:
+        jTextFieldFirstName.setEnabled(true);
+        jTextFieldLastName.setEnabled(true);
+        jTextFieldAge.setEnabled(true);
+        jTextFieldPhoneNum.setEnabled(true);
+        jButtonUpdate.setEnabled(false);
+        jButtonSave.setEnabled(true);
+    }//GEN-LAST:event_jButtonUpdateActionPerformed
+
+    private void jButtonSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSaveActionPerformed
+        // TODO add your handling code here:
+        account.getPerson().setFirstName(jTextFieldFirstName.getText());
+        account.getPerson().setLastName(jTextFieldLastName.getText());
+        account.getPerson().setAge(Integer.parseInt(jTextFieldAge.getText()));
+        account.getPerson().setPhoneNum(Integer.parseInt(jTextFieldPhoneNum.getText()));
+        
+        JOptionPane.showMessageDialog(null, "Information successfully updated!");
+        jButtonUpdate.setEnabled(true);
+        jButtonSave.setEnabled(false);
+    }//GEN-LAST:event_jButtonSaveActionPerformed
+
+    private void jButtonBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBackActionPerformed
+        // TODO add your handling code here:
+        userProcessContainer.remove(this);
+        Component[] componentArray = userProcessContainer.getComponents();
+        Component component = componentArray[componentArray.length - 1];
+        TeacherWorkAreaJPanel teacherWorkAreaJPanel = (TeacherWorkAreaJPanel) component;
+        teacherWorkAreaJPanel.populateTable();
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.previous(userProcessContainer);
+
+    }//GEN-LAST:event_jButtonBackActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButtonBack;
+    private javax.swing.JButton jButtonSave;
+    private javax.swing.JButton jButtonUpdate;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JTextField jTextFieldAge;
+    private javax.swing.JTextField jTextFieldFirstName;
+    private javax.swing.JTextField jTextFieldLastName;
+    private javax.swing.JTextField jTextFieldPhoneNum;
     // End of variables declaration//GEN-END:variables
 }

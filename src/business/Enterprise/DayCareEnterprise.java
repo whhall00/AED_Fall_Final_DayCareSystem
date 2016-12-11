@@ -30,5 +30,21 @@ public class DayCareEnterprise extends Enterprise{
     public ArrayList<Role> getSupportedRole() {
         return null;
     }
+
+    public CourseDirectory getCourseList() {
+        return CourseList;
+    }
+
+    public void setCourseList(CourseDirectory CourseList) {
+        this.CourseList = CourseList;
+    }
+
+    public CourseOfferingSchedule getCourseOfferingSchedule() {
+        return courseOfferingSchedule;
+    }
+
+    public void setCourseOfferingSchedule(CourseOfferingSchedule courseOfferingSchedule) {
+        this.courseOfferingSchedule = courseOfferingSchedule;
+    }
     
 }
