@@ -15,6 +15,7 @@ import java.awt.CardLayout;
 import static java.time.Clock.system;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.UIManager;
 import userInterface.Register.RegisterUserAccount;
 import userInterface.Register.RegisterWorkAreaJPanel;
 
@@ -34,6 +35,7 @@ public class MainJFrame extends javax.swing.JFrame {
         initComponents();
         setSize(1500,900);
         system = dB4OUtil.retrieveSystem();
+        this.setTitle("      Day Care Eco-system");
     }
 
     /**
@@ -83,6 +85,7 @@ public class MainJFrame extends javax.swing.JFrame {
             }
         });
 
+        regesterJButton.setFont(new java.awt.Font("宋体", 1, 18)); // NOI18N
         regesterJButton.setText("Register");
         regesterJButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -136,7 +139,7 @@ public class MainJFrame extends javax.swing.JFrame {
                 .addComponent(logoutJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(44, 44, 44)
                 .addComponent(regesterJButton)
-                .addContainerGap(17, Short.MAX_VALUE))
+                .addContainerGap(11, Short.MAX_VALUE))
         );
 
         mainSplitPane.setLeftComponent(loginJPanel);
@@ -230,7 +233,7 @@ public class MainJFrame extends javax.swing.JFrame {
         userProcessContainer.add("blank", blankJP);
         CardLayout crdLyt = (CardLayout) userProcessContainer.getLayout();
         crdLyt.next(userProcessContainer);
-
+        dB4OUtil.storeSystem(system);
     }//GEN-LAST:event_logoutJButtonActionPerformed
 
     private void regesterJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_regesterJButtonActionPerformed
@@ -249,6 +252,7 @@ public class MainJFrame extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
+    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -274,6 +278,11 @@ public class MainJFrame extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
+    try
+    {
+        UIManager.put("RootPane.setupButtonVisible", false);
+        org.jb2011.lnf.beautyeye.BeautyEyeLNFHelper.launchBeautyEyeLNF();
+    }catch(Exception e){}
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new MainJFrame().setVisible(true);

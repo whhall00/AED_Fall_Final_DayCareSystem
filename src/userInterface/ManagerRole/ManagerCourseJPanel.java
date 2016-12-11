@@ -84,8 +84,8 @@ public class ManagerCourseJPanel extends javax.swing.JPanel {
         add(removeJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 410, 230, -1));
 
         headlineJLabel.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
-        headlineJLabel.setText("Manage Courses Work Area");
-        add(headlineJLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(77, 38, 347, 49));
+        headlineJLabel.setText("Manage Courses");
+        add(headlineJLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(77, 38, 210, 49));
 
         viewJButton.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         viewJButton.setText("View Details");

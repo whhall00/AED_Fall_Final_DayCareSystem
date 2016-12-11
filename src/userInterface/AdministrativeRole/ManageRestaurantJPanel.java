@@ -86,7 +86,7 @@ public class ManageRestaurantJPanel extends javax.swing.JPanel {
                 java.lang.String.class, java.lang.Object.class, java.lang.Object.class
             };
             boolean[] canEdit = new boolean [] {
-                false, true, true
+                false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {

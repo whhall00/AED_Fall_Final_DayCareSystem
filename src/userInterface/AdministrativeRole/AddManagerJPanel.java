@@ -47,16 +47,14 @@ public class AddManagerJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
         headlineJLabel = new javax.swing.JLabel();
         nameJLabel = new javax.swing.JLabel();
         idJLabel = new javax.swing.JLabel();
         contactInformationLabel = new javax.swing.JLabel();
         addressJLabel = new javax.swing.JLabel();
-        SexualJLabel = new javax.swing.JLabel();
-        sexJComboBox = new javax.swing.JComboBox();
         addressTextField = new javax.swing.JTextField();
         firstNameTextField = new javax.swing.JTextField();
-        idTextField1 = new javax.swing.JTextField();
         contactInformationTextField = new javax.swing.JTextField();
         createJButton = new javax.swing.JButton();
         jButton_Back = new javax.swing.JButton();
@@ -66,24 +64,33 @@ public class AddManagerJPanel extends javax.swing.JPanel {
         jTextField_UserAccount = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jTextField_Password = new javax.swing.JTextField();
+        jRadioButton1 = new javax.swing.JRadioButton();
+        jRadioButton2 = new javax.swing.JRadioButton();
 
-        headlineJLabel.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        headlineJLabel.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
         headlineJLabel.setText("Add Manager");
+        add(headlineJLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, 243, 60));
 
         nameJLabel.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         nameJLabel.setText("First Name:");
+        add(nameJLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 93, -1, 38));
 
         idJLabel.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         idJLabel.setText("Gender:");
+        add(idJLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 150, 77, 38));
 
         contactInformationLabel.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         contactInformationLabel.setText("Contact Information:");
+        add(contactInformationLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 200, 225, 40));
 
         addressJLabel.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         addressJLabel.setText("Address Information:");
-
-        SexualJLabel.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
-        SexualJLabel.setText("Sexual:");
+        add(addressJLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 270, 225, 40));
+        add(addressTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 270, 310, 38));
+        add(firstNameTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(178, 94, 174, 38));
+        add(contactInformationTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 200, 310, 38));
 
         createJButton.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         createJButton.setText("Create");
@@ -92,6 +99,7 @@ public class AddManagerJPanel extends javax.swing.JPanel {
                 createJButtonActionPerformed(evt);
             }
         });
+        add(createJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 410, 233, 49));
 
         jButton_Back.setText("Back");
         jButton_Back.addActionListener(new java.awt.event.ActionListener() {
@@ -99,112 +107,30 @@ public class AddManagerJPanel extends javax.swing.JPanel {
                 jButton_BackActionPerformed(evt);
             }
         });
+        add(jButton_Back, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 440, -1, -1));
+        add(lastNameTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(467, 94, 189, 38));
 
         nameJLabel1.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         nameJLabel1.setText("Last Name:");
+        add(nameJLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(392, 93, -1, 38));
 
         jLabel1.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         jLabel1.setText("User Account");
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 340, 106, 26));
+        add(jTextField_UserAccount, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 340, 177, -1));
 
         jLabel2.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         jLabel2.setText("Password");
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 380, 106, 26));
+        add(jTextField_Password, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 380, 177, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(95, 95, 95)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(SexualJLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(contactInformationLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(addressJLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(addressTextField)
-                                    .addComponent(contactInformationTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 612, Short.MAX_VALUE)
-                                    .addComponent(sexJComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(headlineJLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(54, 54, 54)
-                                .addComponent(nameJLabel1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(lastNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(idJLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(nameJLabel))
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(idTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addGap(6, 6, 6)
-                                        .addComponent(firstNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jTextField_Password, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jTextField_UserAccount, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton_Back)
-                        .addGap(244, 244, 244)
-                        .addComponent(createJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(55, Short.MAX_VALUE))
-        );
+        buttonGroup1.add(jRadioButton1);
+        jRadioButton1.setText("Male");
+        add(jRadioButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 160, -1, -1));
 
-        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {SexualJLabel, contactInformationLabel});
-
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(15, 15, 15)
-                .addComponent(headlineJLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(nameJLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(firstNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(nameJLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lastNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(idJLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(idTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(190, 190, 190)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(contactInformationLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(contactInformationTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(37, 37, 37)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(addressJLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(addressTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(41, 41, 41)
-                        .addComponent(SexualJLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(sexJComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(56, 56, 56)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField_UserAccount, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField_Password, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 92, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(createJButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton_Back, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addGap(41, 41, 41))
-        );
+        buttonGroup1.add(jRadioButton2);
+        jRadioButton2.setText("Female");
+        add(jRadioButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 160, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void createJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createJButtonActionPerformed
@@ -221,6 +147,8 @@ public class AddManagerJPanel extends javax.swing.JPanel {
                 Manager manager = new Manager();
                 manager.setFirstName(firstName);
                 manager.setLastName(lastName);
+                if(jRadioButton1.isSelected()){manager.setGender(0);}
+                else{manager.setGender(1);}
                 enterprise.getPersonDirectory().addPerson(manager);
                 if(enterprise.getUserAccountDirectory().checkIfUsernameIsUnique(username)){
                     UserAccount account = enterprise.getUserAccountDirectory().createUserAccount(username, password, manager, new ManagerRole());
@@ -265,24 +193,24 @@ public class AddManagerJPanel extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel SexualJLabel;
     private javax.swing.JLabel addressJLabel;
     private javax.swing.JTextField addressTextField;
+    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JLabel contactInformationLabel;
     private javax.swing.JTextField contactInformationTextField;
     private javax.swing.JButton createJButton;
     private javax.swing.JTextField firstNameTextField;
     private javax.swing.JLabel headlineJLabel;
     private javax.swing.JLabel idJLabel;
-    private javax.swing.JTextField idTextField1;
     private javax.swing.JButton jButton_Back;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JRadioButton jRadioButton1;
+    private javax.swing.JRadioButton jRadioButton2;
     private javax.swing.JTextField jTextField_Password;
     private javax.swing.JTextField jTextField_UserAccount;
     private javax.swing.JTextField lastNameTextField;
     private javax.swing.JLabel nameJLabel;
     private javax.swing.JLabel nameJLabel1;
-    private javax.swing.JComboBox sexJComboBox;
     // End of variables declaration//GEN-END:variables
 }
