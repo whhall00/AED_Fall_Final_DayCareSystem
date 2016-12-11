@@ -72,11 +72,14 @@ public class ManageHospitalJPanel extends javax.swing.JPanel {
         headlineJLabel = new javax.swing.JLabel();
         nameJLabel = new javax.swing.JLabel();
 
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
         networkJComboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 networkJComboBoxActionPerformed(evt);
             }
         });
+        add(networkJComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(498, 127, 245, 40));
 
         hospitalJTable.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         hospitalJTable.setModel(new javax.swing.table.DefaultTableModel(
@@ -91,7 +94,7 @@ public class ManageHospitalJPanel extends javax.swing.JPanel {
                 java.lang.String.class, java.lang.Object.class, java.lang.Object.class
             };
             boolean[] canEdit = new boolean [] {
-                false, true, true
+                false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -104,6 +107,8 @@ public class ManageHospitalJPanel extends javax.swing.JPanel {
         });
         managerJScrollPane.setViewportView(hospitalJTable);
 
+        add(managerJScrollPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(133, 193, 682, 299));
+
         viewDetailJButton.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         viewDetailJButton.setText("View Details");
         viewDetailJButton.addActionListener(new java.awt.event.ActionListener() {
@@ -111,6 +116,7 @@ public class ManageHospitalJPanel extends javax.swing.JPanel {
                 viewDetailJButtonActionPerformed(evt);
             }
         });
+        add(viewDetailJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 521, 215, 66));
 
         removeJButton.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         removeJButton.setText("Remove");
@@ -119,6 +125,7 @@ public class ManageHospitalJPanel extends javax.swing.JPanel {
                 removeJButtonActionPerformed(evt);
             }
         });
+        add(removeJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(379, 521, 172, 66));
 
         backJButton.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         backJButton.setText("<< Back");
@@ -127,58 +134,15 @@ public class ManageHospitalJPanel extends javax.swing.JPanel {
                 backJButtonActionPerformed(evt);
             }
         });
+        add(backJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(133, 521, 172, 66));
 
-        headlineJLabel.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        headlineJLabel.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
         headlineJLabel.setText("Manage Hospital Work Area");
+        add(headlineJLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(23, 34, 347, 49));
 
-        nameJLabel.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        nameJLabel.setFont(new java.awt.Font("Dialog", 1, 20)); // NOI18N
         nameJLabel.setText("Select a Network Name:");
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(56, 56, 56)
-                        .addComponent(headlineJLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 347, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(133, 133, 133)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(25, 25, 25)
-                                .addComponent(nameJLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 287, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(53, 53, 53)
-                                .addComponent(networkJComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(backJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(removeJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(49, 49, 49)
-                                    .addComponent(viewDetailJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addComponent(managerJScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 682, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(291, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(47, 47, 47)
-                .addComponent(headlineJLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(31, 31, 31)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(nameJLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(networkJComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(managerJScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 299, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(29, 29, 29)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(viewDetailJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(removeJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(backJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(107, Short.MAX_VALUE))
-        );
+        add(nameJLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(158, 127, 287, 48));
     }// </editor-fold>//GEN-END:initComponents
 
     private void networkJComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_networkJComboBoxActionPerformed
