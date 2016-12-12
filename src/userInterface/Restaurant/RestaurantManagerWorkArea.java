@@ -8,10 +8,10 @@ package userInterface.Restaurant;
 import business.Enterprise.Enterprise;
 import business.Enterprise.RestaurantEnterprise;
 import business.UserAccount.UserAccount;
-import business.WorkQueue.HospitalWorkRequest;
 import business.WorkQueue.RestaurantWorkRequest;
 import business.WorkQueue.WorkRequest;
 import java.awt.CardLayout;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
@@ -32,7 +32,7 @@ public class RestaurantManagerWorkArea extends javax.swing.JPanel {
         this.account = account;
         this.enterprise =(RestaurantEnterprise)enterprise;
         nameJLabel.setText(enterprise.getName());
-//      populate();
+        populateTable();
     }
 
 //public void populateTable(){
@@ -56,12 +56,10 @@ public class RestaurantManagerWorkArea extends javax.swing.JPanel {
         DefaultTableModel dtm = (DefaultTableModel) jTable_Order.getModel();
         dtm.setRowCount(0);
         for (WorkRequest wr : enterprise.getWorkQueue().getWorkRequestList()) {
-            int a = ((RestaurantWorkRequest) wr).getAmout();
-            String s = ((RestaurantWorkRequest) wr).message;
             Object[] row = new Object[3];
             row[0] = wr;
-            row[1] = s;
-            row[2] = a;
+            row[1] = wr.getSender();
+            row[2] = wr.getStatus();
             dtm.addRow(row);
         }
     }
@@ -83,6 +81,7 @@ public class RestaurantManagerWorkArea extends javax.swing.JPanel {
         jTable_Order = new javax.swing.JTable();
         jLabel3 = new javax.swing.JLabel();
         jButton_MenuInfo = new javax.swing.JButton();
+        jButton_Cook = new javax.swing.JButton();
 
         headLineJLabel.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         headLineJLabel.setText("Restaurant Manager WorkArea");
@@ -106,7 +105,7 @@ public class RestaurantManagerWorkArea extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Custoner Name", "Contact Information", "Amount"
+                "Custoner Name", "Sender", "Staus"
             }
         ));
         jScrollPane_Order.setViewportView(jTable_Order);
@@ -119,6 +118,14 @@ public class RestaurantManagerWorkArea extends javax.swing.JPanel {
         jButton_MenuInfo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton_MenuInfoActionPerformed(evt);
+            }
+        });
+
+        jButton_Cook.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        jButton_Cook.setText("Cook It");
+        jButton_Cook.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_CookActionPerformed(evt);
             }
         });
 
@@ -136,7 +143,10 @@ public class RestaurantManagerWorkArea extends javax.swing.JPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane_Order, javax.swing.GroupLayout.PREFERRED_SIZE, 670, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel3)
-                            .addComponent(jButton_updateBasicInformation)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jButton_updateBasicInformation)
+                                .addGap(32, 32, 32)
+                                .addComponent(jButton_Cook, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jButton_MenuInfo))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -160,7 +170,9 @@ public class RestaurantManagerWorkArea extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane_Order, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jButton_updateBasicInformation)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton_updateBasicInformation)
+                    .addComponent(jButton_Cook, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton_MenuInfo)
                 .addContainerGap(127, Short.MAX_VALUE))
@@ -188,9 +200,15 @@ public class RestaurantManagerWorkArea extends javax.swing.JPanel {
         populateTable();
     }//GEN-LAST:event_jButton_RefreshActionPerformed
 
+    private void jButton_CookActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_CookActionPerformed
+        // TODO add your handling code here:
+        JOptionPane.showMessageDialog(null, "Ready to cook");
+    }//GEN-LAST:event_jButton_CookActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel headLineJLabel;
+    private javax.swing.JButton jButton_Cook;
     private javax.swing.JButton jButton_MenuInfo;
     private javax.swing.JButton jButton_updateBasicInformation;
     private javax.swing.JLabel jLabel3;
