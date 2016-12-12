@@ -7,6 +7,7 @@ package userInterface.Nutritionist;
 
 import business.Customer.Child;
 import business.Enterprise.Enterprise;
+import business.Health.Health;
 import business.Organization.Organization;
 import business.UserAccount.UserAccount;
 import java.awt.CardLayout;
@@ -271,17 +272,23 @@ public class UpdateChildVitalSignJPanel extends javax.swing.JPanel {
 
     private void jButton_SaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_SaveActionPerformed
         // TODO add your handling code here:
-        child.getHealth().setAllergy(jTextField_Allergy.getText());
-        child.getHealth().setHearing(jTextField_Height.getText());
-        child.getHealth().setHeight( Double.parseDouble(jTextField_Height.getText()));
-        child.getHealth().setSight( Double.parseDouble(jTextField_Hearing.getText()));
-        child.getHealth().setWeight(Double.parseDouble(jTextField_Weight.getText()));
+        Health health = new Health();
+        
+        health.setAllergy(jTextField_Allergy.getText());
+        health.setAllergy(jTextField_Allergy.getText());
+        health.setHearing(jTextField_Height.getText());
+        health.setHeight( Double.parseDouble(jTextField_Height.getText()));
+        health.setSight( Double.parseDouble(jTextField_Hearing.getText()));
+        health.setWeight(Double.parseDouble(jTextField_Weight.getText()));
+        
+        child.setHealth(health);
     }//GEN-LAST:event_jButton_SaveActionPerformed
 
     private void jButton_CalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_CalActionPerformed
         // TODO add your handling code here:
         jTextField_BMI.setEditable(true);
         jTextField_BMI.setText(child.calculateBMI()+"");
+        
         
     }//GEN-LAST:event_jButton_CalActionPerformed
 

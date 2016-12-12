@@ -50,7 +50,7 @@ public class ViewChildJPanel extends javax.swing.JPanel {
         populateChildrenTable();
     }
     
-    private void populateChildrenTable(){
+    public void populateChildrenTable(){
         DefaultTableModel dtm = (DefaultTableModel) jTable_VitalSign.getModel();
         dtm.setRowCount(0);
                 Object[] row = new Object[2];
