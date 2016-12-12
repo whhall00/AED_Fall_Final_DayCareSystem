@@ -5,19 +5,29 @@
  */
 package business.Salary;
 
+import java.util.Random;
+
 /**
  *
  * @author hao
  */
 public class Salary implements Isalary{
+    private double salary;
 
-    
-    
-    
-    
+    public double getSalary() {
+        return salary;
+    }
+
+    public void setSalary(double salary) {
+        this.salary = salary;
+    }
+       
     @Override
-    public void caculateMonthlySalary() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public double caculateMonthlySalary() {
+        Random random = new Random();
+        double a = random.nextDouble()*3000 + 1000;
+        this.salary = a;
+        return salary;
     }
     
 }
