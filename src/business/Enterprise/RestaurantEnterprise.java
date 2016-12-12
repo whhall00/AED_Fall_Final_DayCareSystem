@@ -5,7 +5,6 @@
  */
 package business.Enterprise;
 
-import business.Menu.Menu;
 import business.Menu.MenuDirectory;
 import business.Role.Role;
 import java.util.ArrayList;
@@ -17,16 +16,10 @@ import java.util.ArrayList;
 public class RestaurantEnterprise extends Enterprise{
     private MenuDirectory menuDirectory;
     private String contactInformation;
-    private String Address;
     
     public RestaurantEnterprise(String name) {
         super(name, EnterpriseType.Restaurant);
         menuDirectory = new MenuDirectory();
-    }
-    
-    @Override
-    public ArrayList<Role> getSupportedRole() {
-        return null;
     }
 
     public MenuDirectory getMenuDirectory() {
@@ -44,16 +37,11 @@ public class RestaurantEnterprise extends Enterprise{
     public void setContactInformation(String contactInformation) {
         this.contactInformation = contactInformation;
     }
-
-    public String getAddress() {
-        return Address;
-    }
-
-    public void setAddress(String Address) {
-        this.Address = Address;
-    }
     
-    
+    @Override
+    public ArrayList<Role> getSupportedRole() {
+        return null;
+    }
     @Override
     public String toString(){
         return getName();

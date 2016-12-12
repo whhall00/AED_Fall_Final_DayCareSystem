@@ -92,7 +92,6 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
         JButton_Restaurant = new javax.swing.JButton();
         JButton_ManageNetwork = new javax.swing.JButton();
         JButton_ManageEnterprise = new javax.swing.JButton();
-        JButton_ManageEnterpriseAdmin = new javax.swing.JButton();
         jButton_ManageHospital = new javax.swing.JButton();
 
         setLayout(new java.awt.BorderLayout());
@@ -159,13 +158,6 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
 
-        JButton_ManageEnterpriseAdmin.setText("Manage Enterprise Admin");
-        JButton_ManageEnterpriseAdmin.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                JButton_ManageEnterpriseAdminActionPerformed(evt);
-            }
-        });
-
         jButton_ManageHospital.setText("Manage Hospital");
         jButton_ManageHospital.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -189,12 +181,11 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
                             .addComponent(JButton_Restaurant, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(JButton_ManageNetwork, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(JButton_ManageEnterprise, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(JButton_ManageEnterpriseAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jButton_ManageHospital)))
                     .addGroup(rightJPanelLayout.createSequentialGroup()
                         .addGap(143, 143, 143)
                         .addComponent(selectNodeJLabel)))
-                .addContainerGap(160, Short.MAX_VALUE))
+                .addContainerGap(159, Short.MAX_VALUE))
         );
 
         rightJPanelLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {JButton_Restaurant, jButton_ManageHospital});
@@ -211,14 +202,12 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(JButton_ManageEnterprise, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(JButton_ManageEnterpriseAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(JButton_DayCare, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(JButton_Restaurant, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton_ManageHospital)
-                .addContainerGap(35, Short.MAX_VALUE))
+                .addContainerGap(99, Short.MAX_VALUE))
         );
 
         rightJPanelLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {JButton_Restaurant, jButton_ManageHospital});
@@ -268,14 +257,6 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
         
     }//GEN-LAST:event_JButton_ManageEnterpriseActionPerformed
 
-    private void JButton_ManageEnterpriseAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JButton_ManageEnterpriseAdminActionPerformed
-        // TODO add your handling code here:
-        ManageEnterpriseAdminJPanel manageEnterpriseAdminJPanel = new ManageEnterpriseAdminJPanel(userProcessContainer, system); 
-        userProcessContainer.add("ManageEnterpriseAdminJPanel", manageEnterpriseAdminJPanel);
-        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        layout.next(userProcessContainer);
-    }//GEN-LAST:event_JButton_ManageEnterpriseAdminActionPerformed
-
     private void jButton_ManageHospitalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_ManageHospitalActionPerformed
         // TODO add your handling code here:
         ManageHospitalJPanel manageHospitalJPanel = new ManageHospitalJPanel(userProcessContainer, system); 
@@ -289,7 +270,6 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton JButton_DayCare;
     private javax.swing.JButton JButton_ManageEnterprise;
-    private javax.swing.JButton JButton_ManageEnterpriseAdmin;
     private javax.swing.JButton JButton_ManageNetwork;
     private javax.swing.JButton JButton_Restaurant;
     private javax.swing.JScrollPane ScrollPane;

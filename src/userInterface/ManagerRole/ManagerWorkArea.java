@@ -23,6 +23,7 @@ import java.awt.Component;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
+import userInterface.Register.RegisterUserAccount;
 
 /**
  *
@@ -44,8 +45,9 @@ public class ManagerWorkArea extends javax.swing.JPanel {
         this.system = system;
         nameJLabel.setText(userAccount.getPerson().getFirstName() + " " + userAccount.getPerson().getLastName());
         centerJLabel.setText(enterprise.getName());
+        jLabel_Network.setText(enterprise.getNetwork().getNetworkName());
         populateOrganizationCombox();
-        populateTable();
+        populateEmployeeTable();
         populateRestaurantComboBox();
         populateHospitalTable();
         populateChildrenTable();
@@ -62,7 +64,7 @@ public class ManagerWorkArea extends javax.swing.JPanel {
             }            
         }
     }
-    public void populateTable(){
+    public void populateEmployeeTable(){
         DefaultTableModel dtm = (DefaultTableModel)organizationJTable.getModel();
         dtm.setRowCount(0);
         for(Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()){
@@ -226,8 +228,8 @@ public class ManagerWorkArea extends javax.swing.JPanel {
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable_Children = new javax.swing.JTable();
         jButton_AddChild = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        jButton_DeleteChild = new javax.swing.JButton();
+        jButton_ViewDetials = new javax.swing.JButton();
         jPanel_Course = new javax.swing.JPanel();
         removeJButton = new javax.swing.JButton();
         headlineJLabel1 = new javax.swing.JLabel();
@@ -240,6 +242,7 @@ public class ManagerWorkArea extends javax.swing.JPanel {
         jScrollPane7 = new javax.swing.JScrollPane();
         jTable_CourseChildren = new javax.swing.JTable();
         jButton_AssignChild = new javax.swing.JButton();
+        jButton_RefreshCourseTable = new javax.swing.JButton();
         jPanel_Restaurant = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTable_Menu = new javax.swing.JTable();
@@ -263,6 +266,7 @@ public class ManagerWorkArea extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         organizationJTable = new javax.swing.JTable();
         jLabel_Network = new javax.swing.JLabel();
+        jLabel_Network1 = new javax.swing.JLabel();
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -296,10 +300,25 @@ public class ManagerWorkArea extends javax.swing.JPanel {
         jScrollPane2.setViewportView(jTable_Children);
 
         jButton_AddChild.setText("Add Child");
+        jButton_AddChild.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_AddChildActionPerformed(evt);
+            }
+        });
 
-        jButton3.setText("Delete Child");
+        jButton_DeleteChild.setText("Delete Child");
+        jButton_DeleteChild.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_DeleteChildActionPerformed(evt);
+            }
+        });
 
-        jButton1.setText("View Detials");
+        jButton_ViewDetials.setText("View Detials");
+        jButton_ViewDetials.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_ViewDetialsActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel_ChildLayout = new javax.swing.GroupLayout(jPanel_Child);
         jPanel_Child.setLayout(jPanel_ChildLayout);
@@ -311,9 +330,9 @@ public class ManagerWorkArea extends javax.swing.JPanel {
                     .addGroup(jPanel_ChildLayout.createSequentialGroup()
                         .addComponent(jButton_AddChild)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton3)
+                        .addComponent(jButton_DeleteChild)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton1))
+                        .addComponent(jButton_ViewDetials))
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 473, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -325,8 +344,8 @@ public class ManagerWorkArea extends javax.swing.JPanel {
                 .addGap(31, 31, 31)
                 .addGroup(jPanel_ChildLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton_AddChild)
-                    .addComponent(jButton3)
-                    .addComponent(jButton1))
+                    .addComponent(jButton_DeleteChild)
+                    .addComponent(jButton_ViewDetials))
                 .addContainerGap(336, Short.MAX_VALUE))
         );
 
@@ -399,14 +418,17 @@ public class ManagerWorkArea extends javax.swing.JPanel {
             }
         });
 
+        jButton_RefreshCourseTable.setText("Refresh");
+        jButton_RefreshCourseTable.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_RefreshCourseTableActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel_CourseLayout = new javax.swing.GroupLayout(jPanel_Course);
         jPanel_Course.setLayout(jPanel_CourseLayout);
         jPanel_CourseLayout.setHorizontalGroup(
             jPanel_CourseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel_CourseLayout.createSequentialGroup()
-                .addGap(207, 207, 207)
-                .addComponent(headlineJLabel1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel_CourseLayout.createSequentialGroup()
                 .addGap(55, 55, 55)
                 .addGroup(jPanel_CourseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -425,17 +447,24 @@ public class ManagerWorkArea extends javax.swing.JPanel {
                             .addComponent(addJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel_CourseLayout.createSequentialGroup()
-                        .addGroup(jPanel_CourseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jScrollPane7, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 596, Short.MAX_VALUE)
-                            .addComponent(jScrollPane6, javax.swing.GroupLayout.Alignment.LEADING))
+                        .addGroup(jPanel_CourseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel_CourseLayout.createSequentialGroup()
+                                .addComponent(jButton_RefreshCourseTable)
+                                .addGap(55, 55, 55)
+                                .addComponent(headlineJLabel1))
+                            .addGroup(jPanel_CourseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(jScrollPane7, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 596, Short.MAX_VALUE)
+                                .addComponent(jScrollPane6, javax.swing.GroupLayout.Alignment.LEADING)))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         jPanel_CourseLayout.setVerticalGroup(
             jPanel_CourseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel_CourseLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(headlineJLabel1)
-                .addGap(18, 18, 18)
+                .addGroup(jPanel_CourseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(headlineJLabel1)
+                    .addComponent(jButton_RefreshCourseTable, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel_CourseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -451,7 +480,7 @@ public class ManagerWorkArea extends javax.swing.JPanel {
                     .addComponent(jButton_AssignChild))
                 .addGap(28, 28, 28)
                 .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(35, Short.MAX_VALUE))
         );
 
         jTabbedPane_ManagerWork.addTab("Course", jPanel_Course);
@@ -677,10 +706,15 @@ public class ManagerWorkArea extends javax.swing.JPanel {
 
         jTabbedPane_ManagerWork.addTab("Manage Employee", jPanel_Employee);
 
-        add(jTabbedPane_ManagerWork, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 120, 620, 600));
+        add(jTabbedPane_ManagerWork, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 140, 620, 600));
 
-        jLabel_Network.setText("network");
-        add(jLabel_Network, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, -1, -1));
+        jLabel_Network.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
+        jLabel_Network.setText("Network");
+        add(jLabel_Network, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 100, -1, -1));
+
+        jLabel_Network1.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
+        jLabel_Network1.setText("Network:");
+        add(jLabel_Network1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void JButton_AddEmployeeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JButton_AddEmployeeActionPerformed
@@ -697,7 +731,7 @@ public class ManagerWorkArea extends javax.swing.JPanel {
 
     private void jButton_ShowALlActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_ShowALlActionPerformed
         // TODO add your handling code here:
-        populateTable();
+        populateEmployeeTable();
     }//GEN-LAST:event_jButton_ShowALlActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -717,7 +751,7 @@ public class ManagerWorkArea extends javax.swing.JPanel {
                 return;
             }
         }
-        populateTable();
+        populateEmployeeTable();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void organizationJComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_organizationJComboBoxActionPerformed
@@ -790,12 +824,7 @@ public class ManagerWorkArea extends javax.swing.JPanel {
         {
             CourseOffering courseOffering = (CourseOffering) jTable_Course.getValueAt(selectedRow, 0);
             enterprise.getCourseOfferingSchedule().getCourseOfferingList().remove(courseOffering);
-//            courseOffering.getTeacher().deleteCourseOffering(courseOffering);
-//            for(Child child : courseOffering.getChildInClass())
-//            {
-//                child.getChosenClass().remove(courseOffering);
-//            }
-            populateTable();
+            populateCourseTable();
         }
     }//GEN-LAST:event_removeJButtonActionPerformed
 
@@ -841,6 +870,44 @@ public class ManagerWorkArea extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_jButton_AssignChildActionPerformed
 
+    private void jButton_RefreshCourseTableActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_RefreshCourseTableActionPerformed
+        // TODO add your handling code here:
+        populateCourseTable();        
+    }//GEN-LAST:event_jButton_RefreshCourseTableActionPerformed
+
+    private void jButton_AddChildActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_AddChildActionPerformed
+        // TODO add your handling code here:
+        RegisterUserAccount registerUserAccount = new RegisterUserAccount(userProcessContainer, enterprise);
+        userProcessContainer.add("RegisterUserAccount2", registerUserAccount);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
+        
+    }//GEN-LAST:event_jButton_AddChildActionPerformed
+
+    private void jButton_DeleteChildActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_DeleteChildActionPerformed
+        // TODO add your handling code here:
+        int selectedRow = jTable_Children.getSelectedRow();
+        if(selectedRow < 0)
+        {
+            JOptionPane.showMessageDialog(null, "Please select a row first!");
+            return;
+        } else{
+            int a = JOptionPane.showConfirmDialog(null, "Are You Sure Want To Delete This?", "Warning", JOptionPane.YES_NO_OPTION);
+            if(a == JOptionPane.YES_OPTION){
+                Child child = (Child) jTable_Children.getValueAt(selectedRow, 0);
+                enterprise.getPersonDirectory().deletePrson(child);
+            }else{
+                return;
+            }            
+        }
+        populateChildrenTable();
+    }//GEN-LAST:event_jButton_DeleteChildActionPerformed
+
+    private void jButton_ViewDetialsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_ViewDetialsActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_jButton_ViewDetialsActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton JButton_AddEmployee;
@@ -849,12 +916,13 @@ public class ManagerWorkArea extends javax.swing.JPanel {
     private javax.swing.JLabel centerJLabel;
     private javax.swing.JLabel headlineJLabel;
     private javax.swing.JLabel headlineJLabel1;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton_AddChild;
     private javax.swing.JButton jButton_AssignChild;
+    private javax.swing.JButton jButton_DeleteChild;
+    private javax.swing.JButton jButton_RefreshCourseTable;
     private javax.swing.JButton jButton_ShowALl;
+    private javax.swing.JButton jButton_ViewDetials;
     private javax.swing.JComboBox jComboBox_AssignChild;
     private javax.swing.JComboBox jComboBox_Restaurant;
     private javax.swing.JLabel jLabel1;
@@ -863,6 +931,7 @@ public class ManagerWorkArea extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel_Network;
+    private javax.swing.JLabel jLabel_Network1;
     private javax.swing.JPanel jPanel_Child;
     private javax.swing.JPanel jPanel_Course;
     private javax.swing.JPanel jPanel_Employee;

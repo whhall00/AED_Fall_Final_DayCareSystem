@@ -13,6 +13,7 @@ import business.Person.Employee.Teacher;
 import business.Person.Person;
 import java.awt.CardLayout;
 import java.awt.Component;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /**
@@ -193,6 +194,7 @@ public class AddCourseJPanel extends javax.swing.JPanel {
         String startTime = jTextField_StartTime.getText();
         String endTime = jTextField_EndTime.getText();
         int credit = Integer.parseInt(jTextField_CourseCredit.getText());
+        JOptionPane.showMessageDialog(null, "Created Successfully");
         
         courseOffering.setTeacher(t);
         courseOffering.setCourseName(courseName);
@@ -209,7 +211,7 @@ public class AddCourseJPanel extends javax.swing.JPanel {
         Component[] componentArray = userProcessContainer.getComponents();
         Component component = componentArray[componentArray.length - 1];
         ManagerWorkArea managerWorkArea = (ManagerWorkArea) component;
-        managerWorkArea.populateTable();
+        managerWorkArea.populateEmployeeTable();
         managerWorkArea.populateCourseTable();
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.previous(userProcessContainer);

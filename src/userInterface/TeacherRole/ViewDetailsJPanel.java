@@ -131,7 +131,7 @@ public class ViewDetailsJPanel extends javax.swing.JPanel {
         userProcessContainer.remove(this);
         Component[] componentArray = userProcessContainer.getComponents();
         Component component = componentArray[componentArray.length - 1];
-        ViewscheduleJPanel viewscheduleJPanel = (ViewscheduleJPanel) component;
+        TeacherWorkAreaJPanel viewscheduleJPanel = (TeacherWorkAreaJPanel) component;
         viewscheduleJPanel.populateTable();
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.previous(userProcessContainer);
