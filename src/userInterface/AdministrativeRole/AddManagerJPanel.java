@@ -26,15 +26,14 @@ import javax.swing.JPanel;
 public class AddManagerJPanel extends javax.swing.JPanel {
     private JPanel userProcessContainer;
     private Enterprise enterprise;
-    private Network network;
     /**
      * Creates new form manageRestaurantJPanel
      */
-    public AddManagerJPanel(JPanel userProcessContainer, Enterprise enterprise, Network network) {
+    public AddManagerJPanel(JPanel userProcessContainer, Enterprise enterprise) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
-        this.enterprise = enterprise;
-        this.network = network;
+        this.enterprise = enterprise;  
+        jLabel3.setText(enterprise.getName());
     }
 
 
@@ -66,12 +65,13 @@ public class AddManagerJPanel extends javax.swing.JPanel {
         jTextField_Password = new javax.swing.JTextField();
         jRadioButton1 = new javax.swing.JRadioButton();
         jRadioButton2 = new javax.swing.JRadioButton();
+        jLabel3 = new javax.swing.JLabel();
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        headlineJLabel.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
-        headlineJLabel.setText("Add Manager");
-        add(headlineJLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, 243, 60));
+        headlineJLabel.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        headlineJLabel.setText("Add Manager For:");
+        add(headlineJLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, 240, 60));
 
         nameJLabel.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         nameJLabel.setText("First Name:");
@@ -131,6 +131,10 @@ public class AddManagerJPanel extends javax.swing.JPanel {
         buttonGroup1.add(jRadioButton2);
         jRadioButton2.setText("Female");
         add(jRadioButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 160, -1, -1));
+
+        jLabel3.setFont(new java.awt.Font("Lucida Grande", 1, 24)); // NOI18N
+        jLabel3.setText("jLabel3");
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 40, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void createJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createJButtonActionPerformed
@@ -185,8 +189,9 @@ public class AddManagerJPanel extends javax.swing.JPanel {
         userProcessContainer.remove(this);
         Component[] componentArray = userProcessContainer.getComponents();
         Component component = componentArray[componentArray.length - 1];
-        ManageOrganizationJPanel manageManagerJPanel = (ManageOrganizationJPanel) component;
+        ManageEnterpriseJPanel manageManagerJPanel = (ManageEnterpriseJPanel) component;
         manageManagerJPanel.populateTable();
+        manageManagerJPanel.populateComboBox();
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.previous(userProcessContainer);
     }//GEN-LAST:event_jButton_BackActionPerformed
@@ -205,6 +210,7 @@ public class AddManagerJPanel extends javax.swing.JPanel {
     private javax.swing.JButton jButton_Back;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JRadioButton jRadioButton1;
     private javax.swing.JRadioButton jRadioButton2;
     private javax.swing.JTextField jTextField_Password;

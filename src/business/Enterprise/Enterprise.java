@@ -19,6 +19,7 @@ public abstract class Enterprise extends Organization{
     private int id;
     private static int count = 1;
     private Network network;
+    private String address;
     public Enterprise(String name, EnterpriseType type) {
         super(name);
         this.enterpriseType = type;
@@ -70,6 +71,14 @@ public abstract class Enterprise extends Organization{
 
     public void setNetwork(Network network) {
         this.network = network;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
     
     
