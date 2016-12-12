@@ -137,7 +137,7 @@ public class NutritionistWorkArea extends javax.swing.JPanel {
     private void jButton_OrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_OrderActionPerformed
         // TODO add your handling code here:
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        userProcessContainer.add("RequestLabTestJPanel", new RequestTextJPanel(userProcessContainer, account,organization,enterprise,business));
+        userProcessContainer.add("OrderFoodJPanel", new OrderFoodJPanel(userProcessContainer, account,organization,enterprise,business));
         layout.next(userProcessContainer);
         
     }//GEN-LAST:event_jButton_OrderActionPerformed

@@ -7,12 +7,11 @@ package userInterface.Nutritionist;
 
 import business.Business.EcoSystem;
 import business.Enterprise.Enterprise;
-import business.Enterprise.HospitalEnterprise;
 import business.Enterprise.RestaurantEnterprise;
 import business.Network.Network;
 import business.Organization.Organization;
 import business.UserAccount.UserAccount;
-import business.WorkQueue.HospitalWorkRequest;
+import business.WorkQueue.RestaurantWorkRequest;
 import java.awt.CardLayout;
 import java.awt.Component;
 import javax.swing.JOptionPane;
@@ -34,8 +33,9 @@ public class OrderFoodJPanel extends javax.swing.JPanel {
     private Enterprise enterprise;
     private EcoSystem business;
 
-    public OrderFoodJPanel() {
-        initComponents();
+
+    public OrderFoodJPanel(JPanel userProcessContainer, UserAccount account, Organization organization, Enterprise enterprise, EcoSystem business) {
+      initComponents();
         this.userProcessContainer = userProcessContainer;
         this.enterprise = enterprise;
         this.organization = organization;
@@ -189,7 +189,7 @@ public class OrderFoodJPanel extends javax.swing.JPanel {
     private void jButton_SendActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_SendActionPerformed
 
         String message = jTextArea_Message.getText();
-        HospitalWorkRequest request = new HospitalWorkRequest();
+        RestaurantWorkRequest request = new RestaurantWorkRequest();
         request.setMessage(message);
         request.setSender(account);
         request.setStatus("Sent");
