@@ -5,6 +5,17 @@
  */
 package userInterface.ParentsRole;
 
+import business.CourseOffering.CourseOffering;
+import business.Customer.Child;
+import business.Enterprise.DayCareEnterprise;
+import business.Enterprise.Enterprise;
+import business.UserAccount.UserAccount;
+import java.awt.CardLayout;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
+import userInterface.ManagerRole.ViewCourseDetailJPanel;
+
 /**
  *
  * @author Chau_
@@ -14,10 +25,29 @@ public class AddCourseJPanel extends javax.swing.JPanel {
     /**
      * Creates new form addCourseJPanel
      */
-    public AddCourseJPanel() {
+    private JPanel userProcessContainer;
+    private UserAccount userAccount;
+    private DayCareEnterprise enterprise;
+
+    public AddCourseJPanel(JPanel userProcessContainer, Enterprise enterprise) {
         initComponents();
+        this.userProcessContainer = userProcessContainer;
+        this.userAccount = userAccount;
+        this.enterprise = (DayCareEnterprise) enterprise;
     }
 
+    public void populateTable()
+    {
+        DefaultTableModel model = (DefaultTableModel) jTable_Course.getModel();
+        model.setRowCount(0);
+        for (CourseOffering co : enterprise.getCourseOfferingSchedule().getCourseOfferingList())
+        {
+                Object[] row = new Object[2];
+                row[0] = co;
+                row[1] = co.getTeacher();
+                model.addRow(row);
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -27,19 +57,122 @@ public class AddCourseJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jScrollPane6 = new javax.swing.JScrollPane();
+        jTable_Course = new javax.swing.JTable();
+        viewJButton = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        viewJButton1 = new javax.swing.JButton();
+
+        jTable_Course.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Course Name", "Teacher Name"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                true, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane6.setViewportView(jTable_Course);
+
+        viewJButton.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        viewJButton.setText("View Details");
+        viewJButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viewJButtonActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setFont(new java.awt.Font("宋体", 0, 36)); // NOI18N
+        jLabel1.setText("Add Course");
+
+        viewJButton1.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        viewJButton1.setText("Add");
+        viewJButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viewJButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 815, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(101, 101, 101)
+                .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 596, Short.MAX_VALUE)
+                .addGap(118, 118, 118))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(138, 138, 138)
+                .addComponent(jLabel1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(viewJButton)
+                .addGap(30, 30, 30)
+                .addComponent(viewJButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(137, 137, 137))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 577, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(40, 40, 40)
+                .addComponent(jLabel1)
+                .addGap(57, 57, 57)
+                .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(26, 26, 26)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(viewJButton)
+                    .addComponent(viewJButton1))
+                .addContainerGap(247, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void viewJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewJButtonActionPerformed
+        // TODO add your handling code here:
+        int selectedRow = jTable_Course.getSelectedRow();
+        if(selectedRow < 0)
+        {
+            JOptionPane.showMessageDialog(null, "Please select a row first!");
+            return;
+        }
+        else
+        {
+            CourseOffering courseOffering = (CourseOffering) jTable_Course.getValueAt(selectedRow, 0);
+            ViewCourseDetailJPanel viewCourseDetailJPanel = new ViewCourseDetailJPanel(userProcessContainer, courseOffering, enterprise);
+            userProcessContainer.add("ViewCourseDetailJPanel", viewCourseDetailJPanel);
+            CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+            layout.next(userProcessContainer);
+        }
+    }//GEN-LAST:event_viewJButtonActionPerformed
+
+    private void viewJButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewJButton1ActionPerformed
+        // TODO add your handling code here:
+        int selectedRow = jTable_Course.getSelectedRow();
+        if(selectedRow < 0 )
+        {
+            JOptionPane.showMessageDialog(null, "Please select a row first!");
+            return;
+        }
+        else
+        {
+            CourseOffering courseOffering = (CourseOffering) jTable_Course.getValueAt(selectedRow, 0);
+            courseOffering.addChild((Child)userAccount.getPerson());
+        }
+    }//GEN-LAST:event_viewJButton1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JScrollPane jScrollPane6;
+    private javax.swing.JTable jTable_Course;
+    private javax.swing.JButton viewJButton;
+    private javax.swing.JButton viewJButton1;
     // End of variables declaration//GEN-END:variables
 }
