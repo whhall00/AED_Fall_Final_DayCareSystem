@@ -10,5 +10,5 @@ package business.Salary;
  * @author hao
  */
 public interface Isalary {
-    public void caculateMonthlySalary();
+    public double caculateMonthlySalary();
 }
