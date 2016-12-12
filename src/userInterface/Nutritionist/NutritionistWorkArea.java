@@ -57,6 +57,7 @@ public class NutritionistWorkArea extends javax.swing.JPanel {
         jTable_Children = new javax.swing.JTable();
         jButton_ViewDetail = new javax.swing.JButton();
         jButton_Update = new javax.swing.JButton();
+        jButton_Order = new javax.swing.JButton();
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -84,7 +85,7 @@ public class NutritionistWorkArea extends javax.swing.JPanel {
                 jButton_ViewDetailActionPerformed(evt);
             }
         });
-        add(jButton_ViewDetail, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 430, -1, -1));
+        add(jButton_ViewDetail, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 430, -1, -1));
 
         jButton_Update.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jButton_Update.setText("Update Child's VitalSign");
@@ -93,7 +94,16 @@ public class NutritionistWorkArea extends javax.swing.JPanel {
                 jButton_UpdateActionPerformed(evt);
             }
         });
-        add(jButton_Update, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 430, -1, -1));
+        add(jButton_Update, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 430, -1, -1));
+
+        jButton_Order.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jButton_Order.setText("Order Food");
+        jButton_Order.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_OrderActionPerformed(evt);
+            }
+        });
+        add(jButton_Order, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 430, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton_ViewDetailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_ViewDetailActionPerformed
@@ -104,7 +114,7 @@ public class NutritionistWorkArea extends javax.swing.JPanel {
             return;
         }
         Child child = (Child) jTable_Children.getValueAt(selectRow, 0);
-        ViewChildJPanel viewChildJPanel = new ViewChildJPanel(userProcessContainer, child, account, organization, enterprise,business);
+        ViewChildJPanel viewChildJPanel = new ViewChildJPanel(userProcessContainer,child,account, organization, enterprise,business);
         userProcessContainer.add("viewChildJPanel", viewChildJPanel);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
@@ -124,6 +134,14 @@ public class NutritionistWorkArea extends javax.swing.JPanel {
         layout.next(userProcessContainer);
     }//GEN-LAST:event_jButton_UpdateActionPerformed
 
+    private void jButton_OrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_OrderActionPerformed
+        // TODO add your handling code here:
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        userProcessContainer.add("RequestLabTestJPanel", new RequestTextJPanel(userProcessContainer, account,organization,enterprise,business));
+        layout.next(userProcessContainer);
+        
+    }//GEN-LAST:event_jButton_OrderActionPerformed
+
     public void populateChildrenTable(){
         DefaultTableModel dtm = (DefaultTableModel) jTable_Children.getModel();
         dtm.setRowCount(0);
@@ -140,6 +158,7 @@ public class NutritionistWorkArea extends javax.swing.JPanel {
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton_Order;
     private javax.swing.JButton jButton_Update;
     private javax.swing.JButton jButton_ViewDetail;
     private javax.swing.JLabel jLabel1;
