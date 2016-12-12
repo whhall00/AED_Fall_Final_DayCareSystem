@@ -70,12 +70,12 @@ public class ManagerWorkArea extends javax.swing.JPanel {
         for(Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()){
             for(Person p : organization.getPersonDirectory().getPersonList()){
                 Object[] row = new Object[3];
-            row[0] = p;
-            row[1] = p.getId();
-            row[2] = organization.getSupportedRole();
-            dtm.addRow(row);
-            
-            }        
+                row[0] = p;
+                row[1] = p.getId();
+                row[2] = organization.getSupportedRole();
+                dtm.addRow(row);
+                
+            }
         }
     }
     private void populatePersonTable(){
@@ -243,17 +243,6 @@ public class ManagerWorkArea extends javax.swing.JPanel {
         jTable_CourseChildren = new javax.swing.JTable();
         jButton_AssignChild = new javax.swing.JButton();
         jButton_RefreshCourseTable = new javax.swing.JButton();
-        jPanel_Restaurant = new javax.swing.JPanel();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        jTable_Menu = new javax.swing.JTable();
-        jLabel2 = new javax.swing.JLabel();
-        jComboBox_Restaurant = new javax.swing.JComboBox();
-        jScrollPane4 = new javax.swing.JScrollPane();
-        jTable_Checkout = new javax.swing.JTable();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        quantitySpinner = new javax.swing.JSpinner();
-        addtoCartButton6 = new javax.swing.JButton();
         jPanel_Hospital = new javax.swing.JPanel();
         jScrollPane5 = new javax.swing.JScrollPane();
         jTable_Hospital = new javax.swing.JTable();
@@ -265,6 +254,11 @@ public class ManagerWorkArea extends javax.swing.JPanel {
         JButton_AddEmployee = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         organizationJTable = new javax.swing.JTable();
+        jPanel_Restaurant = new javax.swing.JPanel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jTable_Menu = new javax.swing.JTable();
+        jLabel2 = new javax.swing.JLabel();
+        jComboBox_Restaurant = new javax.swing.JComboBox();
         jLabel_Network = new javax.swing.JLabel();
         jLabel_Network1 = new javax.swing.JLabel();
 
@@ -327,31 +321,31 @@ public class ManagerWorkArea extends javax.swing.JPanel {
             .addGroup(jPanel_ChildLayout.createSequentialGroup()
                 .addGap(37, 37, 37)
                 .addGroup(jPanel_ChildLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 518, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel_ChildLayout.createSequentialGroup()
                         .addComponent(jButton_AddChild)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton_DeleteChild)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton_ViewDetials))
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 473, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(jButton_ViewDetials)))
+                .addContainerGap(223, Short.MAX_VALUE))
         );
         jPanel_ChildLayout.setVerticalGroup(
             jPanel_ChildLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel_ChildLayout.createSequentialGroup()
                 .addGap(20, 20, 20)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(31, 31, 31)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel_ChildLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton_AddChild)
                     .addComponent(jButton_DeleteChild)
                     .addComponent(jButton_ViewDetials))
-                .addContainerGap(336, Short.MAX_VALUE))
+                .addContainerGap(341, Short.MAX_VALUE))
         );
 
         jTabbedPane_ManagerWork.addTab("Child", jPanel_Child);
 
-        removeJButton.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        removeJButton.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         removeJButton.setText("Remove ");
         removeJButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -362,7 +356,7 @@ public class ManagerWorkArea extends javax.swing.JPanel {
         headlineJLabel1.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         headlineJLabel1.setText("Manage Courses Work Area");
 
-        viewJButton.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        viewJButton.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         viewJButton.setText("View Details");
         viewJButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -370,7 +364,7 @@ public class ManagerWorkArea extends javax.swing.JPanel {
             }
         });
 
-        addJButton.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        addJButton.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         addJButton.setText("Add Course");
         addJButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -392,6 +386,11 @@ public class ManagerWorkArea extends javax.swing.JPanel {
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
+            }
+        });
+        jTable_Course.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable_CourseMouseClicked(evt);
             }
         });
         jScrollPane6.setViewportView(jTable_Course);
@@ -433,11 +432,6 @@ public class ManagerWorkArea extends javax.swing.JPanel {
                 .addGap(55, 55, 55)
                 .addGroup(jPanel_CourseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel_CourseLayout.createSequentialGroup()
-                        .addComponent(viewJButton)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
-                        .addComponent(removeJButton)
-                        .addGap(266, 266, 266))
-                    .addGroup(jPanel_CourseLayout.createSequentialGroup()
                         .addGroup(jPanel_CourseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel_CourseLayout.createSequentialGroup()
                                 .addComponent(jComboBox_AssignChild, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -449,13 +443,17 @@ public class ManagerWorkArea extends javax.swing.JPanel {
                     .addGroup(jPanel_CourseLayout.createSequentialGroup()
                         .addGroup(jPanel_CourseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel_CourseLayout.createSequentialGroup()
+                                .addComponent(viewJButton)
+                                .addGap(18, 18, 18)
+                                .addComponent(removeJButton))
+                            .addGroup(jPanel_CourseLayout.createSequentialGroup()
                                 .addComponent(jButton_RefreshCourseTable)
                                 .addGap(55, 55, 55)
                                 .addComponent(headlineJLabel1))
                             .addGroup(jPanel_CourseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addComponent(jScrollPane7, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 596, Short.MAX_VALUE)
                                 .addComponent(jScrollPane6, javax.swing.GroupLayout.Alignment.LEADING)))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addContainerGap(127, Short.MAX_VALUE))))
         );
         jPanel_CourseLayout.setVerticalGroup(
             jPanel_CourseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -480,111 +478,20 @@ public class ManagerWorkArea extends javax.swing.JPanel {
                     .addComponent(jButton_AssignChild))
                 .addGap(28, 28, 28)
                 .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(35, Short.MAX_VALUE))
+                .addContainerGap(42, Short.MAX_VALUE))
         );
 
         jTabbedPane_ManagerWork.addTab("Course", jPanel_Course);
 
-        jTable_Menu.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        jScrollPane3.setViewportView(jTable_Menu);
-
-        jLabel2.setText("Restaurant Name:");
-
-        jComboBox_Restaurant.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        jTable_Checkout.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        jScrollPane4.setViewportView(jTable_Checkout);
-
-        jLabel3.setText("My Order");
-
-        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel5.setText("Quantity:");
-
-        quantitySpinner.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 1));
-
-        addtoCartButton6.setText("ADD TO CART");
-        addtoCartButton6.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                addtoCartButton6ActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel_RestaurantLayout = new javax.swing.GroupLayout(jPanel_Restaurant);
-        jPanel_Restaurant.setLayout(jPanel_RestaurantLayout);
-        jPanel_RestaurantLayout.setHorizontalGroup(
-            jPanel_RestaurantLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel_RestaurantLayout.createSequentialGroup()
-                .addGap(21, 21, 21)
-                .addGroup(jPanel_RestaurantLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel_RestaurantLayout.createSequentialGroup()
-                        .addComponent(jLabel3)
-                        .addGap(108, 108, 108)
-                        .addComponent(jLabel5)
-                        .addGap(12, 12, 12)
-                        .addComponent(quantitySpinner, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(addtoCartButton6))
-                    .addGroup(jPanel_RestaurantLayout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jComboBox_Restaurant, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(164, Short.MAX_VALUE))
-        );
-        jPanel_RestaurantLayout.setVerticalGroup(
-            jPanel_RestaurantLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel_RestaurantLayout.createSequentialGroup()
-                .addGap(18, 18, 18)
-                .addGroup(jPanel_RestaurantLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jComboBox_Restaurant, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(42, 42, 42)
-                .addGroup(jPanel_RestaurantLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel3)
-                    .addGroup(jPanel_RestaurantLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jLabel5)
-                        .addGroup(jPanel_RestaurantLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(quantitySpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(addtoCartButton6))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(266, Short.MAX_VALUE))
-        );
-
-        jTabbedPane_ManagerWork.addTab("Restaurant", jPanel_Restaurant);
-
         jTable_Hospital.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Hospital Name", "ID"
             }
         ));
         jScrollPane5.setViewportView(jTable_Hospital);
@@ -594,16 +501,16 @@ public class ManagerWorkArea extends javax.swing.JPanel {
         jPanel_HospitalLayout.setHorizontalGroup(
             jPanel_HospitalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel_HospitalLayout.createSequentialGroup()
-                .addContainerGap(47, Short.MAX_VALUE)
-                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 506, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(46, 46, 46))
+                .addContainerGap(151, Short.MAX_VALUE)
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 494, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(133, 133, 133))
         );
         jPanel_HospitalLayout.setVerticalGroup(
             jPanel_HospitalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel_HospitalLayout.createSequentialGroup()
-                .addGap(17, 17, 17)
-                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(448, Short.MAX_VALUE))
+                .addGap(20, 20, 20)
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(352, Short.MAX_VALUE))
         );
 
         jTabbedPane_ManagerWork.addTab("Hospital", jPanel_Hospital);
@@ -646,7 +553,7 @@ public class ManagerWorkArea extends javax.swing.JPanel {
                 {null, null, null}
             },
             new String [] {
-                "Name", "ID", "null"
+                "Name", "ID", "Role"
             }
         ) {
             Class[] types = new Class [] {
@@ -673,19 +580,19 @@ public class ManagerWorkArea extends javax.swing.JPanel {
             .addGroup(jPanel_EmployeeLayout.createSequentialGroup()
                 .addGap(57, 57, 57)
                 .addGroup(jPanel_EmployeeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(JButton_AddEmployee)
+                    .addGroup(jPanel_EmployeeLayout.createSequentialGroup()
+                        .addGroup(jPanel_EmployeeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(JButton_AddEmployee)
+                            .addComponent(jButton2)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 529, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap())
                     .addGroup(jPanel_EmployeeLayout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addGap(18, 18, 18)
-                        .addComponent(organizationJComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton_ShowALl))
-                    .addComponent(jButton2))
-                .addGap(368, 368, 368))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel_EmployeeLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(225, 225, 225))
+                        .addComponent(organizationJComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 126, Short.MAX_VALUE)
+                        .addComponent(jButton_ShowALl)
+                        .addGap(204, 204, 204))))
         );
         jPanel_EmployeeLayout.setVerticalGroup(
             jPanel_EmployeeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -701,10 +608,55 @@ public class ManagerWorkArea extends javax.swing.JPanel {
                 .addComponent(JButton_AddEmployee)
                 .addGap(18, 18, 18)
                 .addComponent(jButton2)
-                .addContainerGap(247, Short.MAX_VALUE))
+                .addContainerGap(252, Short.MAX_VALUE))
         );
 
         jTabbedPane_ManagerWork.addTab("Manage Employee", jPanel_Employee);
+
+        jTable_Menu.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Menu Name", "Total Calorie", "Fruit", "Staple Food"
+            }
+        ));
+        jScrollPane3.setViewportView(jTable_Menu);
+
+        jLabel2.setText("Restaurant Name:");
+
+        jComboBox_Restaurant.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        javax.swing.GroupLayout jPanel_RestaurantLayout = new javax.swing.GroupLayout(jPanel_Restaurant);
+        jPanel_Restaurant.setLayout(jPanel_RestaurantLayout);
+        jPanel_RestaurantLayout.setHorizontalGroup(
+            jPanel_RestaurantLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel_RestaurantLayout.createSequentialGroup()
+                .addGap(21, 21, 21)
+                .addGroup(jPanel_RestaurantLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 505, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel_RestaurantLayout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jComboBox_Restaurant, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(252, Short.MAX_VALUE))
+        );
+        jPanel_RestaurantLayout.setVerticalGroup(
+            jPanel_RestaurantLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel_RestaurantLayout.createSequentialGroup()
+                .addGap(18, 18, 18)
+                .addGroup(jPanel_RestaurantLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(jComboBox_Restaurant, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(350, Short.MAX_VALUE))
+        );
+
+        jTabbedPane_ManagerWork.addTab("Restaurant", jPanel_Restaurant);
 
         add(jTabbedPane_ManagerWork, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 140, 620, 600));
 
@@ -761,56 +713,6 @@ public class ManagerWorkArea extends javax.swing.JPanel {
             populatePersonTable();
         }
     }//GEN-LAST:event_organizationJComboBoxActionPerformed
-
-    private void addtoCartButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addtoCartButton6ActionPerformed
-        // TODO add your handling code here:
-//        int selectedRow = jTable_Menu.getSelectedRow();
-//        if(selectedRow<0){
-//            JOptionPane.showMessageDialog(null, "Pls select a row!!", "Warning", JOptionPane.WARNING_MESSAGE);
-//            return;
-//        }
-//        Menu selectedProduct = (Menu)jTable_Menu.getValueAt(selectedRow, 0);
-//        int fetchQty = (Integer)quantitySpinner.getValue();
-//        if(fetchQty <= 0){
-//            JOptionPane.showMessageDialog(null, "Quatity cannot be less than equal to 0!!", "Warning", JOptionPane.WARNING_MESSAGE);
-//            return;
-//        }
-//        try {
-//            double salePrice = Double.parseDouble(txtSalesPrice.getText());
-//            if(salePrice <= selectedProduct.getPrice()){
-//                JOptionPane.showMessageDialog(null, "Sale Price cannot be LESS THAN Actual Price!!", "Warning", JOptionPane.WARNING_MESSAGE);
-//                return;
-//            }
-//            if(fetchQty <= selectedProduct.getAvailNumber()){
-//                boolean alreadyPresent = false;
-//                for(OrderItem oi : order.getOrderItemList()){
-//                    if(oi.getProduct() == selectedProduct){
-//                        int oldAvail = selectedProduct.getAvailNumber();
-//                        int newAvail = oldAvail - fetchQty;
-//                        selectedProduct.setAvailNumber(newAvail);
-//                        oi.setQuatity(fetchQty + oi.getQuatity());
-//                        alreadyPresent = true;
-//                        populateTable();
-//                        refreshOrderTable();
-//                        break;
-//                    }
-//                }
-//                if(!alreadyPresent){
-//                    int oldAvail = selectedProduct.getAvailNumber();
-//                    int newAvail = oldAvail - fetchQty;
-//                    selectedProduct.setAvailNumber(newAvail);
-//                    order.addOrderItem(selectedProduct, fetchQty, salePrice);
-//                    populateTable();
-//                    refreshOrderTable();
-//                }
-//            }
-//            else{
-//                JOptionPane.showMessageDialog(null, "Quatity cannot bigger than availiable number!", "Warning", JOptionPane.WARNING_MESSAGE);
-//            }
-//        } catch (Exception e) {
-//            JOptionPane.showMessageDialog(null, "Invalid SalePrice!!", "Warning", JOptionPane.WARNING_MESSAGE);
-//        }
-    }//GEN-LAST:event_addtoCartButton6ActionPerformed
 
     private void removeJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeJButtonActionPerformed
         // TODO add your handling code here:
@@ -908,11 +810,17 @@ public class ManagerWorkArea extends javax.swing.JPanel {
         
     }//GEN-LAST:event_jButton_ViewDetialsActionPerformed
 
+    private void jTable_CourseMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable_CourseMouseClicked
+        // TODO add your handling code here:
+        int selectedRow = jTable_Course.getSelectedRow();
+        CourseOffering courseOffering = (CourseOffering) jTable_Course.getValueAt(selectedRow, 0);
+        populatCourseChildrenTable(courseOffering);
+    }//GEN-LAST:event_jTable_CourseMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton JButton_AddEmployee;
     private javax.swing.JButton addJButton;
-    private javax.swing.JButton addtoCartButton6;
     private javax.swing.JLabel centerJLabel;
     private javax.swing.JLabel headlineJLabel;
     private javax.swing.JLabel headlineJLabel1;
@@ -927,9 +835,7 @@ public class ManagerWorkArea extends javax.swing.JPanel {
     private javax.swing.JComboBox jComboBox_Restaurant;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel_Network;
     private javax.swing.JLabel jLabel_Network1;
     private javax.swing.JPanel jPanel_Child;
@@ -940,12 +846,10 @@ public class ManagerWorkArea extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JTabbedPane jTabbedPane_ManagerWork;
-    private javax.swing.JTable jTable_Checkout;
     private javax.swing.JTable jTable_Children;
     private javax.swing.JTable jTable_Course;
     private javax.swing.JTable jTable_CourseChildren;
@@ -955,7 +859,6 @@ public class ManagerWorkArea extends javax.swing.JPanel {
     private javax.swing.JLabel nameJLabel;
     private javax.swing.JComboBox organizationJComboBox;
     private javax.swing.JTable organizationJTable;
-    private javax.swing.JSpinner quantitySpinner;
     private javax.swing.JButton removeJButton;
     private javax.swing.JButton viewJButton;
     // End of variables declaration//GEN-END:variables
