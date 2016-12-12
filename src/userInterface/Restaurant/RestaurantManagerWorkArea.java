@@ -8,6 +8,8 @@ package userInterface.Restaurant;
 import business.Enterprise.Enterprise;
 import business.Enterprise.RestaurantEnterprise;
 import business.UserAccount.UserAccount;
+import business.WorkQueue.HospitalWorkRequest;
+import business.WorkQueue.RestaurantWorkRequest;
 import business.WorkQueue.WorkRequest;
 import java.awt.CardLayout;
 import javax.swing.JPanel;
@@ -49,6 +51,21 @@ public class RestaurantManagerWorkArea extends javax.swing.JPanel {
 //        }
 //    }
     
+    
+    public void populateTable() {
+        DefaultTableModel dtm = (DefaultTableModel) jTable_Order.getModel();
+        dtm.setRowCount(0);
+        for (WorkRequest wr : enterprise.getWorkQueue().getWorkRequestList()) {
+            int a = ((RestaurantWorkRequest) wr).getAmout();
+            String s = ((RestaurantWorkRequest) wr).message;
+            Object[] row = new Object[3];
+            row[0] = wr;
+            row[1] = s;
+            row[2] = a;
+            dtm.addRow(row);
+        }
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -66,6 +83,7 @@ public class RestaurantManagerWorkArea extends javax.swing.JPanel {
         jScrollPane_Order = new javax.swing.JScrollPane();
         jTable_Order = new javax.swing.JTable();
         jLabel3 = new javax.swing.JLabel();
+        jButton_Refresh = new javax.swing.JButton();
 
         headLineJLabel.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         headLineJLabel.setText("Restaurant Manager WorkArea");
@@ -97,13 +115,21 @@ public class RestaurantManagerWorkArea extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Custoner Name", "Address", "Contact Information", "Amount"
+                "Custoner Name", "Contact Information", "Amount"
             }
         ));
         jScrollPane_Order.setViewportView(jTable_Order);
 
         jLabel3.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jLabel3.setText("Order Table:");
+
+        jButton_Refresh.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jButton_Refresh.setText("Refresh");
+        jButton_Refresh.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_RefreshActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -115,11 +141,6 @@ public class RestaurantManagerWorkArea extends javax.swing.JPanel {
                         .addGap(52, 52, 52)
                         .addComponent(jLabel3))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(184, 184, 184)
-                        .addComponent(jButton_updateBasicInformation)
-                        .addGap(126, 126, 126)
-                        .addComponent(jButton_updateMenu))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(44, 44, 44)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
@@ -129,7 +150,14 @@ public class RestaurantManagerWorkArea extends javax.swing.JPanel {
                             .addComponent(headLineJLabel)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(62, 62, 62)
-                        .addComponent(jScrollPane_Order, javax.swing.GroupLayout.PREFERRED_SIZE, 820, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jScrollPane_Order, javax.swing.GroupLayout.PREFERRED_SIZE, 820, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(96, 96, 96)
+                        .addComponent(jButton_updateBasicInformation)
+                        .addGap(85, 85, 85)
+                        .addComponent(jButton_Refresh)
+                        .addGap(103, 103, 103)
+                        .addComponent(jButton_updateMenu)))
                 .addContainerGap(67, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -148,7 +176,8 @@ public class RestaurantManagerWorkArea extends javax.swing.JPanel {
                 .addGap(70, 70, 70)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton_updateBasicInformation)
-                    .addComponent(jButton_updateMenu))
+                    .addComponent(jButton_updateMenu)
+                    .addComponent(jButton_Refresh))
                 .addGap(94, 94, 94))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -169,9 +198,15 @@ public class RestaurantManagerWorkArea extends javax.swing.JPanel {
         layout.next(userProcessContainer);   
     }//GEN-LAST:event_jButton_updateMenuActionPerformed
 
+    private void jButton_RefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_RefreshActionPerformed
+        // TODO add your handling code here:
+        populateTable();
+    }//GEN-LAST:event_jButton_RefreshActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel headLineJLabel;
+    private javax.swing.JButton jButton_Refresh;
     private javax.swing.JButton jButton_updateBasicInformation;
     private javax.swing.JButton jButton_updateMenu;
     private javax.swing.JLabel jLabel3;

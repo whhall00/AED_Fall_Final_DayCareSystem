@@ -5,8 +5,13 @@
  */
 package userInterface.Hospital;
 
+import business.UserAccount.UserAccount;
 import business.WorkQueue.HospitalWorkRequest;
+import java.awt.CardLayout;
+import java.awt.Component;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import userInterface.Nutritionist.NutritionistWorkArea;
 
 /**
  *
@@ -19,10 +24,14 @@ public class AdviceJPanel extends javax.swing.JPanel {
      */
     private JPanel userProcessContainer;
     private HospitalWorkRequest request;
-    public AdviceJPanel(JPanel userProcessContainer,HospitalWorkRequest hospitalWorkRequest) {
+    private UserAccount account;
+    
+    public AdviceJPanel(JPanel userProcessContainer,HospitalWorkRequest hospitalWorkRequest,UserAccount account) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.request = hospitalWorkRequest;
+        //这里的UserAccount就是发送者的useraccount
+        this.account = account;
     }
 
 
@@ -86,25 +95,40 @@ public class AdviceJPanel extends javax.swing.JPanel {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(49, 49, 49)
+                .addContainerGap(64, Short.MAX_VALUE)
                 .addComponent(headlineJLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 60, Short.MAX_VALUE)
+                .addGap(45, 45, 45)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(50, 50, 50)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton_Send)
-                    .addComponent(jButton_Back))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(50, 50, 50)
+                        .addComponent(jButton_Back))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(34, 34, 34)
+                        .addComponent(jButton_Send)))
                 .addGap(51, 51, 51))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton_BackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_BackActionPerformed
         // TODO add your handling code here:
+        userProcessContainer.remove(this);
+        Component[] componentArray = userProcessContainer.getComponents();
+        Component component = componentArray[componentArray.length - 1];
+        HospitalWorkArea hospitalWorkArea = (HospitalWorkArea) component;
+        hospitalWorkArea.populateTable();
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.previous(userProcessContainer);
+        
     }//GEN-LAST:event_jButton_BackActionPerformed
 
     private void jButton_SendActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_SendActionPerformed
         // TODO add your handling code here:
-        
+        String str = jTextArea_Advice.getText();
+        request.message = str;
+        request.setStatus("Compeleted");
+        account.getWorkQueue().getWorkRequestList().add(request);
+        JOptionPane.showMessageDialog(null, "Send Succeddful");
     }//GEN-LAST:event_jButton_SendActionPerformed
 
 
