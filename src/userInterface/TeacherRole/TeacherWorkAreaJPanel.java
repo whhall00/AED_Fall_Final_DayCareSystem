@@ -5,11 +5,16 @@
  */
 package userInterface.TeacherRole;
 
+import business.CourseOffering.CourseOffering;
+import business.Enterprise.DayCareEnterprise;
 import business.Enterprise.Enterprise;
 import business.Organization.Organization;
+import business.Person.Employee.Teacher;
 import business.UserAccount.UserAccount;
 import java.awt.CardLayout;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -19,7 +24,7 @@ public class TeacherWorkAreaJPanel extends javax.swing.JPanel {
     private JPanel userProcessContainer;
     private UserAccount account;
     private Organization organization;
-    private Enterprise enterprise;
+    private DayCareEnterprise enterprise;
     /**
      * Creates new form teacherWorkAreaJPanel
      */
@@ -28,12 +33,29 @@ public class TeacherWorkAreaJPanel extends javax.swing.JPanel {
         this.userProcessContainer = userProcessContainer;
         this.account = account;
         this.organization = organization;
-        this.enterprise = enterprise;
+        this.enterprise = (DayCareEnterprise) enterprise;
+        jLabel2.setText(enterprise.getName());
+        jLabel3.setText(account.getPerson().getFirstName() + " " + account.getPerson().getLastName());
+        populateTable();
     }
     
     public void populateTable()
     {
-        
+        DefaultTableModel model = (DefaultTableModel) jTableSchedule.getModel();
+        model.setRowCount(0);
+        for (CourseOffering co : enterprise.getCourseOfferingSchedule().getCourseOfferingList())
+        {
+            if(co.getTeacher() == (Teacher) account.getPerson())
+            {
+                Object[] row = new Object[4];
+                row[0] = co;
+                row[1] = co.getStartTime();
+                row[2] = co.getEndTime();
+                row[3] = co.getChildNum();
+                
+                model.addRow(row);
+            }
+        }
     }
 
 
@@ -49,16 +71,17 @@ public class TeacherWorkAreaJPanel extends javax.swing.JPanel {
         headlineJLabel = new javax.swing.JLabel();
         parentsNameLabel = new javax.swing.JLabel();
         nameLabel = new javax.swing.JLabel();
-        statusLabel = new javax.swing.JLabel();
         statusJLabel = new javax.swing.JLabel();
-        viewScheduleJButton = new javax.swing.JButton();
         manageParentsInformationJButton = new javax.swing.JButton();
         checkinJButton = new javax.swing.JButton();
         checkoutJButton1 = new javax.swing.JButton();
         statusLabel1 = new javax.swing.JLabel();
-        jComboBoxCourse = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTableSchedule = new javax.swing.JTable();
+        jButtonViewDetails = new javax.swing.JButton();
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -73,21 +96,8 @@ public class TeacherWorkAreaJPanel extends javax.swing.JPanel {
         nameLabel.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         add(nameLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(239, 124, 161, 33));
 
-        statusLabel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        statusLabel.setText("Course:");
-        add(statusLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 240, 80, 28));
-
         statusJLabel.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         add(statusJLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(252, 190, 161, 33));
-
-        viewScheduleJButton.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        viewScheduleJButton.setText("View My Schedule");
-        viewScheduleJButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                viewScheduleJButtonActionPerformed(evt);
-            }
-        });
-        add(viewScheduleJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(55, 426, 386, 44));
 
         manageParentsInformationJButton.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         manageParentsInformationJButton.setText("Update My Information");
@@ -96,28 +106,56 @@ public class TeacherWorkAreaJPanel extends javax.swing.JPanel {
                 manageParentsInformationJButtonActionPerformed(evt);
             }
         });
-        add(manageParentsInformationJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(55, 335, 386, 44));
+        add(manageParentsInformationJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 220, 386, 44));
 
         checkinJButton.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         checkinJButton.setText("Check In");
-        add(checkinJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 180, -1, 79));
+        add(checkinJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 30, -1, 79));
 
         checkoutJButton1.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         checkoutJButton1.setText("Check out");
-        add(checkoutJButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 180, -1, 77));
+        add(checkoutJButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 30, -1, 77));
 
         statusLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         statusLabel1.setText("Status:");
-        add(statusLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(55, 190, 166, 28));
-
-        jComboBoxCourse.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        add(jComboBoxCourse, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 241, 140, 30));
+        add(statusLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 170, 100, 28));
 
         jLabel1.setText("DayCare Center Name:");
         add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 100, -1, -1));
 
         jLabel2.setText("jLabel2");
         add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 100, -1, -1));
+
+        jLabel3.setText("jLabel3");
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 140, -1, -1));
+
+        jTableSchedule.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "CourseName", "Start Time", "End Time", "Student Number"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(jTableSchedule);
+
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 350, 660, 210));
+
+        jButtonViewDetails.setText("View Details");
+        jButtonViewDetails.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonViewDetailsActionPerformed(evt);
+            }
+        });
+        add(jButtonViewDetails, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 580, 280, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void manageParentsInformationJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manageParentsInformationJButtonActionPerformed
@@ -128,29 +166,40 @@ public class TeacherWorkAreaJPanel extends javax.swing.JPanel {
         layout.next(userProcessContainer);
     }//GEN-LAST:event_manageParentsInformationJButtonActionPerformed
 
-    private void viewScheduleJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewScheduleJButtonActionPerformed
+    private void jButtonViewDetailsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonViewDetailsActionPerformed
         // TODO add your handling code here:
-        ViewscheduleJPanel viewscheduleJPanel = new ViewscheduleJPanel(userProcessContainer, enterprise, account); 
-        userProcessContainer.add("ViewscheduleJPanel", viewscheduleJPanel);
-        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        layout.next(userProcessContainer);
-    }//GEN-LAST:event_viewScheduleJButtonActionPerformed
+        int selectedRow = jTableSchedule.getSelectedRow();
+        if(selectedRow < 0)
+        {
+            JOptionPane.showMessageDialog(null, "Please select a row first!");
+            return;
+        }
+        else
+        {
+            CourseOffering co = (CourseOffering) jTableSchedule.getValueAt(selectedRow, 0);
+            ViewDetailsJPanel viewDetailsJPanel = new ViewDetailsJPanel(userProcessContainer, co);
+            userProcessContainer.add("ViewDetailsJPanel", viewDetailsJPanel);
+            CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+            layout.next(userProcessContainer);
+        }
+    }//GEN-LAST:event_jButtonViewDetailsActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton checkinJButton;
     private javax.swing.JButton checkoutJButton1;
     private javax.swing.JLabel headlineJLabel;
-    private javax.swing.JComboBox<String> jComboBoxCourse;
+    private javax.swing.JButton jButtonViewDetails;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTableSchedule;
     private javax.swing.JButton manageParentsInformationJButton;
     private javax.swing.JLabel nameLabel;
     private javax.swing.JLabel parentsNameLabel;
     private javax.swing.JLabel statusJLabel;
-    private javax.swing.JLabel statusLabel;
     private javax.swing.JLabel statusLabel1;
-    private javax.swing.JButton viewScheduleJButton;
     // End of variables declaration//GEN-END:variables
 
 }

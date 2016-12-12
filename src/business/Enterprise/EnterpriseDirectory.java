@@ -27,16 +27,22 @@ public class EnterpriseDirectory {
 
     public Enterprise createAndAddEnterprise(String name, Enterprise.EnterpriseType type) {
         Enterprise enterprise = null;
-        if(type == Enterprise.EnterpriseType.DayCareInstitution){
-            enterprise = new DayCareEnterprise(name);
-            enterpriseList.add(enterprise);
-        } else if(type == Enterprise.EnterpriseType.Hospital){
-            enterprise = new HospitalEnterprise(name);
-            enterpriseList.add(enterprise);
-        } else if(type == Enterprise.EnterpriseType.Restaurant){
-            enterprise = new RestaurantEnterprise(name);
-            enterpriseList.add(enterprise);
-        }   
+        if(null != type)switch (type) {
+            case DayCareInstitution:
+                enterprise = new DayCareEnterprise(name);
+                enterpriseList.add(enterprise);
+                break;
+            case Hospital:
+                enterprise = new HospitalEnterprise(name);
+                enterpriseList.add(enterprise);
+                break;
+            case Restaurant:   
+                enterprise = new RestaurantEnterprise(name);
+                enterpriseList.add(enterprise);
+                break;
+            default:
+                break;
+        }
         return enterprise;
     }
     

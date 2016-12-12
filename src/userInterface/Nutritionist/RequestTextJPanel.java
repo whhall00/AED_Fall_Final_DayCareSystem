@@ -35,18 +35,37 @@ public class RequestTextJPanel extends javax.swing.JPanel {
     private EcoSystem business;
     
     
-    public RequestTextJPanel(JPanel userProcessContainer, Child child, UserAccount account, Organization organization, Enterprise enterprise) {
-        initComponents();
-        this.userProcessContainer = userProcessContainer;
-        this.enterprise = enterprise;
-        this.organization = organization;
-        this.account = account;
-       
+    public RequestTextJPanel(JPanel userProcessContainer, 
+                            Child child,
+                            UserAccount account, 
+                            Organization organization,
+                            Enterprise enterprise,
+                            EcoSystem business) {
+        
+                            initComponents();
+                            this.userProcessContainer = userProcessContainer;
+                            this.enterprise = enterprise;
+                            this.organization = organization;
+                            this.account = account;
+                            this.business = business;
+                            populatedJComBox();
         
     }
-    public void populatedJComBox(){
-        jComboBox_NetWorkArea.removeAll();
-              for (Network network : business.getNetworkList()){
+
+    RequestTextJPanel(JPanel userProcessContainer, UserAccount account, Organization organization, Enterprise enterprise, EcoSystem business) {
+       
+        this.userProcessContainer = userProcessContainer;
+        this.account = account;
+        this.organization= organization;
+        this.enterprise = enterprise;
+        this.business = business;
+        
+    }
+
+ 
+    public void populatedJComBox() {       
+        jComboBox_NetWorkArea.removeAll(); 
+        for (Network network : business.getNetworkList()) {
             jComboBox_NetWorkArea.addItem(network);
         }
     }
@@ -189,9 +208,17 @@ public class RequestTextJPanel extends javax.swing.JPanel {
             return;
         }else
         {
+            
+//        Enterprise enterprise = (Enterprise) jTable_DayCareTable.getValueAt(selectedRow, 0);
+//        RegisterUserAccount registerUserAccount = new RegisterUserAccount(userProcessContainer, enterprise); 
+//        
+            
         HospitalEnterprise hospitalEnterprise= (HospitalEnterprise) jTable_Hospital.getValueAt(selectRow, 0);
-        //在所选定hospital和本身的useraccount里面都添加了这个request
+        //在所选定hospital和Nutritionist本身的useraccount里面都添加了这个request
+        //在那边取得时候，在hospitalEnterprise里面找，
         hospitalEnterprise.getWorkQueue().getWorkRequestList().add(request);
+        
+        //返回的时候在这面找
         account.getWorkQueue().getWorkRequestList().add(request);
         
         
@@ -225,6 +252,7 @@ public class RequestTextJPanel extends javax.swing.JPanel {
 
     private void jComboBox_NetWorkAreaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox_NetWorkAreaActionPerformed
         // TODO add your handling code here:
+        //JCombox一选，JTable直接出来所有hospital
         Network network = (Network)jComboBox_NetWorkArea.getSelectedItem();
         populateTable(network);
     }//GEN-LAST:event_jComboBox_NetWorkAreaActionPerformed

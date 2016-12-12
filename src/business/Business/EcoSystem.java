@@ -99,6 +99,18 @@ public class EcoSystem extends Organization{
         }
         return true;
     }
+    
+    public int caculateTotalEnterprise(){
+        int a = 0;
+        
+        for(Network network: this.networkList){
+            for(Enterprise enterprise : network.getEnterpriseDirectory().getEnterpriseList()){
+                a++;
+            }
+        }
+        return a;
+    }
+    
 //    public double CountOfAllConsumer(Enterprise ent) {
 //        double count = 0.0;
 //        for (Organization o : ent.getOrganizationDirectory().getOrganizationList()) {
