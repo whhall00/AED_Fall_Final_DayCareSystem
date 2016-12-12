@@ -6,13 +6,12 @@
 package userInterface.Nutritionist;
 
 import business.Business.EcoSystem;
-import business.Customer.Child;
 import business.Enterprise.Enterprise;
-import business.Enterprise.HospitalEnterprise;
+import business.Enterprise.RestaurantEnterprise;
 import business.Network.Network;
 import business.Organization.Organization;
 import business.UserAccount.UserAccount;
-import business.WorkQueue.HospitalWorkRequest;
+import business.WorkQueue.RestaurantWorkRequest;
 import java.awt.CardLayout;
 import java.awt.Component;
 import javax.swing.JOptionPane;
@@ -23,53 +22,47 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Chau_
  */
-public class RequestTextJPanel extends javax.swing.JPanel {
+public class OrderFoodJPanel extends javax.swing.JPanel {
 
     /**
-     * Creates new form RequestTextJPanel
+     * Creates new form OrderFoodJPanel
      */
     private JPanel userProcessContainer;
     private UserAccount account;
     private Organization organization;
     private Enterprise enterprise;
     private EcoSystem business;
-    
-    
-    public RequestTextJPanel(JPanel userProcessContainer, 
-                            Child child,
-                            UserAccount account, 
-                            Organization organization,
-                            Enterprise enterprise,
-                            EcoSystem business) {
-        
-                            initComponents();
-                            this.userProcessContainer = userProcessContainer;
-                            this.enterprise = enterprise;
-                            this.organization = organization;
-                            this.account = account;
-                            this.business = business;
-                            populatedJComBox();
-        
-    }
 
-    RequestTextJPanel(JPanel userProcessContainer, UserAccount account, Organization organization, Enterprise enterprise, EcoSystem business) {
-       
+
+    public OrderFoodJPanel(JPanel userProcessContainer, UserAccount account, Organization organization, Enterprise enterprise, EcoSystem business) {
+      initComponents();
         this.userProcessContainer = userProcessContainer;
-        this.account = account;
-        this.organization= organization;
         this.enterprise = enterprise;
+        this.organization = organization;
+        this.account = account;
         this.business = business;
-        
+        populatedJComBox();
     }
 
- 
-    public void populatedJComBox() {       
-        jComboBox_NetWorkArea.removeAll(); 
+    public void populatedJComBox() {
+        jComboBox_NetWorkArea.removeAll();
         for (Network network : business.getNetworkList()) {
             jComboBox_NetWorkArea.addItem(network);
         }
     }
-
+    
+        private void populateTable(Network network) {
+        DefaultTableModel dtm = (DefaultTableModel) jTable_Restaurant.getModel();
+        dtm.setRowCount(0);
+        for (Enterprise enterprise : network.getEnterpriseDirectory().getEnterpriseList()) {
+            if (enterprise.getEnterpriseType().equals(Enterprise.EnterpriseType.Restaurant)) {
+                Object[] row = new Object[2];
+                row[0] = enterprise;
+                row[1] = enterprise.getEnterpriseType();
+                dtm.addRow(row);
+            }
+        }
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -80,33 +73,38 @@ public class RequestTextJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel_hint = new javax.swing.JLabel();
         jScrollPane = new javax.swing.JScrollPane();
         jTextArea_Message = new javax.swing.JTextArea();
-        jLabel_hint = new javax.swing.JLabel();
-        jLabel_Message = new javax.swing.JLabel();
-        jButton_Send = new javax.swing.JButton();
-        jButton_Back = new javax.swing.JButton();
-        jScrollPane_hospital = new javax.swing.JScrollPane();
-        jTable_Hospital = new javax.swing.JTable();
         jComboBox_NetWorkArea = new javax.swing.JComboBox();
+        jScrollPane_hospital = new javax.swing.JScrollPane();
+        jTable_Restaurant = new javax.swing.JTable();
+        jButton_Back = new javax.swing.JButton();
+        jButton_Send = new javax.swing.JButton();
+        jLabel_Message = new javax.swing.JLabel();
+
+        jLabel_hint.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        jLabel_hint.setText("Choose  a Restaurant :");
 
         jTextArea_Message.setColumns(20);
         jTextArea_Message.setRows(5);
         jScrollPane.setViewportView(jTextArea_Message);
 
-        jLabel_hint.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
-        jLabel_hint.setText("Choose  a hospital :");
-
-        jLabel_Message.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        jLabel_Message.setText("Message");
-
-        jButton_Send.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
-        jButton_Send.setText("Send>>");
-        jButton_Send.addActionListener(new java.awt.event.ActionListener() {
+        jComboBox_NetWorkArea.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton_SendActionPerformed(evt);
+                jComboBox_NetWorkAreaActionPerformed(evt);
             }
         });
+
+        jTable_Restaurant.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Restaurant Name", "Type"
+            }
+        ));
+        jScrollPane_hospital.setViewportView(jTable_Restaurant);
 
         jButton_Back.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         jButton_Back.setText("<<Back");
@@ -116,21 +114,16 @@ public class RequestTextJPanel extends javax.swing.JPanel {
             }
         });
 
-        jTable_Hospital.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "Hospital Name", "Contact Information"
-            }
-        ));
-        jScrollPane_hospital.setViewportView(jTable_Hospital);
-
-        jComboBox_NetWorkArea.addActionListener(new java.awt.event.ActionListener() {
+        jButton_Send.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        jButton_Send.setText("Send>>");
+        jButton_Send.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox_NetWorkAreaActionPerformed(evt);
+                jButton_SendActionPerformed(evt);
             }
         });
+
+        jLabel_Message.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jLabel_Message.setText("Message");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -148,7 +141,7 @@ public class RequestTextJPanel extends javax.swing.JPanel {
                         .addComponent(jButton_Send))
                     .addComponent(jLabel_Message)
                     .addComponent(jScrollPane, javax.swing.GroupLayout.PREFERRED_SIZE, 510, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(433, Short.MAX_VALUE))
+                .addContainerGap(432, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jScrollPane_hospital, javax.swing.GroupLayout.PREFERRED_SIZE, 937, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -157,7 +150,7 @@ public class RequestTextJPanel extends javax.swing.JPanel {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(49, Short.MAX_VALUE)
+                .addContainerGap(90, Short.MAX_VALUE)
                 .addComponent(jLabel_hint)
                 .addGap(38, 38, 38)
                 .addComponent(jComboBox_NetWorkArea, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -174,81 +167,6 @@ public class RequestTextJPanel extends javax.swing.JPanel {
                 .addGap(37, 37, 37))
         );
     }// </editor-fold>//GEN-END:initComponents
-    
-    private void populateTable(Network network) {
-        DefaultTableModel dtm = (DefaultTableModel) jTable_Hospital.getModel();
-        dtm.setRowCount(0);
-        for (Enterprise enterprise : network.getEnterpriseDirectory().getEnterpriseList()) {
-            if (enterprise.getEnterpriseType().equals(Enterprise.EnterpriseType.Hospital)) {
-                Object[] row = new Object[2];
-                row[0] = enterprise;
-                row[1] = enterprise.getEnterpriseType();
-                dtm.addRow(row);
-            }
-        }
-    }
-    
-    
-    private void jButton_SendActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_SendActionPerformed
-
-        String message = jTextArea_Message.getText();
-        HospitalWorkRequest request = new HospitalWorkRequest();
-        request.setMessage(message);
-        request.setSender(account);
-        request.setStatus("Sent");
-
-        //添加到Nutritionist本身所属的DayCareCenter里面的Nutritionist origination里
-        //查找相同network里面的，选中的hospitalEnterprise，放在他下面的workqueue里面
-        //发送给相同network里面的hospital
-        
-//        Organization org = null;
-        int selectRow = jTable_Hospital.getSelectedRow();
-        if (selectRow < 0) {
-            JOptionPane.showMessageDialog(null, "Please select a row", "Warning", JOptionPane.WARNING_MESSAGE);
-            return;
-        }else
-        {
-            
-//        Enterprise enterprise = (Enterprise) jTable_DayCareTable.getValueAt(selectedRow, 0);
-//        RegisterUserAccount registerUserAccount = new RegisterUserAccount(userProcessContainer, enterprise); 
-//        
-            
-        HospitalEnterprise hospitalEnterprise= (HospitalEnterprise) jTable_Hospital.getValueAt(selectRow, 0);
-        //在所选定hospital和Nutritionist本身的useraccount里面都添加了这个request
-        //在那边取得时候，在hospitalEnterprise里面找，
-        hospitalEnterprise.getWorkQueue().getWorkRequestList().add(request);
-        
-        //返回的时候在这面找
-        account.getWorkQueue().getWorkRequestList().add(request);
-        
-        
-        JOptionPane.showMessageDialog(null, "Send Succeddful");
-        }
-//        for (Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()){
-//            if (organization instanceof NutritionistOrganization){
-//                org = organization;
-//                break;
-//            }
-//        }
-//        if (org!=null){
-//            org.getWorkQueue().getWorkRequestList().add(request);
-//            account.getWorkQueue().getWorkRequestList().add(request);
-//        }
-        
-       
-
-    }//GEN-LAST:event_jButton_SendActionPerformed
-
-    private void jButton_BackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_BackActionPerformed
-        // TODO add your handling code here:  
-        userProcessContainer.remove(this);
-        Component[] componentArray = userProcessContainer.getComponents();
-        Component component = componentArray[componentArray.length - 1];
-        SendMessageJPanel sendMessageJPanel = (SendMessageJPanel) component;
-        sendMessageJPanel.populateRequestTable();
-        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        layout.previous(userProcessContainer);
-    }//GEN-LAST:event_jButton_BackActionPerformed
 
     private void jComboBox_NetWorkAreaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox_NetWorkAreaActionPerformed
         // TODO add your handling code here:
@@ -256,6 +174,64 @@ public class RequestTextJPanel extends javax.swing.JPanel {
         Network network = (Network)jComboBox_NetWorkArea.getSelectedItem();
         populateTable(network);
     }//GEN-LAST:event_jComboBox_NetWorkAreaActionPerformed
+
+    private void jButton_BackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_BackActionPerformed
+        // TODO add your handling code here:
+        userProcessContainer.remove(this);
+        Component[] componentArray = userProcessContainer.getComponents();
+        Component component = componentArray[componentArray.length - 1];
+        NutritionistWorkArea NutritionistWorkAreaatalogJPanel = (NutritionistWorkArea) component;
+        NutritionistWorkAreaatalogJPanel.populateChildrenTable();
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.previous(userProcessContainer);
+    }//GEN-LAST:event_jButton_BackActionPerformed
+
+    private void jButton_SendActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_SendActionPerformed
+
+        String message = jTextArea_Message.getText();
+        RestaurantWorkRequest request = new RestaurantWorkRequest();
+        request.setMessage(message);
+        request.setSender(account);
+        request.setStatus("Sent");
+
+        //添加到Nutritionist本身所属的DayCareCenter里面的Nutritionist origination里
+        //查找相同network里面的，选中的hospitalEnterprise，放在他下面的workqueue里面
+        //发送给相同network里面的hospital
+
+        //        Organization org = null;
+        int selectRow = jTable_Restaurant.getSelectedRow();
+        if (selectRow < 0) {
+            JOptionPane.showMessageDialog(null, "Please select a row", "Warning", JOptionPane.WARNING_MESSAGE);
+            return;
+        }else
+        {
+
+            //        Enterprise enterprise = (Enterprise) jTable_DayCareTable.getValueAt(selectedRow, 0);
+            //        RegisterUserAccount registerUserAccount = new RegisterUserAccount(userProcessContainer, enterprise);
+            //
+
+            RestaurantEnterprise restaurantEnterprise= (RestaurantEnterprise) jTable_Restaurant.getValueAt(selectRow, 0);
+            //在所选定hospital和Nutritionist本身的useraccount里面都添加了这个request
+            //在那边取得时候，在hospitalEnterprise里面找，
+            restaurantEnterprise.getWorkQueue().getWorkRequestList().add(request);
+
+            //返回的时候在这面找
+            account.getWorkQueue().getWorkRequestList().add(request);
+
+            JOptionPane.showMessageDialog(null, "Send Succeddful");
+        }
+        //        for (Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()){
+            //            if (organization instanceof NutritionistOrganization){
+                //                org = organization;
+                //                break;
+                //            }
+            //        }
+        //        if (org!=null){
+            //            org.getWorkQueue().getWorkRequestList().add(request);
+            //            account.getWorkQueue().getWorkRequestList().add(request);
+            //        }
+
+    }//GEN-LAST:event_jButton_SendActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -266,7 +242,7 @@ public class RequestTextJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel_hint;
     private javax.swing.JScrollPane jScrollPane;
     private javax.swing.JScrollPane jScrollPane_hospital;
-    private javax.swing.JTable jTable_Hospital;
+    private javax.swing.JTable jTable_Restaurant;
     private javax.swing.JTextArea jTextArea_Message;
     // End of variables declaration//GEN-END:variables
 }

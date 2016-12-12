@@ -218,7 +218,7 @@ public class AddEmployeeJPanel extends javax.swing.JPanel {
         Component[] componentArray = userProcessContainer.getComponents();
         Component component = componentArray[componentArray.length - 1];
         ManagerWorkArea managerWorkArea = (ManagerWorkArea) component;
-        managerWorkArea.populateTable();
+        managerWorkArea.populateEmployeeTable();
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.previous(userProcessContainer);
     }//GEN-LAST:event_jButton_BackActionPerformed

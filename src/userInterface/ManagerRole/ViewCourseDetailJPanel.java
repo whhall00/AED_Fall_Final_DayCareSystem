@@ -250,7 +250,7 @@ public class ViewCourseDetailJPanel extends javax.swing.JPanel {
         Component[] componentArray = userProcessContainer.getComponents();
         Component component = componentArray[componentArray.length - 1];
         ManagerWorkArea managerWorkArea = (ManagerWorkArea) component;
-        managerWorkArea.populateTable();
+        managerWorkArea.populateEmployeeTable();
         managerWorkArea.populateCourseTable();
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.previous(userProcessContainer);

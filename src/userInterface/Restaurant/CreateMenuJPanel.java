@@ -14,32 +14,26 @@ import javax.swing.JPanel;
 
 /**
  *
- * @author Chau_
+ * @author hao
  */
-public class UpdateMenuJPanel extends javax.swing.JPanel {
-
-    /**
-     * Creates new form updateMenuJPanel
-     */
-    private Menu menu;
+public class CreateMenuJPanel extends javax.swing.JPanel {
     private JPanel userProcessContainer;
-    public UpdateMenuJPanel(JPanel userProcessContainer, Menu menu) {
+    private RestaurantEnterprise enterprise;
+    /**
+     * Creates new form CreateMenuJPanel
+     */
+    public CreateMenuJPanel(JPanel userProcessContainer, RestaurantEnterprise enterprise) {
         initComponents();
-//        this.menu = enterprise.getMenu();
         this.userProcessContainer = userProcessContainer;
-        this.menu = menu;
-        nameTextField.setText(menu.getName());
-        stapleFoodJTextField.setText(menu.getStapleFood());
-        fruitJTextField.setText(menu.getFruit());
-        beverageTextField.setText(menu.getBeverage());
-        calorieJTextField.setText(menu.getTotalCalorie()+"");
-        if(menu.isAginomoto()){
-            yesJRadioButton.setSelected(true);
-        }else{
-            noJRadioButton.setSelected(true);
-            
-        }
+        this.enterprise = enterprise;
+        nameTextField.setEditable(true);
+        stapleFoodJTextField.setEditable(true);
+        fruitJTextField.setEditable(true);
+        beverageTextField.setEditable(true);
+        calorieJTextField.setEditable(true);
     }
+
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -50,39 +44,64 @@ public class UpdateMenuJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        beverageJLabel = new javax.swing.JLabel();
         headLineJLabel = new javax.swing.JLabel();
+        aginomotoJLabel = new javax.swing.JLabel();
         nameJLabel = new javax.swing.JLabel();
+        yesJRadioButton = new javax.swing.JRadioButton();
         nameTextField = new javax.swing.JTextField();
+        noJRadioButton = new javax.swing.JRadioButton();
         stapleFoodJLabel = new javax.swing.JLabel();
+        jButton_Create = new javax.swing.JButton();
         stapleFoodJTextField = new javax.swing.JTextField();
         fruitJLabel = new javax.swing.JLabel();
+        jButton_Back = new javax.swing.JButton();
         fruitJTextField = new javax.swing.JTextField();
         calorieJLabel = new javax.swing.JLabel();
         calorieJTextField = new javax.swing.JTextField();
         beverageTextField = new javax.swing.JTextField();
-        beverageJLabel = new javax.swing.JLabel();
-        aginomotoJLabel = new javax.swing.JLabel();
-        yesJRadioButton = new javax.swing.JRadioButton();
-        noJRadioButton = new javax.swing.JRadioButton();
-        jButton_Update = new javax.swing.JButton();
-        jButton_Save = new javax.swing.JButton();
-        jButton_Back = new javax.swing.JButton();
+
+        beverageJLabel.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        beverageJLabel.setText("Beverage:");
 
         headLineJLabel.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         headLineJLabel.setText("Menu Information");
 
+        aginomotoJLabel.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        aginomotoJLabel.setText("Aginomoto:");
+
         nameJLabel.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         nameJLabel.setText("Name:");
 
+        yesJRadioButton.setText("Yes");
+
         nameTextField.setEditable(false);
+
+        noJRadioButton.setText("No");
 
         stapleFoodJLabel.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         stapleFoodJLabel.setText("Staple Food:");
+
+        jButton_Create.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        jButton_Create.setText("Create");
+        jButton_Create.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_CreateActionPerformed(evt);
+            }
+        });
 
         stapleFoodJTextField.setEditable(false);
 
         fruitJLabel.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         fruitJLabel.setText("Fruit:");
+
+        jButton_Back.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        jButton_Back.setText("<<Back");
+        jButton_Back.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_BackActionPerformed(evt);
+            }
+        });
 
         fruitJTextField.setEditable(false);
 
@@ -93,49 +112,15 @@ public class UpdateMenuJPanel extends javax.swing.JPanel {
 
         beverageTextField.setEditable(false);
 
-        beverageJLabel.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        beverageJLabel.setText("Beverage:");
-
-        aginomotoJLabel.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        aginomotoJLabel.setText("Aginomoto:");
-
-        yesJRadioButton.setText("Yes");
-
-        noJRadioButton.setText("No");
-
-        jButton_Update.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
-        jButton_Update.setText("Update");
-        jButton_Update.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton_UpdateActionPerformed(evt);
-            }
-        });
-
-        jButton_Save.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
-        jButton_Save.setText("Save");
-        jButton_Save.setEnabled(false);
-        jButton_Save.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton_SaveActionPerformed(evt);
-            }
-        });
-
-        jButton_Back.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
-        jButton_Back.setText("<<Back");
-        jButton_Back.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton_BackActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(108, 108, 108)
+                        .addGap(65, 65, 65)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -152,7 +137,7 @@ public class UpdateMenuJPanel extends javax.swing.JPanel {
                                     .addComponent(beverageJLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(calorieJLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(aginomotoJLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(6, 6, Short.MAX_VALUE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(calorieJTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(beverageTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 531, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -161,24 +146,17 @@ public class UpdateMenuJPanel extends javax.swing.JPanel {
                                         .addGap(33, 33, 33)
                                         .addComponent(noJRadioButton))))))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(231, 231, 231)
+                        .addGap(188, 188, 188)
                         .addComponent(jButton_Back)
                         .addGap(128, 128, 128)
-                        .addComponent(jButton_Update)
-                        .addGap(139, 139, 139)
-                        .addComponent(jButton_Save))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(43, 43, 43)
-                        .addComponent(headLineJLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(225, Short.MAX_VALUE))
+                        .addComponent(jButton_Create))
+                    .addComponent(headLineJLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(57, Short.MAX_VALUE))
         );
-
-        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {beverageTextField, fruitJTextField, nameTextField, stapleFoodJTextField});
-
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(23, 23, 23)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(26, Short.MAX_VALUE)
                 .addComponent(headLineJLabel)
                 .addGap(40, 40, 40)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -205,40 +183,27 @@ public class UpdateMenuJPanel extends javax.swing.JPanel {
                     .addComponent(aginomotoJLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(yesJRadioButton)
                     .addComponent(noJRadioButton))
-                .addGap(28, 28, 28)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton_Back)
-                    .addComponent(jButton_Update)
-                    .addComponent(jButton_Save))
-                .addContainerGap(36, Short.MAX_VALUE))
+                    .addComponent(jButton_Create))
+                .addGap(16, 16, 16))
         );
-
-        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {beverageTextField, fruitJTextField, nameTextField, stapleFoodJTextField});
-
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton_UpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_UpdateActionPerformed
+    private void jButton_CreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_CreateActionPerformed
         // TODO add your handling code here:
-        nameTextField.setEditable(true);
-        stapleFoodJTextField.setEditable(true);
-        fruitJTextField.setEditable(true);
-        beverageTextField.setEditable(true);
-        calorieJTextField.setEditable(true);
-        jButton_Save.setEnabled(true);
-        jButton_Update.setEnabled(false);
-    }//GEN-LAST:event_jButton_UpdateActionPerformed
-
-    private void jButton_SaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_SaveActionPerformed
-        // TODO add your handling code here:
-        menu.setName(nameTextField.getText());
-        menu.setBeverage(beverageTextField.getText());
-        menu.setFruit(fruitJTextField.getText());
-        menu.setStapleFood(stapleFoodJTextField.getText());
-        menu.setTotalCalorie(Integer.parseInt(calorieJTextField.getText()));
-        JOptionPane.showMessageDialog(null, "Update Successfully!");
-        jButton_Save.setEnabled(false);
-        jButton_Update.setEnabled(true);
-    }//GEN-LAST:event_jButton_SaveActionPerformed
+        if(enterprise instanceof RestaurantEnterprise){
+            Menu menu = new Menu();
+            menu.setName(nameTextField.getText());
+            menu.setBeverage(beverageTextField.getText());
+            menu.setFruit(fruitJTextField.getText());
+            menu.setStapleFood(stapleFoodJTextField.getText());
+            menu.setTotalCalorie(Integer.parseInt(calorieJTextField.getText()));
+            enterprise.getMenuDirectory().addMenu(menu);
+            JOptionPane.showMessageDialog(null, "Created Successfully!");
+        }     
+    }//GEN-LAST:event_jButton_CreateActionPerformed
 
     private void jButton_BackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_BackActionPerformed
         // TODO add your handling code here:
@@ -262,8 +227,7 @@ public class UpdateMenuJPanel extends javax.swing.JPanel {
     private javax.swing.JTextField fruitJTextField;
     private javax.swing.JLabel headLineJLabel;
     private javax.swing.JButton jButton_Back;
-    private javax.swing.JButton jButton_Save;
-    private javax.swing.JButton jButton_Update;
+    private javax.swing.JButton jButton_Create;
     private javax.swing.JLabel nameJLabel;
     private javax.swing.JTextField nameTextField;
     private javax.swing.JRadioButton noJRadioButton;

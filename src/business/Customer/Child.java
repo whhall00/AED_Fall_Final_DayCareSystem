@@ -33,6 +33,7 @@ public class Child extends Person{
         this.status = status;
     }
 
+    private double BMI;
     public String getDescription() {
         return description;
     }
@@ -63,7 +64,6 @@ public class Child extends Person{
     
     public double calculateBMI(){
         //体质指数（BMI）=体重（kg）÷身高^2（m）
-        double BMI;
         if(this.getHealth()!=null){
             BMI = this.getHealth().getWeight()/((this.getHealth().getHeight()/100)*(this.getHealth().getHeight()/100));
         return BMI;

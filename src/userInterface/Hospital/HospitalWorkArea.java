@@ -15,6 +15,7 @@ import business.WorkQueue.HospitalWorkRequest;
 import business.WorkQueue.WorkQueue;
 import business.WorkQueue.WorkRequest;
 import java.awt.CardLayout;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
@@ -48,32 +49,27 @@ public class HospitalWorkArea extends javax.swing.JPanel {
 //            jComboBox_Network.addItem(network);
 //        }
 //    }
-    private void populateTable() {
+    public void populateTable() {
+        //nutritionis在request的时候，在本地network的hospital里面放了一个，在他自己的useraccount放了一个
+//        for(Network network : business.getNetworkList()){
+//            if(network == enterprise.getNetwork()){
+//                for (Enterprise enterprise : network.getEnterpriseDirectory().getEnterpriseList()) {
+//            if (enterprise.getEnterpriseType().equals(Enterprise.EnterpriseType.DayCareInstitution)) {
+//                for(Organization o : enterprise.getOrganizationDirectory().getOrganizationList()){
+//                    for(WorkRequest wr : o.getWorkQueue().getWorkRequestList()){
+//                        if(wr instanceof HospitalWorkRequest){
         DefaultTableModel dtm = (DefaultTableModel) jTable_DayCareCenter.getModel();
         dtm.setRowCount(0);
-        //nutritionis在request的时候，在本地network的hospital里面放了一个，在他自己的useraccount放了一个
-        for(Network network : business.getNetworkList()){
-            if(network == enterprise.getNetwork()){
-                for (Enterprise enterprise : network.getEnterpriseDirectory().getEnterpriseList()) {
-            if (enterprise.getEnterpriseType().equals(Enterprise.EnterpriseType.DayCareInstitution)) {
-                for(Organization o : enterprise.getOrganizationDirectory().getOrganizationList()){
-                    for(WorkRequest wr : o.getWorkQueue().getWorkRequestList()){
-                        if(wr instanceof HospitalWorkRequest){
-                            String s = ((HospitalWorkRequest) wr).message;
-                                Object[] row = new Object[2];
-                                row[0] = enterprise;
-                                row[1] = s;
-                                dtm.addRow(row);                      
-                        }
-                }
-                }
-                
-            }
+        for (WorkRequest wr : enterprise.getWorkQueue().getWorkRequestList()) {
+            String s = ((HospitalWorkRequest) wr).message;
+            Object[] row = new Object[2];
+            row[0] = wr;
+            row[1] = wr.message;
+            dtm.addRow(row);
         }
-            }
-        }
-        
     }
+
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -86,7 +82,7 @@ public class HospitalWorkArea extends javax.swing.JPanel {
         headLineJLabel = new javax.swing.JLabel();
         jScrollPane_DaycareCenter = new javax.swing.JScrollPane();
         jTable_DayCareCenter = new javax.swing.JTable();
-        jButton_Send = new javax.swing.JButton();
+        jButton_Advice = new javax.swing.JButton();
 
         headLineJLabel.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         headLineJLabel.setText("Doctor Work Area");
@@ -97,15 +93,16 @@ public class HospitalWorkArea extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Daycare Center Name", "Message"
+                "Sender Name ", "message"
             }
         ));
         jScrollPane_DaycareCenter.setViewportView(jTable_DayCareCenter);
 
-        jButton_Send.setText("jButton1");
-        jButton_Send.addActionListener(new java.awt.event.ActionListener() {
+        jButton_Advice.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        jButton_Advice.setText("Give a Advice");
+        jButton_Advice.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton_SendActionPerformed(evt);
+                jButton_AdviceActionPerformed(evt);
             }
         });
 
@@ -114,73 +111,57 @@ public class HospitalWorkArea extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(59, 59, 59)
-                        .addComponent(headLineJLabel))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(75, 75, 75)
+                .addGap(75, 75, 75)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jButton_Advice)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(headLineJLabel)
                         .addComponent(jScrollPane_DaycareCenter, javax.swing.GroupLayout.PREFERRED_SIZE, 719, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(90, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jButton_Send)
-                .addGap(145, 145, 145))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(51, 51, 51)
+                .addGap(61, 61, 61)
                 .addComponent(headLineJLabel)
-                .addGap(122, 122, 122)
+                .addGap(58, 58, 58)
                 .addComponent(jScrollPane_DaycareCenter, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(45, 45, 45)
-                .addComponent(jButton_Send)
-                .addContainerGap(136, Short.MAX_VALUE))
+                .addGap(64, 64, 64)
+                .addComponent(jButton_Advice)
+                .addContainerGap(155, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton_GiveAdviceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_GiveAdviceActionPerformed
-        // TODO add your handling code here:
-       int selectedRow = jTable_DayCareCenter.getSelectedRow();
-        
-        if (selectedRow < 0){
-            return;
-        }
-        
-         HospitalWorkRequest hospitalWorkRequest= (HospitalWorkRequest)jTable_DayCareCenter.getValueAt(selectedRow, 0);
-     
-        hospitalWorkRequest.setStatus("Processing");
-        
-        AdviceJPanel processWorkRequestJPanel = new AdviceJPanel(userProcessContainer, hospitalWorkRequest);
-        userProcessContainer.add("processWorkRequestJPanel", processWorkRequestJPanel);
-        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        layout.next(userProcessContainer);
+        // TODO add your handling code here:  
+        //不知道咋几把搞得，键也没有出来一个没几把反应的方法
     }//GEN-LAST:event_jButton_GiveAdviceActionPerformed
 
-    private void jButton_SendActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_SendActionPerformed
+    private void jButton_AdviceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_AdviceActionPerformed
         // TODO add your handling code here:
         int selectedRow = jTable_DayCareCenter.getSelectedRow();
         
         if (selectedRow < 0){
-            return;
-        }
-        
-         HospitalWorkRequest hospitalWorkRequest= (HospitalWorkRequest)jTable_DayCareCenter.getValueAt(selectedRow, 0);
-     
+            JOptionPane.showMessageDialog(null, "Please Select a row");
+            return; 
+        }       
+        HospitalWorkRequest hospitalWorkRequest= (HospitalWorkRequest)jTable_DayCareCenter.getValueAt(selectedRow, 0);   
         hospitalWorkRequest.setStatus("Processing");
         
-        AdviceJPanel processWorkRequestJPanel = new AdviceJPanel(userProcessContainer, hospitalWorkRequest);
+        //往下面传的值是sender的useraccount，从哪来的传到哪去
+        AdviceJPanel processWorkRequestJPanel = new AdviceJPanel(userProcessContainer, hospitalWorkRequest,hospitalWorkRequest.getSender());
         userProcessContainer.add("processWorkRequestJPanel", processWorkRequestJPanel);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
-    }//GEN-LAST:event_jButton_SendActionPerformed
+        
+    }//GEN-LAST:event_jButton_AdviceActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel headLineJLabel;
-    private javax.swing.JButton jButton_Send;
+    private javax.swing.JButton jButton_Advice;
     private javax.swing.JScrollPane jScrollPane_DaycareCenter;
     private javax.swing.JTable jTable_DayCareCenter;
     // End of variables declaration//GEN-END:variables
 }
+
