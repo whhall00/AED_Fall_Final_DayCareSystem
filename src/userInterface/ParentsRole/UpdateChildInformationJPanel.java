@@ -30,24 +30,28 @@ public class UpdateChildInformationJPanel extends javax.swing.JPanel {
         headlineJLabel = new javax.swing.JLabel();
         nameJLabel = new javax.swing.JLabel();
         nameTextField = new javax.swing.JTextField();
-        addtessInformationJLabel = new javax.swing.JLabel();
-        addtessInformationTextField = new javax.swing.JTextField();
+        ageTextField = new javax.swing.JTextField();
         statusJLabel = new javax.swing.JLabel();
         saveJButton = new javax.swing.JButton();
         updateJButton = new javax.swing.JButton();
         statusJComboBox = new javax.swing.JComboBox<>();
+        nameJLabel1 = new javax.swing.JLabel();
+
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         headlineJLabel.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         headlineJLabel.setText("Update Child Information");
+        add(headlineJLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 32, 310, 60));
 
         nameJLabel.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        nameJLabel.setText("Name:");
-
-        addtessInformationJLabel.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        addtessInformationJLabel.setText("Address Information:");
+        nameJLabel.setText("Age:");
+        add(nameJLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(263, 212, 142, 38));
+        add(nameTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(409, 139, 329, 38));
+        add(ageTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(409, 212, 329, 38));
 
         statusJLabel.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         statusJLabel.setText("Status:");
+        add(statusJLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 366, 225, 40));
 
         saveJButton.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         saveJButton.setText("Save");
@@ -56,6 +60,7 @@ public class UpdateChildInformationJPanel extends javax.swing.JPanel {
                 saveJButtonActionPerformed(evt);
             }
         });
+        add(saveJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(199, 512, 233, 49));
 
         updateJButton.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         updateJButton.setText("Update");
@@ -64,57 +69,13 @@ public class UpdateChildInformationJPanel extends javax.swing.JPanel {
                 updateJButtonActionPerformed(evt);
             }
         });
+        add(updateJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(475, 512, 233, 49));
 
-        statusJComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        add(statusJComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(409, 367, 329, 40));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(180, 180, 180)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(headlineJLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(nameJLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(addtessInformationJLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(statusJLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(nameTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 329, Short.MAX_VALUE)
-                            .addComponent(addtessInformationTextField)
-                            .addComponent(statusJComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(19, 19, 19)
-                        .addComponent(saveJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(43, 43, 43)
-                        .addComponent(updateJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(244, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(32, 32, 32)
-                .addComponent(headlineJLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(45, 45, 45)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(nameJLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(nameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(35, 35, 35)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(addtessInformationJLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(addtessInformationTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(54, 54, 54)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(statusJLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(statusJComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 165, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(updateJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(saveJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(98, 98, 98))
-        );
+        nameJLabel1.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        nameJLabel1.setText("Name:");
+        add(nameJLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(273, 147, 142, 38));
     }// </editor-fold>//GEN-END:initComponents
 
     private void saveJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveJButtonActionPerformed
@@ -127,10 +88,10 @@ public class UpdateChildInformationJPanel extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel addtessInformationJLabel;
-    private javax.swing.JTextField addtessInformationTextField;
+    private javax.swing.JTextField ageTextField;
     private javax.swing.JLabel headlineJLabel;
     private javax.swing.JLabel nameJLabel;
+    private javax.swing.JLabel nameJLabel1;
     private javax.swing.JTextField nameTextField;
     private javax.swing.JButton saveJButton;
     private javax.swing.JComboBox<String> statusJComboBox;

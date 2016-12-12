@@ -13,16 +13,16 @@ import business.Person.Person;
  * @author hao
  */
 public class Father extends Person{
-    private boolean workStatus;
+    private boolean status;
     private Child child;
 
 
-    public boolean isWorkStatus() {
-        return workStatus;
+    public boolean isStatus() {
+        return status;
     }
 
-    public void setWorkStatus(boolean workStatus) {
-        this.workStatus = workStatus;
+    public void setStatus(boolean status) {
+        this.status = status;
     }
 
     public Child getChild() {

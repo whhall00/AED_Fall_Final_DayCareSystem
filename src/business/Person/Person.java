@@ -20,6 +20,7 @@ public class Person {
     private DateOfBirth dob;
     private int gender;//0 for male, 1 for female
     private int id;
+    private boolean status;
     private static int count = 0001;
     
     public Person(){
@@ -28,6 +29,13 @@ public class Person {
         count++;
     }
 
+    public boolean isStatus() {
+        return status;
+    }
+
+    public void setStatus(boolean status) {
+        this.status = status;
+    }
     public int getGender() {
         return gender;
     }
