@@ -79,11 +79,10 @@ public class RestaurantManagerWorkArea extends javax.swing.JPanel {
         nameJLabel = new javax.swing.JLabel();
         restaurantNameJLabel = new javax.swing.JLabel();
         jButton_updateBasicInformation = new javax.swing.JButton();
-        jButton_updateMenu = new javax.swing.JButton();
         jScrollPane_Order = new javax.swing.JScrollPane();
         jTable_Order = new javax.swing.JTable();
         jLabel3 = new javax.swing.JLabel();
-        jButton_Refresh = new javax.swing.JButton();
+        jButton_MenuInfo = new javax.swing.JButton();
 
         headLineJLabel.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         headLineJLabel.setText("Restaurant Manager WorkArea");
@@ -102,14 +101,6 @@ public class RestaurantManagerWorkArea extends javax.swing.JPanel {
             }
         });
 
-        jButton_updateMenu.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        jButton_updateMenu.setText("Update  the Menu");
-        jButton_updateMenu.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton_updateMenuActionPerformed(evt);
-            }
-        });
-
         jTable_Order.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -122,12 +113,10 @@ public class RestaurantManagerWorkArea extends javax.swing.JPanel {
 
         jLabel3.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jLabel3.setText("Order Table:");
-
-        jButton_Refresh.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        jButton_Refresh.setText("Refresh");
-        jButton_Refresh.addActionListener(new java.awt.event.ActionListener() {
+        jButton_MenuInfo.setText("Menu Information");
+        jButton_MenuInfo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton_RefreshActionPerformed(evt);
+                jButton_MenuInfoActionPerformed(evt);
             }
         });
 
@@ -138,9 +127,6 @@ public class RestaurantManagerWorkArea extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(52, 52, 52)
-                        .addComponent(jLabel3))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(44, 44, 44)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
@@ -149,16 +135,13 @@ public class RestaurantManagerWorkArea extends javax.swing.JPanel {
                                 .addComponent(nameJLabel))
                             .addComponent(headLineJLabel)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(62, 62, 62)
-                        .addComponent(jScrollPane_Order, javax.swing.GroupLayout.PREFERRED_SIZE, 820, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(96, 96, 96)
-                        .addComponent(jButton_updateBasicInformation)
-                        .addGap(85, 85, 85)
-                        .addComponent(jButton_Refresh)
-                        .addGap(103, 103, 103)
-                        .addComponent(jButton_updateMenu)))
-                .addContainerGap(67, Short.MAX_VALUE))
+                        .addGap(52, 52, 52)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane_Order, javax.swing.GroupLayout.PREFERRED_SIZE, 820, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel3)
+                            .addComponent(jButton_updateBasicInformation)
+                            .addComponent(jButton_MenuInfo))))
+                .addContainerGap(77, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -171,14 +154,13 @@ public class RestaurantManagerWorkArea extends javax.swing.JPanel {
                     .addComponent(restaurantNameJLabel))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
                 .addComponent(jLabel3)
-                .addGap(55, 55, 55)
+                .addGap(28, 28, 28)
                 .addComponent(jScrollPane_Order, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(70, 70, 70)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton_updateBasicInformation)
-                    .addComponent(jButton_updateMenu)
-                    .addComponent(jButton_Refresh))
-                .addGap(94, 94, 94))
+                .addGap(52, 52, 52)
+                .addComponent(jButton_updateBasicInformation)
+                .addGap(39, 39, 39)
+                .addComponent(jButton_MenuInfo)
+                .addGap(71, 71, 71))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -190,13 +172,13 @@ public class RestaurantManagerWorkArea extends javax.swing.JPanel {
         layout.next(userProcessContainer);     
     }//GEN-LAST:event_jButton_updateBasicInformationActionPerformed
 
-    private void jButton_updateMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_updateMenuActionPerformed
+    private void jButton_MenuInfoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_MenuInfoActionPerformed
         // TODO add your handling code here:
-        UpdateMenuJPanel UpdateMenuJPanel= new UpdateMenuJPanel(userProcessContainer, enterprise); 
-        userProcessContainer.add("updateBasicInformationJPanel", UpdateMenuJPanel);
+        MenuInfoJPanel menuInfoJPanel = new MenuInfoJPanel(userProcessContainer, enterprise);
+        userProcessContainer.add("MenuInfoJPanel", menuInfoJPanel);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        layout.next(userProcessContainer);   
-    }//GEN-LAST:event_jButton_updateMenuActionPerformed
+        layout.next(userProcessContainer); 
+    }//GEN-LAST:event_jButton_MenuInfoActionPerformed
 
     private void jButton_RefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_RefreshActionPerformed
         // TODO add your handling code here:
@@ -206,9 +188,8 @@ public class RestaurantManagerWorkArea extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel headLineJLabel;
-    private javax.swing.JButton jButton_Refresh;
+    private javax.swing.JButton jButton_MenuInfo;
     private javax.swing.JButton jButton_updateBasicInformation;
-    private javax.swing.JButton jButton_updateMenu;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane_Order;
     private javax.swing.JTable jTable_Order;

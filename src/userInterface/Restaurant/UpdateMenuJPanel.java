@@ -9,6 +9,7 @@ import business.Enterprise.RestaurantEnterprise;
 import business.Menu.Menu;
 import java.awt.CardLayout;
 import java.awt.Component;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /**
@@ -22,10 +23,11 @@ public class UpdateMenuJPanel extends javax.swing.JPanel {
      */
     private Menu menu;
     private JPanel userProcessContainer;
-    public UpdateMenuJPanel(JPanel userProcessContainer,RestaurantEnterprise enterprise) {
+    public UpdateMenuJPanel(JPanel userProcessContainer, Menu menu) {
         initComponents();
 //        this.menu = enterprise.getMenu();
         this.userProcessContainer = userProcessContainer;
+        this.menu = menu;
         nameTextField.setText(menu.getName());
         stapleFoodJTextField.setText(menu.getStapleFood());
         fruitJTextField.setText(menu.getFruit());
@@ -165,10 +167,9 @@ public class UpdateMenuJPanel extends javax.swing.JPanel {
                         .addComponent(jButton_Update)
                         .addGap(139, 139, 139)
                         .addComponent(jButton_Save))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(headLineJLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(606, 606, 606)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(43, 43, 43)
+                        .addComponent(headLineJLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(225, Short.MAX_VALUE))
         );
 
@@ -224,6 +225,7 @@ public class UpdateMenuJPanel extends javax.swing.JPanel {
         beverageTextField.setEditable(true);
         calorieJTextField.setEditable(true);
         jButton_Save.setEnabled(true);
+        jButton_Update.setEnabled(false);
     }//GEN-LAST:event_jButton_UpdateActionPerformed
 
     private void jButton_SaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_SaveActionPerformed
@@ -232,8 +234,10 @@ public class UpdateMenuJPanel extends javax.swing.JPanel {
         menu.setBeverage(beverageTextField.getText());
         menu.setFruit(fruitJTextField.getText());
         menu.setStapleFood(stapleFoodJTextField.getText());
-        menu.setTotalCalorie(Integer.parseInt(calorieJTextField.getText()));   
+        menu.setTotalCalorie(Integer.parseInt(calorieJTextField.getText()));
+        JOptionPane.showMessageDialog(null, "Update Successfully!");
         jButton_Save.setEnabled(false);
+        jButton_Update.setEnabled(true);
     }//GEN-LAST:event_jButton_SaveActionPerformed
 
     private void jButton_BackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_BackActionPerformed
@@ -241,7 +245,8 @@ public class UpdateMenuJPanel extends javax.swing.JPanel {
         userProcessContainer.remove(this);
         Component[] componentArray = userProcessContainer.getComponents();
         Component component = componentArray[componentArray.length - 1];
-        RestaurantManagerWorkArea manageProductCatalogJPanel = (RestaurantManagerWorkArea) component;
+        MenuInfoJPanel manageProductCatalogJPanel = (MenuInfoJPanel) component;
+        manageProductCatalogJPanel.populateTable();
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.previous(userProcessContainer);
     }//GEN-LAST:event_jButton_BackActionPerformed

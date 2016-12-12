@@ -95,5 +95,8 @@ public class CourseOffering extends Course{
     public void setEndTime(String endTime) {
         this.endTime = endTime;
     }
-    
+    @Override
+    public String toString(){
+        return this.getCourseName();
+    }
 }

@@ -18,10 +18,10 @@ public class Menu {
     private int totalCalorie;
     private boolean aginomoto;//味精
 
-    public Menu(int totalCalorie, boolean aginmoto) {
-        this.aginomoto = aginmoto;
-        this.totalCalorie = totalCalorie;
-    }
+//    public Menu(int totalCalorie, boolean aginmoto) {
+//        this.aginomoto = aginmoto;
+//        this.totalCalorie = totalCalorie;
+//    }
         public Menu() {
 
     }

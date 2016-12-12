@@ -16,7 +16,6 @@ import java.util.ArrayList;
 public class HospitalEnterprise extends Enterprise{
     
     private Doctor doctor;
-    private String Address;
     //Name继承enterprise的
     private String contactInformation;
 
@@ -28,15 +27,7 @@ public class HospitalEnterprise extends Enterprise{
         this.contactInformation = contactInformation;
     }
     
-    
-    public String getAddress() {
-        return Address;
-    }
-
-    public void setAddress(String Address) {
-        this.Address = Address;
-    }
-    
+        
     public Doctor getDoctor() {
         return doctor;
     }
