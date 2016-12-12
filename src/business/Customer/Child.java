@@ -23,6 +23,15 @@ public class Child extends Person{
     private Balance balance;
     private ArrayList<CourseOffering> chosenClass;
     private String description;
+    boolean status;//true for here, false for left
+
+    public boolean isStatus() {
+        return status;
+    }
+
+    public void setStatus(boolean status) {
+        this.status = status;
+    }
 
     public String getDescription() {
         return description;

@@ -19,6 +19,16 @@ public class Parents extends Person{
     {
         this.father = new Father();
         this.mother = new Mother();
+        if(father.isStatus() == true || mother.isStatus() == true)
+        {
+            father.getChild().setStatus(true);
+            mother.getChild().setStatus(true);
+        }
+        else
+        {
+            father.getChild().setStatus(false);
+            mother.getChild().setStatus(false);
+        }
     }
 
     public Father getFather() {
