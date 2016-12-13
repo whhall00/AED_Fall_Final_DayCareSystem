@@ -91,7 +91,6 @@
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="127" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="JButton_DayCare" min="-2" pref="253" max="-2" attributes="0"/>
                                   <Component id="JButton_Restaurant" linkSize="1" alignment="0" min="-2" pref="253" max="-2" attributes="0"/>
                                   <Component id="JButton_ManageNetwork" alignment="0" min="-2" pref="253" max="-2" attributes="0"/>
                                   <Component id="JButton_ManageEnterprise" alignment="0" min="-2" pref="253" max="-2" attributes="0"/>
@@ -119,12 +118,10 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="JButton_ManageEnterprise" min="-2" pref="52" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="JButton_DayCare" min="-2" pref="52" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
                       <Component id="JButton_Restaurant" linkSize="2" min="-2" pref="52" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jButton_ManageHospital" linkSize="2" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="99" max="32767" attributes="0"/>
+                      <EmptySpace pref="157" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -145,14 +142,6 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="&lt;View_Selected_Node&gt;"/>
               </Properties>
-            </Component>
-            <Component class="javax.swing.JButton" name="JButton_DayCare">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Manage Day Care Institution"/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="JButton_DayCareActionPerformed"/>
-              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="JButton_Restaurant">
               <Properties>

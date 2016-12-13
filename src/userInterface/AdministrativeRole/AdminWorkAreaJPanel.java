@@ -88,7 +88,6 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
         rightJPanel = new javax.swing.JPanel();
         headlineJLabel = new javax.swing.JLabel();
         selectNodeJLabel = new javax.swing.JLabel();
-        JButton_DayCare = new javax.swing.JButton();
         JButton_Restaurant = new javax.swing.JButton();
         JButton_ManageNetwork = new javax.swing.JButton();
         JButton_ManageEnterprise = new javax.swing.JButton();
@@ -130,13 +129,6 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
         selectNodeJLabel.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         selectNodeJLabel.setText("<View_Selected_Node>");
 
-        JButton_DayCare.setText("Manage Day Care Institution");
-        JButton_DayCare.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                JButton_DayCareActionPerformed(evt);
-            }
-        });
-
         JButton_Restaurant.setText("Manage  Restaurant");
         JButton_Restaurant.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -177,7 +169,6 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
                     .addGroup(rightJPanelLayout.createSequentialGroup()
                         .addGap(127, 127, 127)
                         .addGroup(rightJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(JButton_DayCare, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(JButton_Restaurant, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(JButton_ManageNetwork, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(JButton_ManageEnterprise, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -202,12 +193,10 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(JButton_ManageEnterprise, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(JButton_DayCare, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(JButton_Restaurant, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton_ManageHospital)
-                .addContainerGap(99, Short.MAX_VALUE))
+                .addContainerGap(157, Short.MAX_VALUE))
         );
 
         rightJPanelLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {JButton_Restaurant, jButton_ManageHospital});
@@ -231,14 +220,6 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
     }//GEN-LAST:event_JButton_ManageNetworkActionPerformed
-
-    private void JButton_DayCareActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JButton_DayCareActionPerformed
-        // TODO add your handling code here:
-//        ManageManagerJPanel manageManagerJPanel = new ManageManagerJPanel(userProcessContainer, system); 
-//        userProcessContainer.add("ManageManagerJPanel", manageManagerJPanel);
-//        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-//        layout.next(userProcessContainer);
-    }//GEN-LAST:event_JButton_DayCareActionPerformed
 
     private void JButton_RestaurantActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JButton_RestaurantActionPerformed
         // TODO add your handling code here:
@@ -268,7 +249,6 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton JButton_DayCare;
     private javax.swing.JButton JButton_ManageEnterprise;
     private javax.swing.JButton JButton_ManageNetwork;
     private javax.swing.JButton JButton_Restaurant;
