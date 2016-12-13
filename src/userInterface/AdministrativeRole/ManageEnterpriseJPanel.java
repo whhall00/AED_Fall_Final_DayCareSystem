@@ -178,6 +178,7 @@ public class ManageEnterpriseJPanel extends javax.swing.JPanel {
         managerJTable = new javax.swing.JTable();
         jLabel4 = new javax.swing.JLabel();
         jLabel_TotalEnterprise = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -303,7 +304,10 @@ public class ManageEnterpriseJPanel extends javax.swing.JPanel {
         add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 400, -1, -1));
 
         jLabel_TotalEnterprise.setText("jLabel5");
-        add(jLabel_TotalEnterprise, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 20, -1, -1));
+        add(jLabel_TotalEnterprise, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 16, -1, 20));
+
+        jLabel5.setText("Total Enterprise Number is:");
+        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 10, 190, 30));
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton_AddEnterpirseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_AddEnterpirseActionPerformed
@@ -416,6 +420,7 @@ public class ManageEnterpriseJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel_TotalEnterprise;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;

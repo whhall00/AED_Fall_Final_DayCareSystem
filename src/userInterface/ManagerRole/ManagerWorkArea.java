@@ -203,7 +203,12 @@ public class ManagerWorkArea extends javax.swing.JPanel {
         for(Child child : courseOffering.getChildInClass()){
                 Object[] row = new Object[4];
                 row[0] = child;
-                row[1] = child.getGender();
+//                row[1] = child.getGender();
+                if(child.getGender() == 0){
+                    row[1] = "Boy";
+                }else if(child.getGender() == 1){
+                    row[1] = "Girl";
+                }
                 row[2] = child.getDob();
                 row[3] = child.getBalance();
                 dtm.addRow(row);
@@ -405,7 +410,7 @@ public class ManagerWorkArea extends javax.swing.JPanel {
                 {null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Child Name", "Gender", "Date Of Birth", "Balence"
             }
         ));
         jScrollPane7.setViewportView(jTable_CourseChildren);
@@ -453,7 +458,7 @@ public class ManagerWorkArea extends javax.swing.JPanel {
                             .addGroup(jPanel_CourseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addComponent(jScrollPane7, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 596, Short.MAX_VALUE)
                                 .addComponent(jScrollPane6, javax.swing.GroupLayout.Alignment.LEADING)))
-                        .addContainerGap(127, Short.MAX_VALUE))))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         jPanel_CourseLayout.setVerticalGroup(
             jPanel_CourseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -501,7 +506,7 @@ public class ManagerWorkArea extends javax.swing.JPanel {
         jPanel_HospitalLayout.setHorizontalGroup(
             jPanel_HospitalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel_HospitalLayout.createSequentialGroup()
-                .addContainerGap(151, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 494, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(133, 133, 133))
         );
@@ -590,7 +595,7 @@ public class ManagerWorkArea extends javax.swing.JPanel {
                         .addComponent(jLabel1)
                         .addGap(18, 18, 18)
                         .addComponent(organizationJComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 126, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton_ShowALl)
                         .addGap(204, 204, 204))))
         );
