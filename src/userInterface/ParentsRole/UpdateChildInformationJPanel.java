@@ -36,6 +36,7 @@ public class UpdateChildInformationJPanel extends javax.swing.JPanel {
         updateJButton = new javax.swing.JButton();
         statusJComboBox = new javax.swing.JComboBox<>();
         nameJLabel1 = new javax.swing.JLabel();
+        jButtonBack = new javax.swing.JButton();
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -51,7 +52,7 @@ public class UpdateChildInformationJPanel extends javax.swing.JPanel {
 
         statusJLabel.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         statusJLabel.setText("Status:");
-        add(statusJLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 366, 225, 40));
+        add(statusJLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 280, 225, 40));
 
         saveJButton.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         saveJButton.setText("Save");
@@ -60,7 +61,7 @@ public class UpdateChildInformationJPanel extends javax.swing.JPanel {
                 saveJButtonActionPerformed(evt);
             }
         });
-        add(saveJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(199, 512, 233, 49));
+        add(saveJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 380, 233, 49));
 
         updateJButton.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         updateJButton.setText("Update");
@@ -69,13 +70,21 @@ public class UpdateChildInformationJPanel extends javax.swing.JPanel {
                 updateJButtonActionPerformed(evt);
             }
         });
-        add(updateJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(475, 512, 233, 49));
+        add(updateJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 380, 233, 49));
 
-        add(statusJComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(409, 367, 329, 40));
+        add(statusJComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 280, 329, 40));
 
         nameJLabel1.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         nameJLabel1.setText("Name:");
         add(nameJLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(273, 147, 142, 38));
+
+        jButtonBack.setText("Back");
+        jButtonBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonBackActionPerformed(evt);
+            }
+        });
+        add(jButtonBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 410, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void saveJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveJButtonActionPerformed
@@ -86,10 +95,15 @@ public class UpdateChildInformationJPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_updateJButtonActionPerformed
 
+    private void jButtonBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBackActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonBackActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField ageTextField;
     private javax.swing.JLabel headlineJLabel;
+    private javax.swing.JButton jButtonBack;
     private javax.swing.JLabel nameJLabel;
     private javax.swing.JLabel nameJLabel1;
     private javax.swing.JTextField nameTextField;

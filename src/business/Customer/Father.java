@@ -16,6 +16,10 @@ public class Father extends Person{
     private boolean status;
     private Child child;
 
+    public Father()
+    {
+        child = new Child();
+    }
 
     public boolean isStatus() {
         return status;

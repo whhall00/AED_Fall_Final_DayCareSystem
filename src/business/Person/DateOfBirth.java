@@ -38,4 +38,10 @@ public class DateOfBirth {
         this.year = year;
     }
     
+    @Override
+    public String toString()
+    {
+        return year + "/" + month + "/" + day;
+    }
+    
 }

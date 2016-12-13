@@ -154,6 +154,8 @@ public class ChildrenRegistrationJPanel extends javax.swing.JPanel {
         enterprise.getPersonDirectory().addPerson(child);
 //        System.out.println(enterprise.getPersonDirectory().getPersonList());
         child.setParents(parents);
+        parents.getFather().setChild(child);
+        parents.getMother().setChild(child);
         child.setFirstName(jTextFieldChildrenFirstName.getText());
         child.setLastName(jTextFieldChildrenLastName.getText());
         DateOfBirth dob = new DateOfBirth();

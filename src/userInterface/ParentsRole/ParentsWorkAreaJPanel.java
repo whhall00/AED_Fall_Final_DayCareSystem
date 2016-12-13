@@ -6,11 +6,13 @@
 package userInterface.ParentsRole;
 
 import business.Customer.Child;
+import business.Customer.Father;
 import business.Customer.Parents;
 import business.Enterprise.Enterprise;
 import business.Organization.Organization;
 import business.UserAccount.UserAccount;
 import java.awt.CardLayout;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import userInterface.TeacherRole.UpdateTeacherInformationJPanel;
 
@@ -31,17 +33,11 @@ public class ParentsWorkAreaJPanel extends javax.swing.JPanel {
         this.userAccount = userAccount;
         this.enterprise = enterprise;
         jLabelIcon.setIcon(new javax.swing.ImageIcon("icon.jpg"));
-    }
-
-    public void populateComboBox()
-    {
-        
+        Parents parents = (Parents) userAccount.getPerson();
+        jLabelChildren.setText(parents.getFather().getChild().getFirstName() + parents.getFather().getChild().getLastName());
+        nameLabel.setText(parents.getFather().getFirstName() + parents.getFather().getLastName());
     }
     
-    public void populateTable()
-    {
-        
-    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -56,12 +52,14 @@ public class ParentsWorkAreaJPanel extends javax.swing.JPanel {
         parentsNameLabel = new javax.swing.JLabel();
         nameLabel = new javax.swing.JLabel();
         childrenNameLabel = new javax.swing.JLabel();
-        selectChildrenJCombox = new javax.swing.JComboBox();
         manageParentsInformationJButton = new javax.swing.JButton();
         addCourseJButton = new javax.swing.JButton();
         checkoutJButton = new javax.swing.JButton();
         checkinJButton = new javax.swing.JButton();
         jLabelIcon = new javax.swing.JLabel();
+        jLabelStatus = new javax.swing.JLabel();
+        childrenNameLabel1 = new javax.swing.JLabel();
+        jLabelChildren = new javax.swing.JLabel();
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -77,10 +75,8 @@ public class ParentsWorkAreaJPanel extends javax.swing.JPanel {
         add(nameLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(214, 104, 161, 33));
 
         childrenNameLabel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        childrenNameLabel.setText("Children:");
-        add(childrenNameLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 160, 166, 28));
-
-        add(selectChildrenJCombox, new org.netbeans.lib.awtextra.AbsoluteConstraints(214, 166, 167, -1));
+        childrenNameLabel.setText("Status:");
+        add(childrenNameLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 200, 100, 28));
 
         manageParentsInformationJButton.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         manageParentsInformationJButton.setText("Manage Profile:");
@@ -118,6 +114,16 @@ public class ParentsWorkAreaJPanel extends javax.swing.JPanel {
         });
         add(checkinJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 250, -1, 79));
         add(jLabelIcon, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 200, 150, 151));
+
+        jLabelStatus.setFont(new java.awt.Font("宋体", 1, 18)); // NOI18N
+        add(jLabelStatus, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 200, 80, 30));
+
+        childrenNameLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        childrenNameLabel1.setText("Children:");
+        add(childrenNameLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 160, 100, 28));
+
+        jLabelChildren.setFont(new java.awt.Font("宋体", 1, 18)); // NOI18N
+        add(jLabelChildren, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 160, 80, 30));
     }// </editor-fold>//GEN-END:initComponents
 
     private void manageParentsInformationJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manageParentsInformationJButtonActionPerformed
@@ -130,7 +136,7 @@ public class ParentsWorkAreaJPanel extends javax.swing.JPanel {
 
     private void addCourseJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addCourseJButtonActionPerformed
         // TODO add your handling code here:
-        AddCourseJPanel addCourseJPanel = new AddCourseJPanel(userProcessContainer, enterprise); 
+        AddCourseJPanel addCourseJPanel = new AddCourseJPanel(userProcessContainer, enterprise, userAccount); 
         userProcessContainer.add("AddCourseJPanel", addCourseJPanel);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
@@ -139,11 +145,15 @@ public class ParentsWorkAreaJPanel extends javax.swing.JPanel {
     private void checkinJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkinJButtonActionPerformed
         // TODO add your handling code here:
         userAccount.getPerson().setStatus(true);
+        JOptionPane.showMessageDialog(null, "Children successfully checked in!");
+        jLabelStatus.setText("in");
     }//GEN-LAST:event_checkinJButtonActionPerformed
 
     private void checkoutJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkoutJButtonActionPerformed
         // TODO add your handling code here:
         userAccount.getPerson().setStatus(false);
+        JOptionPane.showMessageDialog(null, "Children successfully checked out!");
+        jLabelStatus.setText("out");
     }//GEN-LAST:event_checkoutJButtonActionPerformed
 
 
@@ -152,11 +162,13 @@ public class ParentsWorkAreaJPanel extends javax.swing.JPanel {
     private javax.swing.JButton checkinJButton;
     private javax.swing.JButton checkoutJButton;
     private javax.swing.JLabel childrenNameLabel;
+    private javax.swing.JLabel childrenNameLabel1;
     private javax.swing.JLabel headlineJLabel;
+    private javax.swing.JLabel jLabelChildren;
     private javax.swing.JLabel jLabelIcon;
+    private javax.swing.JLabel jLabelStatus;
     private javax.swing.JButton manageParentsInformationJButton;
     private javax.swing.JLabel nameLabel;
     private javax.swing.JLabel parentsNameLabel;
-    private javax.swing.JComboBox selectChildrenJCombox;
     // End of variables declaration//GEN-END:variables
 }

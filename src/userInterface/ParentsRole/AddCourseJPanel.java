@@ -7,6 +7,7 @@ package userInterface.ParentsRole;
 
 import business.CourseOffering.CourseOffering;
 import business.Customer.Child;
+import business.Customer.Parents;
 import business.Enterprise.DayCareEnterprise;
 import business.Enterprise.Enterprise;
 import business.UserAccount.UserAccount;
@@ -29,11 +30,12 @@ public class AddCourseJPanel extends javax.swing.JPanel {
     private UserAccount userAccount;
     private DayCareEnterprise enterprise;
 
-    public AddCourseJPanel(JPanel userProcessContainer, Enterprise enterprise) {
+    public AddCourseJPanel(JPanel userProcessContainer, Enterprise enterprise, UserAccount userAccount) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.userAccount = userAccount;
         this.enterprise = (DayCareEnterprise) enterprise;
+        populateTable();
     }
 
     public void populateTable()
@@ -62,6 +64,7 @@ public class AddCourseJPanel extends javax.swing.JPanel {
         viewJButton = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         viewJButton1 = new javax.swing.JButton();
+        jButtonBack = new javax.swing.JButton();
 
         jTable_Course.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -100,6 +103,13 @@ public class AddCourseJPanel extends javax.swing.JPanel {
             }
         });
 
+        jButtonBack.setText("Back");
+        jButtonBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonBackActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -108,16 +118,21 @@ public class AddCourseJPanel extends javax.swing.JPanel {
                 .addGap(101, 101, 101)
                 .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 596, Short.MAX_VALUE)
                 .addGap(118, 118, 118))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(138, 138, 138)
-                .addComponent(jLabel1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(viewJButton)
                 .addGap(30, 30, 30)
                 .addComponent(viewJButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(137, 137, 137))
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(138, 138, 138)
+                        .addComponent(jLabel1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(51, 51, 51)
+                        .addComponent(jButtonBack)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -130,7 +145,9 @@ public class AddCourseJPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(viewJButton)
                     .addComponent(viewJButton1))
-                .addContainerGap(247, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 167, Short.MAX_VALUE)
+                .addComponent(jButtonBack)
+                .addGap(57, 57, 57))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -145,8 +162,8 @@ public class AddCourseJPanel extends javax.swing.JPanel {
         else
         {
             CourseOffering courseOffering = (CourseOffering) jTable_Course.getValueAt(selectedRow, 0);
-            ViewCourseDetailJPanel viewCourseDetailJPanel = new ViewCourseDetailJPanel(userProcessContainer, courseOffering, enterprise);
-            userProcessContainer.add("ViewCourseDetailJPanel", viewCourseDetailJPanel);
+            ViewCourseDetailsJPanel viewCourseDetailsJPanel = new ViewCourseDetailsJPanel(userProcessContainer, courseOffering, enterprise);
+            userProcessContainer.add("ViewCourseDetailsJPanel", viewCourseDetailsJPanel);
             CardLayout layout = (CardLayout) userProcessContainer.getLayout();
             layout.next(userProcessContainer);
         }
@@ -163,12 +180,24 @@ public class AddCourseJPanel extends javax.swing.JPanel {
         else
         {
             CourseOffering courseOffering = (CourseOffering) jTable_Course.getValueAt(selectedRow, 0);
-            courseOffering.addChild((Child)userAccount.getPerson());
+            System.out.println(userAccount.getUsername());
+            Parents parents = (Parents) userAccount.getPerson();
+            
+            courseOffering.addChild(parents.getFather().getChild());
+            JOptionPane.showMessageDialog(null, "Successfully selected!");
         }
     }//GEN-LAST:event_viewJButton1ActionPerformed
 
+    private void jButtonBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBackActionPerformed
+        // TODO add your handling code here:
+        userProcessContainer.remove(this);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.previous(userProcessContainer);
+    }//GEN-LAST:event_jButtonBackActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButtonBack;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JTable jTable_Course;
