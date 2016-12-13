@@ -7,7 +7,6 @@ package userInterface.TeacherRole;
 
 import business.CourseOffering.CourseOffering;
 import business.Customer.Child;
-import business.Person.Employee.Teacher;
 import java.awt.CardLayout;
 import java.awt.Component;
 import javax.swing.JOptionPane;

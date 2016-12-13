@@ -18,6 +18,7 @@ import business.Person.Employee.Nutritionist;
 import business.Person.Employee.Teacher;
 import business.Person.Person;
 import business.UserAccount.UserAccount;
+import business.WorkQueue.RestaurantWorkRequest;
 import java.awt.CardLayout;
 import java.awt.Component;
 import javax.swing.JOptionPane;
@@ -129,7 +130,6 @@ public class ManagerWorkArea extends javax.swing.JPanel {
                 for(Enterprise en : network.getEnterpriseDirectory().getEnterpriseList()){
                     if(en.getEnterpriseType().getValue().equals(Enterprise.EnterpriseType.Restaurant.getValue())){
                         jComboBox_Restaurant.addItem(en);
-                        populateMenuTable((RestaurantEnterprise) en);
                     }
                 }
             }
@@ -138,7 +138,8 @@ public class ManagerWorkArea extends javax.swing.JPanel {
     private void populateMenuTable(RestaurantEnterprise enterprise){
         DefaultTableModel dtm = (DefaultTableModel) jTable_Menu.getModel();
         dtm.setRowCount(0);
-        for(Menu m : enterprise.getMenuDirectory().getMenus()){
+        try {
+            for(Menu m : enterprise.getMenuDirectory().getMenus()){
             Object[] row = new Object[4];
                 row[0] = m;
                 row[1] = m.getTotalCalorie();
@@ -146,6 +147,9 @@ public class ManagerWorkArea extends javax.swing.JPanel {
                 row[3] = m.getStapleFood();
                 dtm.addRow(row);
         }
+        } catch (Exception e) {
+        }
+        
         
         
 //        for(Network network : system.getNetworkList()){
@@ -264,6 +268,7 @@ public class ManagerWorkArea extends javax.swing.JPanel {
         jTable_Menu = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
         jComboBox_Restaurant = new javax.swing.JComboBox();
+        jButton_Order = new javax.swing.JButton();
         jLabel_Network = new javax.swing.JLabel();
         jLabel_Network1 = new javax.swing.JLabel();
 
@@ -634,6 +639,18 @@ public class ManagerWorkArea extends javax.swing.JPanel {
         jLabel2.setText("Restaurant Name:");
 
         jComboBox_Restaurant.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox_Restaurant.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox_RestaurantActionPerformed(evt);
+            }
+        });
+
+        jButton_Order.setText("Order");
+        jButton_Order.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_OrderActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel_RestaurantLayout = new javax.swing.GroupLayout(jPanel_Restaurant);
         jPanel_Restaurant.setLayout(jPanel_RestaurantLayout);
@@ -642,12 +659,13 @@ public class ManagerWorkArea extends javax.swing.JPanel {
             .addGroup(jPanel_RestaurantLayout.createSequentialGroup()
                 .addGap(21, 21, 21)
                 .addGroup(jPanel_RestaurantLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton_Order)
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 505, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel_RestaurantLayout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jComboBox_Restaurant, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(252, Short.MAX_VALUE))
+                .addContainerGap(73, Short.MAX_VALUE))
         );
         jPanel_RestaurantLayout.setVerticalGroup(
             jPanel_RestaurantLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -658,7 +676,9 @@ public class ManagerWorkArea extends javax.swing.JPanel {
                     .addComponent(jComboBox_Restaurant, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(350, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jButton_Order)
+                .addContainerGap(298, Short.MAX_VALUE))
         );
 
         jTabbedPane_ManagerWork.addTab("Restaurant", jPanel_Restaurant);
@@ -822,6 +842,32 @@ public class ManagerWorkArea extends javax.swing.JPanel {
         populatCourseChildrenTable(courseOffering);
     }//GEN-LAST:event_jTable_CourseMouseClicked
 
+    private void jComboBox_RestaurantActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox_RestaurantActionPerformed
+        // TODO add your handling code here:
+        Enterprise enterprise = (Enterprise) jComboBox_Restaurant.getSelectedItem();
+        populateMenuTable((RestaurantEnterprise) enterprise);
+    }//GEN-LAST:event_jComboBox_RestaurantActionPerformed
+
+    private void jButton_OrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_OrderActionPerformed
+        // TODO add your handling code here:
+        int s = jTable_Menu.getSelectedRow();
+        if(s < 0){
+            JOptionPane.showMessageDialog(null, "Please select a row first!");
+            return;
+        }        
+        Menu menu = (Menu) jTable_Menu.getValueAt(s, 0);
+//        String message = jTextArea_Message.getText();
+        RestaurantWorkRequest request = new RestaurantWorkRequest();
+//        request.setMessage(message);
+        request.setSender(userAccount);
+        request.setStatus("Sent");
+        request.setMenu(menu);
+        RestaurantEnterprise restaurantEnterprise= (RestaurantEnterprise) jComboBox_Restaurant.getSelectedItem();
+        restaurantEnterprise.getWorkQueue().getWorkRequestList().add(request);        
+        userAccount.getWorkQueue().getWorkRequestList().add(request);        
+        JOptionPane.showMessageDialog(null, "Send Succeddful");
+    }//GEN-LAST:event_jButton_OrderActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton JButton_AddEmployee;
@@ -833,6 +879,7 @@ public class ManagerWorkArea extends javax.swing.JPanel {
     private javax.swing.JButton jButton_AddChild;
     private javax.swing.JButton jButton_AssignChild;
     private javax.swing.JButton jButton_DeleteChild;
+    private javax.swing.JButton jButton_Order;
     private javax.swing.JButton jButton_RefreshCourseTable;
     private javax.swing.JButton jButton_ShowALl;
     private javax.swing.JButton jButton_ViewDetials;

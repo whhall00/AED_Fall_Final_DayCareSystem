@@ -93,7 +93,7 @@ public class RegisterWorkAreaJPanel extends javax.swing.JPanel {
                 jComboBox_NetworkActionPerformed(evt);
             }
         });
-        add(jComboBox_Network, new org.netbeans.lib.awtextra.AbsoluteConstraints(214, 56, 70, -1));
+        add(jComboBox_Network, new org.netbeans.lib.awtextra.AbsoluteConstraints(214, 56, 190, -1));
 
         jButton_Choose.setText("Choose ");
         jButton_Choose.addActionListener(new java.awt.event.ActionListener() {
