@@ -21,7 +21,7 @@ public class ConfigureASystem {
         person.setFirstName("Hao");
         person.setLastName("Wang");
         //Not finish
-        UserAccount ua = system.getUserAccountDirectory().createUserAccount("a", "a", person, new AdminRole());        
+        UserAccount ua = system.getUserAccountDirectory().createUserAccount("gov", "gov", person, new AdminRole());        
         return system;
     }
     

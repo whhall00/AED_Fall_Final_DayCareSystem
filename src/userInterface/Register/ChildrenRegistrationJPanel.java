@@ -5,12 +5,10 @@
  */
 package userInterface.Register;
 
-import business.Business.EcoSystem;
 import business.Customer.Child;
 import business.Customer.Parents;
 import business.Enterprise.Enterprise;
 import business.Person.DateOfBirth;
-import business.UserAccount.UserAccount;
 import java.awt.CardLayout;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;

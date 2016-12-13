@@ -5,9 +5,11 @@
  */
 package business.Business;
 
+import business.Customer.Child;
 import business.Enterprise.Enterprise;
 import business.Network.Network;
 import business.Organization.Organization;
+import business.Person.Person;
 import business.Role.AdminRole;
 import business.Role.Role;
 import business.UserAccount.UserAccount;
@@ -111,60 +113,83 @@ public class EcoSystem extends Organization{
         return a;
     }
     
-//    public double CountOfAllConsumer(Enterprise ent) {
-//        double count = 0.0;
-//        for (Organization o : ent.getOrganizationDirectory().getOrganizationList()) {
-//            if (o instanceof ConsumerOrganization) {
-//                for (Employee e : o.getEmployeeDirectory().getEmployeeList()) {
-//                    if (e instanceof Consumer) {
-//
-//                        count++;
+    public int caculateTotalNetwork(){
+        int a = 0;        
+        for(Network network: this.networkList){
+            a++;
+        }
+        return a;
+    }
+    public int caculateTotalPerson(){
+        int a = 0;
+        for(Network network: this.networkList){
+            for(Enterprise enterprise : network.getEnterpriseDirectory().getEnterpriseList()){
+                for(Person person : enterprise.getPersonDirectory().getPersonList()){
+                    a++;
+                    for(Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()){
+                        for(Person p : organization.getPersonDirectory().getPersonList()){
+                            a++;
+                        }
+                    }
+                }
+            }
+        }
+        return a;
+    }
+    
+    public int caculateTotalChild(){
+        int a = 0;
+        for(Network network: this.networkList){
+            for(Enterprise enterprise : network.getEnterpriseDirectory().getEnterpriseList()){
+                if(enterprise.getEnterpriseType().equals(Enterprise.EnterpriseType.DayCareInstitution)){
+                    for(Person person : enterprise.getPersonDirectory().getPersonList()){
+                        if(person instanceof Child){
+                            a++;
+                        }
+//                    for(Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()){
+//                        for(Person p : organization.getPersonDirectory().getPersonList()){
+//                            a++;
+//                        }
 //                    }
-//                }
-//            }
-//        }
-//        return count;
-//    }
-
-//    public double sumOfAllConsumerPower(Enterprise ent) {
-//        double sum = 0.0;
-//        for (Organization o : ent.getOrganizationDirectory().getOrganizationList()) {
-//            if (o instanceof ConsumerOrganization) {
-//                for (Employee e : o.getEmployeeDirectory().getEmployeeList()) {
-//                    if (e instanceof Consumer) {
-//
-//                        sum += ((Consumer) e).getSensor().sum_Of_Power_Consumption();
-//                    }
-//                }
-//            }
-//        }
-//        return sum;
-//    }
-
-//    public double avgOfAllConsumerPower(Enterprise ent) {
-//        double avg = sumOfAllConsumerPower(ent) / CountOfAllConsumer(ent);
-//        return avg;
-//    }
-
-//    public double sumOfAllConsumerVoltage(Enterprise ent) {
-//        double sum = 0.0;
-//        for (Organization o : ent.getOrganizationDirectory().getOrganizationList()) {
-//            if (o instanceof ConsumerOrganization) {
-//                for (Employee e : o.getEmployeeDirectory().getEmployeeList()) {
-//                    if (e instanceof Consumer) {
-//                        sum += ((Consumer) e).getSensor().sum_Of_LocalVoltage();
-//                    }
-//                }
-//            }
-//        }
-//        return sum;
-//    }
-
-//    public double avgOfAllConsumerVoltage(Enterprise ent) {
-//        double avg = 0.0;
-//        avg = sumOfAllConsumerVoltage(ent) / CountOfAllConsumer(ent);
-//        return avg;
-//    }
-
+                }
+                }
+                
+            }
+        }
+        return a;
+    }
+    public int caculateTotalDayCare(){
+        int a = 0;
+        for(Network network: this.networkList){
+            for(Enterprise enterprise : network.getEnterpriseDirectory().getEnterpriseList()){
+                if(enterprise.getEnterpriseType().equals(Enterprise.EnterpriseType.DayCareInstitution)){
+                    a++;                    
+                }                
+            }
+        }
+        return a;
+    }
+    public int caculateTotalRestaurant(){
+        int a = 0;
+        for(Network network: this.networkList){
+            for(Enterprise enterprise : network.getEnterpriseDirectory().getEnterpriseList()){
+                if(enterprise.getEnterpriseType().equals(Enterprise.EnterpriseType.Restaurant)){
+                    a++;                    
+                }                
+            }
+        }
+        return a;
+    }
+    public int caculateTotalHospital(){
+        int a = 0;
+        for(Network network: this.networkList){
+            for(Enterprise enterprise : network.getEnterpriseDirectory().getEnterpriseList()){
+                if(enterprise.getEnterpriseType().equals(Enterprise.EnterpriseType.Hospital)){
+                    a++;                    
+                }                
+            }
+        }
+        return a;
+    }
     
 }

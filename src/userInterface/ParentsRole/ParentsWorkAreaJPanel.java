@@ -123,7 +123,7 @@ public class ParentsWorkAreaJPanel extends javax.swing.JPanel {
         add(childrenNameLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 160, 100, 28));
 
         jLabelChildren.setFont(new java.awt.Font("宋体", 1, 18)); // NOI18N
-        add(jLabelChildren, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 160, 80, 30));
+        add(jLabelChildren, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 160, 190, 30));
     }// </editor-fold>//GEN-END:initComponents
 
     private void manageParentsInformationJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manageParentsInformationJButtonActionPerformed

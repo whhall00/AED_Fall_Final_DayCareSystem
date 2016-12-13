@@ -654,6 +654,7 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="21" pref="21" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jButton_Order" min="-2" max="-2" attributes="0"/>
                           <Component id="jScrollPane3" min="-2" pref="505" max="-2" attributes="0"/>
                           <Group type="102" attributes="0">
                               <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
@@ -661,7 +662,7 @@
                               <Component id="jComboBox_Restaurant" min="-2" pref="213" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace pref="252" max="32767" attributes="0"/>
+                      <EmptySpace pref="73" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -675,7 +676,9 @@
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="jScrollPane3" min="-2" pref="146" max="-2" attributes="0"/>
-                      <EmptySpace pref="350" max="32767" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="jButton_Order" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace pref="298" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -745,9 +748,20 @@
                   </StringArray>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jComboBox_RestaurantActionPerformed"/>
+              </Events>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value=""/>
               </AuxValues>
+            </Component>
+            <Component class="javax.swing.JButton" name="jButton_Order">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Order"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton_OrderActionPerformed"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>

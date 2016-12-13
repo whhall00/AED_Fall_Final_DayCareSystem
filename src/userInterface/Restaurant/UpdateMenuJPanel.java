@@ -5,7 +5,6 @@
  */
 package userInterface.Restaurant;
 
-import business.Enterprise.RestaurantEnterprise;
 import business.Menu.Menu;
 import java.awt.CardLayout;
 import java.awt.Component;

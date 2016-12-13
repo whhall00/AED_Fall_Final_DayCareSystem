@@ -56,11 +56,19 @@ public class RestaurantManagerWorkArea extends javax.swing.JPanel {
         DefaultTableModel dtm = (DefaultTableModel) jTable_Order.getModel();
         dtm.setRowCount(0);
         for (WorkRequest wr : enterprise.getWorkQueue().getWorkRequestList()) {
-            Object[] row = new Object[3];
-            row[0] = wr;
-            row[1] = wr.getSender();
-            row[2] = wr.getStatus();
-            dtm.addRow(row);
+            if(wr instanceof RestaurantWorkRequest){
+                Object[] row = new Object[4];
+                row[0] = wr;
+                row[1] = ((RestaurantWorkRequest) wr).getMenu();
+                row[2] = wr.getMessage();
+                row[3] = wr.getStatus();                 
+                dtm.addRow(row);
+            }
+//            Object[] row = new Object[3];
+//            row[0] = wr;
+//            row[1] = wr.getMessage();
+//            row[2] = wr.getStatus();
+//            dtm.addRow(row);
         }
     }
     
@@ -105,7 +113,7 @@ public class RestaurantManagerWorkArea extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Custoner Name", "Sender", "Staus"
+                "Custoner Name", "Menu", "Message", "Staus"
             }
         ));
         jScrollPane_Order.setViewportView(jTable_Order);

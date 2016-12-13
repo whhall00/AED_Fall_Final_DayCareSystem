@@ -8,6 +8,7 @@ package userInterface.Restaurant;
 import business.Enterprise.RestaurantEnterprise;
 import business.Menu.Menu;
 import java.awt.CardLayout;
+import java.awt.Component;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
@@ -59,6 +60,7 @@ public class MenuInfoJPanel extends javax.swing.JPanel {
         jButton_AddMenu = new javax.swing.JButton();
         jButton_Update = new javax.swing.JButton();
         jButton_Delete = new javax.swing.JButton();
+        jButton_Back = new javax.swing.JButton();
 
         jTable_Menu.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -94,6 +96,13 @@ public class MenuInfoJPanel extends javax.swing.JPanel {
             }
         });
 
+        jButton_Back.setText("Back");
+        jButton_Back.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_BackActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -101,6 +110,7 @@ public class MenuInfoJPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(41, 41, 41)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton_Back)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jButton_AddMenu)
                         .addGap(27, 27, 27)
@@ -120,7 +130,9 @@ public class MenuInfoJPanel extends javax.swing.JPanel {
                     .addComponent(jButton_AddMenu)
                     .addComponent(jButton_Update)
                     .addComponent(jButton_Delete))
-                .addContainerGap(210, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 160, Short.MAX_VALUE)
+                .addComponent(jButton_Back)
+                .addGap(21, 21, 21))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -166,9 +178,21 @@ public class MenuInfoJPanel extends javax.swing.JPanel {
         layout.next(userProcessContainer);
     }//GEN-LAST:event_jButton_AddMenuActionPerformed
 
+    private void jButton_BackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_BackActionPerformed
+        // TODO add your handling code here:
+        userProcessContainer.remove(this);
+        Component[] componentArray = userProcessContainer.getComponents();
+        Component component = componentArray[componentArray.length - 1];
+        RestaurantManagerWorkArea sysAdminwjp = (RestaurantManagerWorkArea) component;
+        sysAdminwjp.populateTable();
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.previous(userProcessContainer);
+    }//GEN-LAST:event_jButton_BackActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton_AddMenu;
+    private javax.swing.JButton jButton_Back;
     private javax.swing.JButton jButton_Delete;
     private javax.swing.JButton jButton_Update;
     private javax.swing.JScrollPane jScrollPane1;

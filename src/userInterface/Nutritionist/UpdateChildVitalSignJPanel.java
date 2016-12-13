@@ -8,10 +8,12 @@ package userInterface.Nutritionist;
 import business.Customer.Child;
 import business.Enterprise.Enterprise;
 import business.Health.Health;
+import business.Health.VitalSign;
 import business.Organization.Organization;
 import business.UserAccount.UserAccount;
 import java.awt.CardLayout;
 import java.awt.Component;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import userInterface.Restaurant.RestaurantManagerWorkArea;
 
@@ -30,9 +32,24 @@ public class UpdateChildVitalSignJPanel extends javax.swing.JPanel {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.child = child;
-        
+        setMessage();
     }
-
+    private void setMessage(){
+        try {
+            
+            jTextField_BodyFatTend.setText(String.valueOf(child.getVitalSign().getBodyFatTend()));
+            jTextField_BloodPressure.setText(String.valueOf(child.getVitalSign().getBloodPresser()));
+            jTextField_Allergy.setText(child.getHealth().getAllergy());
+            jTextField_Hearing.setText(child.getHealth().getHearing());
+            jTextField_HeartRate.setText(String.valueOf(child.getVitalSign().getHeartRate()));
+            jTextField_Sight.setText(String.valueOf(child.getHealth().getSight()));
+            jTextField_Height.setText(String.valueOf(child.getHealth().getHeight()));
+            jTextField_Weight.setText(String.valueOf(child.getHealth().getWeight()));
+            jTextField_BMI.setText(String.valueOf(child.calculateBMI()));
+            jButton_Save.setEnabled(true);
+        } catch (Exception e) {
+        }        
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -264,7 +281,7 @@ public class UpdateChildVitalSignJPanel extends javax.swing.JPanel {
         jTextField_Sight.setEditable(true);
         jTextField_Height.setEditable(true);
         jTextField_Weight.setEditable(true);
-        
+        jTextField_BMI.setEnabled(false);
         jButton_Save.setEnabled(true);
         
         
@@ -273,15 +290,19 @@ public class UpdateChildVitalSignJPanel extends javax.swing.JPanel {
     private void jButton_SaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_SaveActionPerformed
         // TODO add your handling code here:
         Health health = new Health();
-        
-        health.setAllergy(jTextField_Allergy.getText());
+        VitalSign vs = new VitalSign();
         health.setAllergy(jTextField_Allergy.getText());
         health.setHearing(jTextField_Height.getText());
         health.setHeight( Double.parseDouble(jTextField_Height.getText()));
         health.setSight( Double.parseDouble(jTextField_Hearing.getText()));
         health.setWeight(Double.parseDouble(jTextField_Weight.getText()));
+        vs.setBloodPresser(Double.parseDouble(jTextField_BloodPressure.getText()));
+        vs.setBodyFatTend(Double.parseDouble(jTextField_BodyFatTend.getText()));
+        vs.setHeartRate(Double.parseDouble(jTextField_HeartRate.getText()));
         
         child.setHealth(health);
+        child.setVitalSign(vs);
+        JOptionPane.showMessageDialog(null, "Save Successfully");
     }//GEN-LAST:event_jButton_SaveActionPerformed
 
     private void jButton_CalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_CalActionPerformed
