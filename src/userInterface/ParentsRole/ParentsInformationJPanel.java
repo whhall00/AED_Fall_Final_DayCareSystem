@@ -5,11 +5,11 @@
  */
 package userInterface.ParentsRole;
 
+import business.Customer.Parents;
 import business.UserAccount.UserAccount;
 import java.awt.CardLayout;
 import java.awt.Component;
 import javax.swing.JPanel;
-import userInterface.TeacherRole.ViewscheduleJPanel;
 
 /**
  *
@@ -27,7 +27,8 @@ public class ParentsInformationJPanel extends javax.swing.JPanel {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.userAccount = userAccount;
-        nameTextField.setText(userAccount.getPerson().getFirstName() + userAccount.getPerson().getLastName());
+        Parents parents = (Parents) userAccount.getPerson();
+        nameTextField.setText(parents.getFather().getFirstName() + parents.getFather().getLastName());
         nameTextField.setEnabled(false);
         contactInformationTextField.setText(String.valueOf(userAccount.getPerson().getPhoneNum()));
         contactInformationTextField.setEnabled(false);
@@ -186,7 +187,6 @@ public class ParentsInformationJPanel extends javax.swing.JPanel {
         Component[] componentArray = userProcessContainer.getComponents();
         Component component = componentArray[componentArray.length - 1];
         ParentsWorkAreaJPanel parentsWorkAreaJPanel = (ParentsWorkAreaJPanel) component;
-        parentsWorkAreaJPanel.populateTable();
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.previous(userProcessContainer);
     }//GEN-LAST:event_backJButtonActionPerformed

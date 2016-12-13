@@ -26,14 +26,14 @@ public class RegisterUserAccount extends javax.swing.JPanel {
     private JPanel userProcessContainer;
     private Enterprise enterprise;
 //    private UserAccount ua;
-//    private Parents parents;
+    private Parents parents;
 
     public RegisterUserAccount(JPanel userProcessContainer, Enterprise enterprise) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.enterprise = enterprise;
 //        ua = new UserAccount();
-//        parents = new Parents();
+        parents = new Parents();
     }
 
     /**
@@ -54,6 +54,7 @@ public class RegisterUserAccount extends javax.swing.JPanel {
         SubmitJButton = new javax.swing.JButton();
         BackJButton = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
+        jButtonNext = new javax.swing.JButton();
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         add(UsernameTxtField, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 160, 130, -1));
@@ -88,6 +89,14 @@ public class RegisterUserAccount extends javax.swing.JPanel {
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         jLabel4.setText("Registration");
         add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 50, -1, -1));
+
+        jButtonNext.setText("Next: Update Profile");
+        jButtonNext.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonNextActionPerformed(evt);
+            }
+        });
+        add(jButtonNext, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 350, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void SubmitJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SubmitJButtonActionPerformed
@@ -98,11 +107,9 @@ public class RegisterUserAccount extends javax.swing.JPanel {
             String userName = UsernameTxtField.getText();
             String password = PasswordTxtField.getText();
             
-            Parents parents = new Parents();
             enterprise.getPersonDirectory().addPerson(parents);
             
             UserAccount account = enterprise.getUserAccountDirectory().createUserAccount(userName, password, parents, new ParentsRole());
-            account.setPerson(parents);
             UpdateProfileJPanel updateProfileJPanel = new UpdateProfileJPanel(userProcessContainer, enterprise, parents);
             userProcessContainer.add("UpdateProfileJPanel", updateProfileJPanel);
             CardLayout layout = (CardLayout) userProcessContainer.getLayout();
@@ -128,6 +135,14 @@ public class RegisterUserAccount extends javax.swing.JPanel {
         layout.previous(userProcessContainer);
     }//GEN-LAST:event_BackJButtonActionPerformed
 
+    private void jButtonNextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNextActionPerformed
+        // TODO add your handling code here:
+        UpdateProfileJPanel updateProfileJPanel = new UpdateProfileJPanel(userProcessContainer, enterprise, parents); 
+        userProcessContainer.add("ChildrenRegistrationJPanel", updateProfileJPanel);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
+    }//GEN-LAST:event_jButtonNextActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BackJButton;
@@ -135,6 +150,7 @@ public class RegisterUserAccount extends javax.swing.JPanel {
     private javax.swing.JTextField ReenterPasswordTxtField;
     private javax.swing.JButton SubmitJButton;
     private javax.swing.JTextField UsernameTxtField;
+    private javax.swing.JButton jButtonNext;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

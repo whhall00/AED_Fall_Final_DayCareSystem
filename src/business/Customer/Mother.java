@@ -14,6 +14,11 @@ import business.Person.Person;
 public class Mother extends Person{
     private boolean status;
     private Child child;
+    
+    public Mother()
+    {
+        child = new Child();
+    }
 
     public boolean isStatus() {
         return status;
